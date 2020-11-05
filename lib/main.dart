@@ -1,4 +1,4 @@
-import 'package:buyer/screens/mypage/my_page.dart';
+import 'package:buyer/screens/auth/login.dart';
 import 'package:buyer/utils/appsettings.dart';
 import 'package:buyer/utils/uatheme.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
       title: AppSettings.appName,
       debugShowCheckedModeBanner: false,
       theme: UATheme.setTheme(context),
-      home: MyPage(),
+      home: Login(),
     );
   }
 }
