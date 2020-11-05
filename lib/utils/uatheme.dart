@@ -20,7 +20,7 @@ class UATheme {
     ]);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       systemNavigationBarColor: AppSettings.appBackground,
-      statusBarColor: AppSettings.appBackground,
+      statusBarColor: AppSettings.primaryColor,
       statusBarIconBrightness: Brightness.light,
       systemNavigationBarIconBrightness: Brightness.light,
     ));
@@ -28,21 +28,24 @@ class UATheme {
     return ThemeData(
       scaffoldBackgroundColor: AppSettings.appBackground,
       backgroundColor: AppSettings.appBackground,
+      dividerColor: Colors.white,
+
       primarySwatch: Colors.grey,
       brightness: Brightness.light,
       appBarTheme: AppBarTheme(
-        color: AppSettings.appBackground,
-        brightness: Brightness.light,
+        centerTitle: true,
+
+        color: AppSettings.primaryColor,
+        brightness: Brightness.dark,
         elevation: 0,
         iconTheme: IconThemeData(
-          color: Colors.black,
+          color: Colors.white,
         ),
         textTheme: TextTheme(
           headline6: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
+            color: Colors.white,
+            fontSize: 15,
             //fontFamily: 'Font',
-            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -78,7 +81,7 @@ class UATheme {
       buttonTheme: ButtonThemeData(
         buttonColor: Colors.grey.shade200,
         textTheme: ButtonTextTheme.primary,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
       ),
       textTheme: TextTheme(
         bodyText2: TextStyle(
