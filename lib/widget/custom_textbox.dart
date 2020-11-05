@@ -1,34 +1,31 @@
+import 'package:buyer/utils/appsettings.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextBox extends StatelessWidget {
+class CustomTextField extends StatelessWidget {
+  final String hint;
 
-  final String title;
-
-
-  CustomTextBox({this.title});
+  CustomTextField({this.hint});
 
   @override
   Widget build(BuildContext context) {
-   return Padding(
-     padding: const EdgeInsets.all(8.0),
-     child: TextField(style: TextStyle(
-     fontSize: 8.0,
-     height: 1),
-        autocorrect: true,
+    return Container(
+      height: 45,
+      child: TextField(
+        textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
-          hintText: title,
-          hintStyle: TextStyle(color: Colors.grey),
-          filled: true,
-          fillColor: Colors.white,
+          contentPadding: EdgeInsets.only(left: 15),
+          hintText: hint,
+          hintStyle: TextStyle(color: Colors.grey.shade300),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide(width: 1),
+            borderSide: BorderSide(width: 0.75, color: Colors.grey.shade400),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide(),
+            borderSide: BorderSide(color: AppSettings.primaryColor),
           ),
-        ),),
-   );
+        ),
+      ),
+    );
   }
-  }
+}

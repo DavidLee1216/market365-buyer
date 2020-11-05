@@ -1,20 +1,15 @@
 import 'package:buyer/models/notice_model.dart';
-import 'package:buyer/screens/notes/notesselected.dart';
+import 'package:buyer/screens/notes/notes_selected.dart';
 import 'package:buyer/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 class Notes extends StatefulWidget {
-  
   @override
   _NotesState createState() => _NotesState();
 }
 
 class _NotesState extends State<Notes> {
-  List<Notice> noticeItems = [
-    Notice(date: '2020.09.22', title: 'Delivery Time Change Notice'),
-    Notice(date: '2020.09.22', title: 'Delivery Time Change Notice'),
-    Notice(date: '2020.09.22', title: 'Delivery Time Change Notice')
-  ];
+  List<Notice> noticeItems = [Notice(date: '2020.09.22', title: 'Delivery Time Change Notice'), Notice(date: '2020.09.22', title: 'Delivery Time Change Notice'), Notice(date: '2020.09.22', title: 'Delivery Time Change Notice')];
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +25,20 @@ class _NotesState extends State<Notes> {
       ),
       body: Column(
         children: [
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           ListView.builder(
             shrinkWrap: true,
             itemCount: 3,
             itemBuilder: (context, i) {
               return ListTile(
                 onTap: () {
-                  open(context, NotesSelected(notice: noticeItems[i],));
+                  open(
+                      context,
+                      NotesSelected(
+                        notice: noticeItems[i],
+                      ));
                 },
                 title: Text(noticeItems[i].title),
                 subtitle: Text(

@@ -29,12 +29,10 @@ class UATheme {
       scaffoldBackgroundColor: AppSettings.appBackground,
       backgroundColor: AppSettings.appBackground,
       dividerColor: Colors.white,
-
       primarySwatch: Colors.grey,
       brightness: Brightness.light,
       appBarTheme: AppBarTheme(
         centerTitle: true,
-
         color: AppSettings.primaryColor,
         brightness: Brightness.dark,
         elevation: 0,
@@ -44,7 +42,7 @@ class UATheme {
         textTheme: TextTheme(
           headline6: TextStyle(
             color: Colors.white,
-            fontSize: 15,
+            fontSize: UATheme.screenWidth * 0.045,
             //fontFamily: 'Font',
           ),
         ),
@@ -86,11 +84,11 @@ class UATheme {
       textTheme: TextTheme(
         bodyText2: TextStyle(
           //fontFamily: 'Font',
-          fontSize: screenWidth * 0.035,
+          fontSize: screenWidth * 0.04,
         ),
         button: TextStyle(
           //fontFamily: 'Font',
-          fontSize: screenWidth * 0.04,
+          fontSize: screenWidth * 0.045,
           color: Colors.white,
         ),
       ),
@@ -98,7 +96,7 @@ class UATheme {
         headline6: TextStyle(
           color: AppSettings.primaryColor,
           //fontFamily: 'Font',
-          fontSize: screenWidth * 0.035,
+          fontSize: screenWidth * 0.04,
         ),
       ),
     );

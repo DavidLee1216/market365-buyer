@@ -1,18 +1,15 @@
-import 'package:buyer/models/shoplist.dart';
+import 'package:buyer/models/shop_list.dart';
 import 'package:flutter/material.dart';
 
 class ShopListItem extends StatelessWidget {
-  final ShopList shopList;
+  final Shop shopList;
   ShopListItem({this.shopList});
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(15),
       margin: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.grey.shade200)
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey.shade200)),
       child: ListTile(
         onTap: () {
           //   open(context, NotesSelected(notice: noticeItems[i],));

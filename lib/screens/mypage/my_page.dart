@@ -1,8 +1,8 @@
-import 'package:buyer/screens/mypage/changepassword.dart';
-import 'package:buyer/screens/mypage/helpsupport.dart';
+import 'package:buyer/screens/mypage/change_password.dart';
+import 'package:buyer/screens/mypage/help_support.dart';
 import 'package:buyer/screens/mypage/user.dart';
 import 'package:buyer/services/navigation_service.dart';
-import 'package:buyer/widget/custombutton.dart';
+import 'package:buyer/widget/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class MyPage extends StatefulWidget {
@@ -34,9 +34,7 @@ class _MyPageState extends State<MyPage> {
             padding: EdgeInsets.all(15),
             margin: EdgeInsets.all(15),
             width: double.infinity,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.grey.shade200)),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey.shade200)),
             child: Column(
               children: [
                 ListTile(
@@ -78,7 +76,7 @@ class _MyPageState extends State<MyPage> {
                   ),
                 ),
                 ListTile(
-                  onTap: (){
+                  onTap: () {
                     open(context, HelpSupport());
                   },
                   leading: Icon(
@@ -138,7 +136,7 @@ class _MyPageState extends State<MyPage> {
                   ),
                 ),
                 ListTile(
-                  onTap: (){
+                  onTap: () {
                     open(context, User());
                   },
                   leading: Icon(
@@ -160,7 +158,7 @@ class _MyPageState extends State<MyPage> {
                   ),
                 ),
                 ListTile(
-                  onTap: (){
+                  onTap: () {
                     open(context, ChangePassword());
                   },
                   leading: Icon(

@@ -1,8 +1,6 @@
-import 'package:buyer/models/searchproductlist.dart';
+import 'package:buyer/models/search_product.dart';
 import 'package:buyer/utils/appsettings.dart';
-import 'package:buyer/utils/uatheme.dart';
-import 'package:buyer/widget/cached_image.dart';
-import 'package:buyer/widget/searchproductlistitem.dart';
+import 'package:buyer/widget/product_list_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,39 +10,15 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  List<SearchProductList> searchproductlists = [
-    SearchProductList(
-        image:
-            'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg',
-        title: 'Hamburger'),
-    SearchProductList(
-        image:
-            'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg',
-        title: 'Hamburger'),
-    SearchProductList(
-        image:
-        'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg',
-        title: 'Hamburger'),
-    SearchProductList(
-        image:
-        'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg',
-        title: 'Hamburger'),
-    SearchProductList(
-        image:
-        'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg',
-        title: 'Hamburger'),
-    SearchProductList(
-        image:
-        'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg',
-        title: 'Hamburger'),
-    SearchProductList(
-        image:
-        'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg',
-        title: 'Hamburger'),
-    SearchProductList(
-        image:
-        'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg',
-        title: 'Hamburger'),
+  List<SearchProduct> searchproductlists = [
+    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
+    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
+    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
+    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
+    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
+    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
+    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
+    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
   ];
 
   @override
@@ -73,9 +47,7 @@ class _SearchState extends State<Search> {
           Container(
             margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             padding: EdgeInsets.only(left: 20),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                border: Border.all(color: AppSettings.primaryColor)),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), border: Border.all(color: AppSettings.primaryColor)),
             child: TextFormField(
               decoration: InputDecoration(
                   suffixIcon: Icon(
@@ -89,15 +61,13 @@ class _SearchState extends State<Search> {
           ),
           Expanded(
             child: GridView.builder(
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisSpacing: 10,crossAxisSpacing: 0,childAspectRatio: 0.90),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 0, childAspectRatio: 0.90),
               padding: EdgeInsets.all(10),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               itemCount: searchproductlists.length,
               itemBuilder: (context, index) {
-                return SearchProductListItem(
-                    searchProductList: searchproductlists[index]);
+                return SearchProductListItem(searchProductList: searchproductlists[index]);
               },
             ),
           ),
