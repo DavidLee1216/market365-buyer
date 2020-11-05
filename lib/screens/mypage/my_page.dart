@@ -1,5 +1,6 @@
 import 'package:buyer/screens/mypage/change_password.dart';
 import 'package:buyer/screens/mypage/help_support.dart';
+import 'package:buyer/screens/mypage/information_settings.dart';
 import 'package:buyer/screens/mypage/user.dart';
 import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/widget/custom_button.dart';
@@ -117,6 +118,9 @@ class _MyPageState extends State<MyPage> {
                   ),
                 ),
                 ListTile(
+                  onTap: (){
+                    open(context, Information_Settings());
+                  },
                   leading: Icon(
                     Icons.person,
                     color: Colors.black,

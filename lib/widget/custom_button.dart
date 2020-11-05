@@ -1,3 +1,4 @@
+import 'package:buyer/utils/appsettings.dart';
 import 'package:buyer/utils/uatheme.dart';
 import 'package:flutter/material.dart';
 
@@ -15,11 +16,11 @@ class CustomButton extends StatelessWidget {
       alignment: Alignment.center,
       height: 45,
       width: UATheme.screenWidth * .45,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: color, boxShadow: [
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: color!=null ? color:AppSettings.primaryColor, boxShadow: [
         showShadow != null && !showShadow
             ? BoxShadow(blurRadius: 0, spreadRadius: 0)
             : BoxShadow(
-                color: color.withOpacity(0.2),
+                color: color!=null ?  color.withOpacity(0.2):AppSettings.primaryColor.withOpacity(0.2),
                 spreadRadius: 2,
                 blurRadius: 3,
                 offset: Offset(0, 5),
