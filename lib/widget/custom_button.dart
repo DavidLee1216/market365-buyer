@@ -16,14 +16,14 @@ class CustomButton extends StatelessWidget {
       height: 45,
       width: UATheme.screenWidth * .45,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: color, boxShadow: [
-        showShadow != null && showShadow
-            ? BoxShadow(
+        showShadow != null && !showShadow
+            ? BoxShadow(blurRadius: 0, spreadRadius: 0)
+            : BoxShadow(
                 color: color.withOpacity(0.2),
                 spreadRadius: 2,
                 blurRadius: 3,
                 offset: Offset(0, 5),
               )
-            : BoxShadow(blurRadius: 0, spreadRadius: 0)
       ]),
       child: InkWell(
         onTap: function,
