@@ -1,4 +1,4 @@
-import 'package:buyer/utils/appsettings.dart';
+import 'package:buyer/utils/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

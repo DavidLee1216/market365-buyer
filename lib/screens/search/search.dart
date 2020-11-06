@@ -1,5 +1,5 @@
 import 'package:buyer/models/search_product.dart';
-import 'package:buyer/utils/appsettings.dart';
+import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/widget/product_list_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

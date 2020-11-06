@@ -1,6 +1,6 @@
 import 'package:buyer/models/mydropdown.dart';
 import 'package:buyer/models/shop_list.dart';
-import 'package:buyer/utils/appsettings.dart';
+import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/widget/shop_list_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
