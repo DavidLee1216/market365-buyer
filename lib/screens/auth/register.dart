@@ -1,3 +1,5 @@
+import 'package:buyer/utils/app_settings.dart';
+import 'package:buyer/widget/custom_button.dart';
 import 'package:buyer/widget/custom_textbox.dart';
 import 'package:flutter/material.dart';
 
@@ -5,88 +7,74 @@ class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Register'),
-      ),
+      appBar: AppBar(title: Text('Register')),
       body: SingleChildScrollView(
-        child: Column(children: [
-          CustomTextField(hint: 'Email'),
-          CustomTextField(hint: 'Password'),
-          CustomTextField(hint: 'Confirm Password'),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          children: [
+            SizedBox(height: 15),
+            CustomTextField(hint: 'Email'),
+            SizedBox(height: 15),
+            CustomTextField(hint: 'Password'),
+            SizedBox(height: 15),
+            CustomTextField(hint: 'Confirm Password'),
+            SizedBox(height: 15),
+            Row(
               children: [
                 Expanded(
-                  flex: 2,
-                  child: Text('I agree all the terms and condition and all the privacy policy', textScaleFactor: 1.2),
+                  flex: 8,
+                  child: Text('I agree all the terms and condition and all the privacy policy', textScaleFactor: 0.9),
                 ),
                 Checkbox(value: false, activeColor: Colors.green, onChanged: (bool newValue) {}),
-                Text('Remember me', textScaleFactor: 1.2),
+                Expanded(flex: 3, child: Text('Agree to all', textScaleFactor: 0.9)),
               ],
             ),
-          ),
-          Container(
+            Container(
               width: double.infinity,
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(5)), border: Border.all(width: 1, color: Colors.black)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)), border: Border.all(width: 0.75, color: Colors.grey.shade400)),
               padding: EdgeInsets.all(15),
-              margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+              margin: EdgeInsets.only(top: 20, bottom: 20),
               child: Column(
                 children: [
                   Row(children: [
-                    Expanded(
-                        child: Text(
-                      '14 or Older',
-                      textScaleFactor: 1.2,
-                    )),
+                    Expanded(child: Text('14 or Older', textScaleFactor: 0.9)),
                     Checkbox(value: false, activeColor: Colors.green, onChanged: (bool newValue) {}),
-                    Text('Agree', textScaleFactor: 1.2),
+                    Text('Agree', textScaleFactor: 0.9),
+                    Text(' (required)', textScaleFactor: 0.8, style: TextStyle(color: AppSettings.primaryColor)),
                   ]),
                   Row(
                     children: [
-                      Expanded(child: Text('Terms of services', textScaleFactor: 1.2)),
+                      Expanded(child: Text('Terms of services', textScaleFactor: 0.9)),
                       Checkbox(value: false, activeColor: Colors.green, onChanged: (bool newValue) {}),
-                      Text('Agree', textScaleFactor: 1.2),
+                      Text('Agree', textScaleFactor: 0.9),
+                      Text(' (required)', textScaleFactor: 0.8, style: TextStyle(color: AppSettings.primaryColor)),
                     ],
                   ),
                   Row(
                     children: [
-                      Expanded(child: Text('Privacy Policy', textScaleFactor: 1.2)),
+                      Expanded(child: Text('Privacy Policy', textScaleFactor: 0.9)),
                       Checkbox(value: false, activeColor: Colors.green, onChanged: (bool newValue) {}),
-                      Text('Agree', textScaleFactor: 1.2),
+                      Text('Agree', textScaleFactor: 0.9),
+                      Text(' (required)', textScaleFactor: 0.8, style: TextStyle(color: AppSettings.primaryColor)),
                     ],
                   ),
                   Row(
                     children: [
-                      Expanded(child: Text('Receive Promotional info', textScaleFactor: 1.2)),
+                      Expanded(child: Text('Receive Promotional info', textScaleFactor: 0.9)),
                       Checkbox(value: false, activeColor: Colors.green, onChanged: (bool newValue) {}),
-                      Text('Agree', textScaleFactor: 1.2),
+                      Text('Agree', textScaleFactor: 0.9),
+                      Text(' (Optional)', textScaleFactor: 0.8, style: TextStyle(color: Colors.grey.shade400)),
                     ],
                   ),
                 ],
-              )),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: RaisedButton(
-                    child: Text(
-                      "Show Results",
-                      textScaleFactor: 1.2,
-                    ),
-                    textColor: Colors.white,
-                    color: Colors.teal,
-                    onPressed: () {
-                      // Respond to button press
-                    },
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        ]),
+            Container(
+              width: double.infinity,
+              child: CustomButton(text: 'Register'),
+            ),
+          ],
+        ),
       ),
     );
   }
