@@ -1,4 +1,5 @@
 import 'package:buyer/screens/auth/login.dart';
+import 'package:buyer/screens/stores/store_selection.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/utils/uatheme.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class MainApp extends StatelessWidget {
       title: AppSettings.appName,
       debugShowCheckedModeBanner: false,
       theme: UATheme.setTheme(context),
-      home: Login(),
+      home: StoreSelect(),
     );
   }
 }

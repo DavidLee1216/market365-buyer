@@ -43,12 +43,12 @@ class _StoreSelectState extends State<StoreSelect> {
   }
 
   List<Shop> shopLists = [
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews'),
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews'),
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews'),
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews'),
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews'),
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews',closeDay: 'Every Tuesday',openTime: '09:00-21:00'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews',closeDay: 'Every Tuesday',openTime: '09:00-21:00'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews',closeDay: 'Every Tuesday',openTime: '09:00-21:00'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews',closeDay: 'Every Tuesday',openTime: '09:00-21:00'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews',closeDay: 'Every Tuesday',openTime: '09:00-21:00'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews',closeDay: 'Every Tuesday',openTime: '09:00-21:00'),
   ];
 
   @override
@@ -125,7 +125,7 @@ class _StoreSelectState extends State<StoreSelect> {
     return ListView.builder(
       itemCount: shopLists.length,
       itemBuilder: (context, i) {
-        return ShopListItem(shopList: shopLists[i]);
+        return ShopListItem(shop: shopLists[i],);
       },
     );
   }

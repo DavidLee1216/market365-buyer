@@ -131,7 +131,7 @@ class _HomeState extends State<Home> {
     return ListView.builder(
       itemCount: shopLists.length,
       itemBuilder: (context, i) {
-        return ShopListItem(shopList: shopLists[i]);
+        return ShopListItem(shop: shopLists[i]);
       },
     );
   }
