@@ -10,28 +10,19 @@ class ReviewSettings extends StatelessWidget {
       Review(
         title: 'My Town Meat',
         date: '2020.10.10',
-        review:
-            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.',
+        review: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.',
       ),
       Review(
         title: 'My Town Meat',
         date: '2020.10.10',
-        review:
-            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.',
-        images: [
-          'https://cdn.pixabay.com/photo/2017/01/31/09/30/raspberry-2023404__480.jpg',
-          'https://cdn.pixabay.com/photo/2017/01/31/09/30/raspberry-2023404__480.jpg'
-        ],
+        review: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.',
+        images: ['https://cdn.pixabay.com/photo/2017/01/31/09/30/raspberry-2023404__480.jpg', 'https://cdn.pixabay.com/photo/2017/01/31/09/30/raspberry-2023404__480.jpg'],
       ),
       Review(
         title: 'My Town Meat',
         date: '2020.10.10',
-        review:
-            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.',
-        images: [
-          'https://cdn.pixabay.com/photo/2017/01/31/09/30/raspberry-2023404__480.jpg',
-          'https://cdn.pixabay.com/photo/2017/01/31/09/30/raspberry-2023404__480.jpg'
-        ],
+        review: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.',
+        images: ['https://cdn.pixabay.com/photo/2017/01/31/09/30/raspberry-2023404__480.jpg', 'https://cdn.pixabay.com/photo/2017/01/31/09/30/raspberry-2023404__480.jpg'],
       ),
     ];
 

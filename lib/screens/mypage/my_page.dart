@@ -1,7 +1,7 @@
 import 'package:buyer/screens/mypage/change_password.dart';
 import 'package:buyer/screens/mypage/help_support.dart';
 import 'package:buyer/screens/mypage/information_settings.dart';
-import 'package:buyer/screens/mypage/reviewsettings.dart';
+import 'package:buyer/screens/mypage/review_settings.dart';
 import 'package:buyer/screens/mypage/user.dart';
 import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/widget/custom_button.dart';
@@ -100,7 +100,7 @@ class _MyPageState extends State<MyPage> {
                   ),
                 ),
                 ListTile(
-                  onTap: (){
+                  onTap: () {
                     open(context, ReviewSettings());
                   },
                   leading: Icon(
@@ -122,7 +122,7 @@ class _MyPageState extends State<MyPage> {
                   ),
                 ),
                 ListTile(
-                  onTap: (){
+                  onTap: () {
                     open(context, InformationSettings());
                   },
                   leading: Icon(
