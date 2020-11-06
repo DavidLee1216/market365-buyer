@@ -1,5 +1,5 @@
 import 'package:buyer/services/navigation_service.dart';
-import 'package:buyer/utils/appsettings.dart';
+import 'package:buyer/utils/app_settings.dart';
 import 'package:flutter/material.dart';
 
 class DeliveryTimeNotice extends StatefulWidget {
