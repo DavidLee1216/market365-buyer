@@ -1,4 +1,4 @@
-class Review{
+class Review {
   final String title;
   final String date;
   final String review;

@@ -1,4 +1,4 @@
-import 'package:buyer/models/shop_list.dart';
+import 'package:buyer/models/shop.dart';
 import 'package:flutter/material.dart';
 
 class ShopListItem extends StatelessWidget {

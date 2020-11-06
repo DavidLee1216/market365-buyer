@@ -1,6 +1,9 @@
 import 'package:buyer/models/mydropdown.dart';
-import 'package:buyer/models/shop_list.dart';
+import 'package:buyer/models/shop.dart';
+import 'package:buyer/screens/home/event/events.dart';
+import 'package:buyer/screens/home/notices/notices.dart';
 import 'package:buyer/utils/app_settings.dart';
+import 'package:buyer/utils/uatheme.dart';
 import 'package:buyer/widget/shop_list_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +42,7 @@ class _StoreSelectState extends State<StoreSelect> {
     return items;
   }
 
-  List<Shop> shoplists = [
+  List<Shop> shopLists = [
     Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews'),
     Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews'),
     Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews'),
@@ -50,132 +53,80 @@ class _StoreSelectState extends State<StoreSelect> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset('assets/images/logo1.png'),
-                Container(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  margin: EdgeInsets.all(0),
-                  height: 30,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), border: Border.all(color: AppSettings.primaryColor)),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<ListItem>(
-                        icon: Icon(
-                          Icons.keyboard_arrow_down,
-                          color: AppSettings.primaryColor,
-                        ),
-                        value: _selectedItem,
-                        items: _dropdownMenuItems,
-                        onChanged: (value) {
-                          setState(() {
-                            _selectedItem = value;
-                          });
-                        }),
-                  ),
-                ),
-                IconButton(
-                    icon: Icon(
-                      Icons.shopping_cart_rounded,
-                      color: AppSettings.primaryColor,
-                    ),
-                    onPressed: null)
-              ],
-            ),
-          ),
-          Expanded(
-            child: DefaultTabController(
-              length: 5,
-              child: Scaffold(
-                appBar: AppBar(
-                  automaticallyImplyLeading: false,
-                  backgroundColor: Colors.white,
-                  title: TabBar(
-                    isScrollable: true,
-                    indicatorColor: Colors.orange,
-                    labelColor: Colors.black,
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    unselectedLabelColor: Colors.black,
-                    labelStyle: TextStyle(fontSize: 12),
-                    unselectedLabelStyle: TextStyle(fontSize: 12),
-                    tabs: [
-                      Tab(
-                        text: 'Meat',
+    return DefaultTabController(
+      length: 5,
+      child: Scaffold(
+        appBar: AppBar(
+          titleSpacing: 5,
+          backgroundColor: Colors.transparent,
+          title: Row(
+            children: [
+              Image.asset('assets/images/logo1.png', width: UATheme.screenWidth * 0.3),
+              Container(
+                padding: const EdgeInsets.only(left: 10.0, right: 5.0),
+                margin: EdgeInsets.only(left: 5),
+                height: 30,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: AppSettings.primaryColor)),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<ListItem>(
+                      icon: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: AppSettings.primaryColor,
                       ),
-                      Tab(
-                        text: 'Vegetable',
-                      ),
-                      Tab(
-                        text: 'Fruit ',
-                      ),
-                      Tab(
-                        text: 'Sea Food',
-                      ),
-                      Tab(
-                        text: 'StockFish',
-                      ),
-                    ],
-                  ),
-                ),
-                body: TabBarView(
-                  children: <Widget>[
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: shoplists.length,
-                      itemBuilder: (context, i) {
-                        return ShopListItem(
-                          shopList: shoplists[i],
-                        );
-                      },
-                    ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: shoplists.length,
-                      itemBuilder: (context, i) {
-                        return ShopListItem(
-                          shopList: shoplists[i],
-                        );
-                      },
-                    ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: shoplists.length,
-                      itemBuilder: (context, i) {
-                        return ShopListItem(
-                          shopList: shoplists[i],
-                        );
-                      },
-                    ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: shoplists.length,
-                      itemBuilder: (context, i) {
-                        return ShopListItem(
-                          shopList: shoplists[i],
-                        );
-                      },
-                    ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: shoplists.length,
-                      itemBuilder: (context, i) {
-                        return ShopListItem(
-                          shopList: shoplists[i],
-                        );
-                      },
-                    ),
-                  ],
+                      value: _selectedItem,
+                      items: _dropdownMenuItems,
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedItem = value;
+                        });
+                      }),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
+          actions: [IconButton(icon: Icon(Icons.shopping_cart_rounded, color: AppSettings.primaryColor), onPressed: null)],
+        ),
+        body: Column(
+          children: [
+            TabBar(
+              isScrollable: true,
+              indicatorColor: Colors.orange,
+              labelColor: Colors.black,
+              indicatorSize: TabBarIndicatorSize.tab,
+              unselectedLabelColor: Colors.black,
+              labelStyle: TextStyle(fontSize: 12),
+              unselectedLabelStyle: TextStyle(fontSize: 12),
+              tabs: [
+                Tab(text: 'Market'),
+                Tab(text: 'BEST'),
+                Tab(text: 'Today\'s Menu'),
+                Tab(text: 'Notice'),
+                Tab(text: 'Event'),
+              ],
+            ),
+            Expanded(
+              child: TabBarView(
+                children: <Widget>[
+                  getScreen(1),
+                  getScreen(2),
+                  getScreen(3),
+                  Notices(),
+                  Events(),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
+    );
+  }
+
+  getScreen(int i) {
+    return ListView.builder(
+      itemCount: shopLists.length,
+      itemBuilder: (context, i) {
+        return ShopListItem(shopList: shopLists[i]);
+      },
     );
   }
 }

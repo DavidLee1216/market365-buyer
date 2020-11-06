@@ -1,6 +1,6 @@
-import 'package:buyer/models/search_product.dart';
+import 'package:buyer/models/product.dart';
 import 'package:buyer/utils/app_settings.dart';
-import 'package:buyer/widget/product_list_item.dart';
+import 'package:buyer/widget/product_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,15 +10,15 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  List<SearchProduct> searchproductlists = [
-    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
-    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
-    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
-    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
-    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
-    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
-    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
-    SearchProduct(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
+  List<Product> products = [
+    Product(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
+    Product(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
+    Product(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
+    Product(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
+    Product(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
+    Product(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
+    Product(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
+    Product(image: 'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__480.jpg', title: 'Hamburger'),
   ];
 
   @override
@@ -65,9 +65,9 @@ class _SearchState extends State<Search> {
               padding: EdgeInsets.all(10),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
-              itemCount: searchproductlists.length,
+              itemCount: products.length,
               itemBuilder: (context, index) {
-                return SearchProductListItem(searchProductList: searchproductlists[index]);
+                return ProductItem(product: products[index]);
               },
             ),
           ),
