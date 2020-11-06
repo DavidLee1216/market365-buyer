@@ -57,6 +57,7 @@ class _StoreSelectState extends State<StoreSelect> {
       length: 5,
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           titleSpacing: 5,
           backgroundColor: Colors.transparent,
           title: Row(

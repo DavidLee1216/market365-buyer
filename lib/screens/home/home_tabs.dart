@@ -1,6 +1,7 @@
 import 'package:buyer/models/mydropdown.dart';
 import 'package:buyer/models/shop.dart';
 import 'package:buyer/screens/home/event/events.dart';
+import 'package:buyer/screens/home/home/home.dart';
 import 'package:buyer/screens/home/market/market.dart';
 import 'package:buyer/screens/home/notices/notices.dart';
 import 'package:buyer/utils/app_settings.dart';
@@ -9,12 +10,12 @@ import 'package:buyer/widget/shop_list_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
+class HomeTabs extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _HomeTabsState createState() => _HomeTabsState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeTabsState extends State<HomeTabs> {
   List<ListItem> _dropdownItems = [
     ListItem(1, "Select Market"),
     ListItem(2, "Second Item"),
@@ -60,7 +61,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 5,
+      length: 6,
       child: Scaffold(
         appBar: AppBar(
           titleSpacing: 5,
@@ -103,6 +104,7 @@ class _HomeState extends State<Home> {
               labelStyle: TextStyle(fontSize: 12),
               unselectedLabelStyle: TextStyle(fontSize: 12),
               tabs: [
+                Tab(text: 'Home'),
                 Tab(text: 'Market'),
                 Tab(text: 'BEST'),
                 Tab(text: 'Today\'s Menu'),
@@ -113,6 +115,7 @@ class _HomeState extends State<Home> {
             Expanded(
               child: TabBarView(
                 children: <Widget>[
+                  Home(),
                   Market(),
                   Market(),
                   Market(),

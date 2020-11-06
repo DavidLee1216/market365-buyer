@@ -21,7 +21,7 @@ class _MarketState extends State<Market> {
       padding: EdgeInsets.all(10),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10, childAspectRatio: 0.8),
       shrinkWrap: true,
-      itemCount: 3,
+      itemCount: products.length,
       itemBuilder: (context, i) {
         return ProductItem(product: products[i]);
       },

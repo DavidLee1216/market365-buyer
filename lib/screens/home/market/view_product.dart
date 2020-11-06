@@ -15,7 +15,7 @@ class ViewProduct extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CachedImage(rounded: false, url: 'https://cdn.pixabay.com/photo/2014/08/14/14/21/shish-kebab-417994__480.jpg'),
+            CachedImage(rounded: false, url: product.image),
             Padding(
               padding: const EdgeInsets.all(10),
               child: Text('Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.'),
