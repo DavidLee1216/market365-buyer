@@ -1,3 +1,5 @@
+import 'package:buyer/screens/home/home_tabs.dart';
+import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/widget/custom_button.dart';
 import 'package:buyer/widget/custom_textbox.dart';
@@ -71,7 +73,11 @@ class Register extends StatelessWidget {
             ),
             Container(
               width: double.infinity,
-              child: CustomButton(text: 'Register'),
+              child: CustomButton(
+                  text: 'Register',
+                  function: () {
+                    closeOpen(context, HomeTabs());
+                  }),
             ),
           ],
         ),

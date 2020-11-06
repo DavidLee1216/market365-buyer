@@ -12,22 +12,22 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      height: 45,
-      width: UATheme.screenWidth * .45,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: color!=null ? color:AppSettings.primaryColor, boxShadow: [
-        showShadow != null && !showShadow
-            ? BoxShadow(blurRadius: 0, spreadRadius: 0)
-            : BoxShadow(
-                color: color!=null ?  color.withOpacity(0.2):AppSettings.primaryColor.withOpacity(0.2),
-                spreadRadius: 2,
-                blurRadius: 3,
-                offset: Offset(0, 5),
-              )
-      ]),
-      child: InkWell(
-        onTap: function,
+    return InkWell(
+      onTap: function,
+      child: Container(
+        alignment: Alignment.center,
+        height: 45,
+        width: UATheme.screenWidth * .45,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: color != null ? color : AppSettings.primaryColor, boxShadow: [
+          showShadow != null && !showShadow
+              ? BoxShadow(blurRadius: 0, spreadRadius: 0)
+              : BoxShadow(
+                  color: color != null ? color.withOpacity(0.2) : AppSettings.primaryColor.withOpacity(0.2),
+                  spreadRadius: 2,
+                  blurRadius: 3,
+                  offset: Offset(0, 5),
+                )
+        ]),
         child: Text(
           text,
           style: TextStyle(

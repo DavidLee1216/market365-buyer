@@ -6,7 +6,7 @@ import 'package:buyer/screens/home/market/market.dart';
 import 'package:buyer/screens/home/notices/notices.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/utils/uatheme.dart';
-import 'package:buyer/widget/shop_list_item.dart';
+import 'package:buyer/widget/shop_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -134,7 +134,7 @@ class _HomeTabsState extends State<HomeTabs> {
     return ListView.builder(
       itemCount: shopLists.length,
       itemBuilder: (context, i) {
-        return ShopListItem(shop: shopLists[i]);
+        return ShopItem(shop: shopLists[i]);
       },
     );
   }

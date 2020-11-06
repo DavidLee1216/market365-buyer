@@ -1,10 +1,8 @@
 import 'package:buyer/models/mydropdown.dart';
 import 'package:buyer/models/shop.dart';
-import 'package:buyer/screens/home/event/events.dart';
-import 'package:buyer/screens/home/notices/notices.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/utils/uatheme.dart';
-import 'package:buyer/widget/shop_list_item.dart';
+import 'package:buyer/widget/shop_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +40,7 @@ class _StoreSelectState extends State<StoreSelect> {
     return items;
   }
 
-  List<Shop> shopLists = [
+  List<Shop> shops = [
     Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00'),
     Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00'),
     Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00'),
@@ -54,7 +52,7 @@ class _StoreSelectState extends State<StoreSelect> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 5,
+      length: 6,
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -98,11 +96,12 @@ class _StoreSelectState extends State<StoreSelect> {
               labelStyle: TextStyle(fontSize: 12),
               unselectedLabelStyle: TextStyle(fontSize: 12),
               tabs: [
-                Tab(text: 'Market'),
-                Tab(text: 'BEST'),
-                Tab(text: 'Today\'s Menu'),
-                Tab(text: 'Notice'),
-                Tab(text: 'Event'),
+                Tab(text: 'Meat'),
+                Tab(text: 'Vegetable'),
+                Tab(text: 'Fruit'),
+                Tab(text: 'Sea Food'),
+                Tab(text: 'StockFish'),
+                Tab(text: 'Sides'),
               ],
             ),
             Expanded(
@@ -111,8 +110,9 @@ class _StoreSelectState extends State<StoreSelect> {
                   getScreen(1),
                   getScreen(2),
                   getScreen(3),
-                  Notices(),
-                  Events(),
+                  getScreen(1),
+                  getScreen(2),
+                  getScreen(3),
                 ],
               ),
             ),
@@ -124,10 +124,11 @@ class _StoreSelectState extends State<StoreSelect> {
 
   getScreen(int i) {
     return ListView.builder(
-      itemCount: shopLists.length,
+      padding: EdgeInsets.all(15),
+      itemCount: shops.length,
       itemBuilder: (context, i) {
-        return ShopListItem(
-          shop: shopLists[i],
+        return ShopItem(
+          shop: shops[i],
         );
       },
     );
