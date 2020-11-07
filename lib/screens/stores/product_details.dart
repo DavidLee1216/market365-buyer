@@ -1,4 +1,6 @@
 import 'package:buyer/models/product.dart';
+import 'package:buyer/screens/cart/view_cart.dart';
+import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/utils/uatheme.dart';
 import 'package:buyer/widget/cached_image.dart';
 import 'package:buyer/widget/counter.dart';
@@ -22,11 +24,9 @@ class _ProductDetailsState extends State<ProductDetails> {
         title: Text(widget.product.title),
         actions: [
           IconButton(
-              icon: Icon(
-                Icons.shopping_cart_rounded,
-                color: Colors.white,
-              ),
-              onPressed: null)
+            icon: Icon(Icons.shopping_cart_rounded, color: Colors.white),
+            onPressed: () => open(context, ViewCart()),
+          )
         ],
       ),
       body: Column(
