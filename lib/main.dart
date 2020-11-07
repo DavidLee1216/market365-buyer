@@ -1,4 +1,5 @@
-import 'package:buyer/screens/orders/order_history.dart';
+import 'package:buyer/models/product.dart';
+import 'package:buyer/screens/stores/product_details.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/utils/uatheme.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,9 @@ class MainApp extends StatelessWidget {
       title: AppSettings.appName,
       debugShowCheckedModeBanner: false,
       theme: UATheme.setTheme(context),
-      home: OrderHistory(),
+      home: ProductDetails(
+        product: Product(image: 'https://cdn.pixabay.com/photo/2017/05/07/08/56/pancakes-2291908__480.jpg', title: 'Product Title', price: 348),
+      ),
     );
   }
 }
