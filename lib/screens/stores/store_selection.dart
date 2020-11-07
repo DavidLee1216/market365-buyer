@@ -41,12 +41,12 @@ class _StoreSelectState extends State<StoreSelect> {
   }
 
   List<Shop> shops = [
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00'),
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00'),
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00'),
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00'),
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00'),
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00', telephone: '1234567890', taxID: 'ABCD1234'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00', telephone: '1234567890', taxID: 'ABCD1234'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00', telephone: '1234567890', taxID: 'ABCD1234'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00', telephone: '1234567890', taxID: 'ABCD1234'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00', telephone: '1234567890', taxID: 'ABCD1234'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00', telephone: '1234567890', taxID: 'ABCD1234'),
   ];
 
   @override
@@ -127,9 +127,7 @@ class _StoreSelectState extends State<StoreSelect> {
       padding: EdgeInsets.all(15),
       itemCount: shops.length,
       itemBuilder: (context, i) {
-        return ShopItem(
-          shop: shops[i],
-        );
+        return ShopItem(shop: shops[i]);
       },
     );
   }

@@ -15,7 +15,7 @@ class ShopItem extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey.shade200)),
       child: ListTile(
-        onTap: () => open(context, StoreDetails(storeDetails: shop)),
+        onTap: () => open(context, StoreDetails(shop: shop)),
         dense: true,
         title: Text(shop.name),
         subtitle: Column(

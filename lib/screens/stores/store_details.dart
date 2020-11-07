@@ -1,10 +1,13 @@
 import 'package:buyer/models/shop.dart';
+import 'package:buyer/screens/stores/shop_reviews.dart';
+import 'package:buyer/screens/stores/store_info.dart';
+import 'package:buyer/screens/stores/store_products.dart';
 import 'package:flutter/material.dart';
 
 class StoreDetails extends StatefulWidget {
-  final Shop storeDetails;
+  final Shop shop;
 
-  StoreDetails({this.storeDetails});
+  StoreDetails({this.shop});
 
   @override
   _StoreDetailsState createState() => _StoreDetailsState();
@@ -15,12 +18,8 @@ class _StoreDetailsState extends State<StoreDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {},
-        ),
         title: Text(
-          widget.storeDetails.name,
+          widget.shop.name,
         ),
         actions: [
           IconButton(
@@ -42,9 +41,9 @@ class _StoreDetailsState extends State<StoreDetails> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(30),
                   child: Text(
-                    widget.storeDetails.name,
+                    widget.shop.name,
                     textScaleFactor: 1.3,
                   ),
                 ),
@@ -57,7 +56,7 @@ class _StoreDetailsState extends State<StoreDetails> {
                       textScaleFactor: 0.8,
                     ),
                     Text(
-                      widget.storeDetails.openTime,
+                      widget.shop.openTime,
                       textScaleFactor: 0.8,
                     ),
                   ],
@@ -74,7 +73,7 @@ class _StoreDetailsState extends State<StoreDetails> {
                       textScaleFactor: 0.8,
                     ),
                     Text(
-                      widget.storeDetails.closeDay,
+                      widget.shop.closeDay,
                       textScaleFactor: 0.8,
                     ),
                   ],
@@ -83,7 +82,7 @@ class _StoreDetailsState extends State<StoreDetails> {
                   height: 20,
                 ),
                 Text(
-                  widget.storeDetails.reviews,
+                  widget.shop.reviews,
                   textScaleFactor: 0.8,
                 ),
                 SizedBox(
@@ -91,7 +90,41 @@ class _StoreDetailsState extends State<StoreDetails> {
                 ),
               ],
             ),
-          )
+          ),
+          Expanded(
+            child: DefaultTabController(
+              length: 3,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TabBar(
+                    indicatorColor: Colors.orange,
+                    labelColor: Colors.black,
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    unselectedLabelColor: Colors.grey.shade400,
+                    indicatorWeight: 3,
+                    labelStyle: TextStyle(fontSize: 14),
+                    unselectedLabelStyle: TextStyle(fontSize: 14),
+                    tabs: [
+                      Tab(text: 'Product'),
+                      Tab(text: 'Information'),
+                      Tab(text: 'Review'),
+                    ],
+                  ),
+                  Expanded(
+                    child: TabBarView(
+                      children: <Widget>[
+                        StoreProducts(),
+                        StoreInfo(shop: widget.shop),
+                        ShopReview(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -4,6 +4,8 @@ class Shop {
   String reviews;
   String openTime;
   String closeDay;
+  String taxID;
+  String telephone;
 
-  Shop({this.name, this.address, this.reviews,this.closeDay,this.openTime});
+  Shop({this.name, this.address, this.reviews, this.closeDay, this.openTime, this.taxID, this.telephone});
 }

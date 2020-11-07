@@ -10,6 +10,7 @@ class _PostReviewState extends State<PostReview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text(
           'Post Review',
@@ -39,9 +40,7 @@ class _PostReviewState extends State<PostReview> {
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     borderSide: BorderSide(color: Colors.grey.shade300),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(color: AppSettings.primaryColor)),
+                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10.0)), borderSide: BorderSide(color: AppSettings.primaryColor)),
                 ),
               ),
             ),
@@ -53,17 +52,31 @@ class _PostReviewState extends State<PostReview> {
                 borderRadius: BorderRadius.circular(10),
                 color: AppSettings.primaryColor,
               ),
-
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(icon: Icon(Icons.add,color: Colors.white,), onPressed: null,),
-                  Text('0/5',style: TextStyle(color: Colors.white),),
+                  IconButton(
+                    icon: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    ),
+                    onPressed: null,
+                  ),
+                  Text(
+                    '0/5',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ],
               ),
             ),
-            Text('False-written reviews notice',textScaleFactor:0.9,style: TextStyle(color: Color(0xff717171),),),
+            Text(
+              'False-written reviews notice',
+              textScaleFactor: 0.9,
+              style: TextStyle(
+                color: Color(0xff717171),
+              ),
+            ),
           ],
         ),
       ),
