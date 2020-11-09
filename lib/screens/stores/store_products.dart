@@ -1,4 +1,5 @@
 import 'package:buyer/models/product.dart';
+import 'package:buyer/screens/stores/product_details.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/widget/cached_image.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +47,7 @@ class _StoreProductsState extends State<StoreProducts> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: ListTile(
+                          onTap: () => ProductDetails(),
                           leading: CachedImage(rounded: false, height: 60, url: products[i].image),
                           title: Text(products[i].title),
                           subtitle: Text(products[i].price.toString()),
@@ -69,6 +71,7 @@ class _StoreProductsState extends State<StoreProducts> {
                     border: Border.all(color: Colors.grey.shade300),
                   ),
                   child: ListTile(
+                    onTap: () => ProductDetails(),
                     dense: true,
                     title: Text(products[i].title, style: TextStyle(fontWeight: FontWeight.bold)),
                     subtitle: Text(products[i].price.toString()),
