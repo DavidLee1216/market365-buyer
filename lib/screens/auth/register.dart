@@ -1,4 +1,4 @@
-import 'package:buyer/screens/home/home_tabs.dart';
+import 'package:buyer/screens/home/main_screen.dart';
 import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/widget/custom_button.dart';
@@ -76,7 +76,7 @@ class Register extends StatelessWidget {
               child: CustomButton(
                   text: 'Register',
                   function: () {
-                    closeOpen(context, HomeTabs());
+                    closeOpen(context, MainScreen());
                   }),
             ),
           ],

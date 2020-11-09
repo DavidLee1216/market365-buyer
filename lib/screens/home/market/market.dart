@@ -11,7 +11,7 @@ class _MarketState extends State<Market> {
   List<Product> products = [
     Product(image: 'https://cdn.pixabay.com/photo/2017/05/07/08/56/pancakes-2291908__480.jpg', title: 'Product Title', price: 38),
     Product(image: 'https://cdn.pixabay.com/photo/2015/03/26/09/39/cupcakes-690040__480.jpg', title: 'Product Title', price: 574),
-    Product(image: 'https://cdn.pixabay.com/photo/2014/12/11/02/55/food-563796__480.jpg', title: 'Product Title', price: 62),
+    Product(image: 'https://cdn.pixabay.com/photo/2014/11/05/15/57/salmon-518032__480.jpg', title: 'Product Title', price: 62),
     Product(image: 'https://cdn.pixabay.com/photo/2014/08/14/14/21/shish-kebab-417994__480.jpg', title: 'Product Title', price: 62),
   ];
 

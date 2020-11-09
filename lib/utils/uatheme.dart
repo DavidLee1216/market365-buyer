@@ -73,8 +73,7 @@ class UATheme {
         ),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        selectedIconTheme: IconThemeData(size: 10),
-        unselectedIconTheme: IconThemeData(size: 10),
+        backgroundColor: AppSettings.primaryColor,
       ),
       buttonTheme: ButtonThemeData(
         buttonColor: Colors.grey.shade200,

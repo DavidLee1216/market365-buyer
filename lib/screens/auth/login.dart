@@ -1,5 +1,5 @@
 import 'package:buyer/screens/auth/register.dart';
-import 'package:buyer/screens/home/home_tabs.dart';
+import 'package:buyer/screens/home/main_screen.dart';
 import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/utils/uatheme.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +41,7 @@ class Login extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () => closeOpen(context, HomeTabs()),
+              onTap: () => closeOpen(context, MainScreen()),
               child: containerButton('Login with Kakao Talk', 'assets/images/kako.png', Color(0xffFFED16), Colors.black),
             ),
             containerButton('Login with Naver', 'assets/images/naver.png', Color(0xff28BF0A), Colors.white),

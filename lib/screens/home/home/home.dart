@@ -1,9 +1,12 @@
-import 'package:buyer/models/category.dart';
-import 'package:buyer/models/product.dart';
+import 'package:buyer/models/mydropdown.dart';
+import 'package:buyer/models/shop.dart';
+import 'package:buyer/screens/home/event/events.dart';
+import 'package:buyer/screens/home/home/home_tab.dart';
+import 'package:buyer/screens/home/market/market.dart';
+import 'package:buyer/screens/home/notices/notices.dart';
+import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/utils/uatheme.dart';
-import 'package:buyer/widget/cached_image.dart';
-import 'package:buyer/widget/category_item.dart';
-import 'package:buyer/widget/product_item.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -12,77 +15,121 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Category> categories = [
-    Category(name: 'Category', image: ''),
-    Category(name: 'Category', image: ''),
-    Category(name: 'Category', image: ''),
-    Category(name: 'Category', image: ''),
-    Category(name: 'Category', image: ''),
-    Category(name: 'Category', image: ''),
-    Category(name: 'Category', image: ''),
-    Category(name: 'Category', image: ''),
+  List<ListItem> _dropdownItems = [
+    ListItem(1, "Select Market"),
+    ListItem(2, "Second Item"),
+    ListItem(3, "Third Item"),
+    ListItem(4, "Fourth Item"),
   ];
 
-  List<Product> products = [
-    Product(image: 'https://cdn.pixabay.com/photo/2017/05/07/08/56/pancakes-2291908__480.jpg', title: 'Product Title', price: 38),
-    Product(image: 'https://cdn.pixabay.com/photo/2015/03/26/09/39/cupcakes-690040__480.jpg', title: 'Product Title', price: 574),
-    Product(image: 'https://cdn.pixabay.com/photo/2014/12/11/02/55/food-563796__480.jpg', title: 'Product Title', price: 62),
-    Product(image: 'https://cdn.pixabay.com/photo/2014/08/14/14/21/shish-kebab-417994__480.jpg', title: 'Product Title', price: 62),
+  List<DropdownMenuItem<ListItem>> _dropdownMenuItems;
+  ListItem _selectedItem;
+
+  void initState() {
+    super.initState();
+    _dropdownMenuItems = buildDropDownMenuItems(_dropdownItems);
+    _selectedItem = _dropdownMenuItems[0].value;
+    setState(() {});
+  }
+
+  List<DropdownMenuItem<ListItem>> buildDropDownMenuItems(List listItems) {
+    List<DropdownMenuItem<ListItem>> items = List();
+    for (ListItem listItem in listItems) {
+      items.add(
+        DropdownMenuItem(
+          child: Text(
+            listItem.name,
+            textScaleFactor: 0.8,
+          ),
+          value: listItem,
+        ),
+      );
+    }
+    return items;
+  }
+
+  List<Shop> shopLists = [
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews'),
+    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews'),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Container(
-            height: UATheme.screenHeight * 0.3,
-            child: CachedImage(
-              rounded: false,
-              url: 'https://media.istockphoto.com/vectors/bright-modern-mega-sale-banner-for-advertising-discounts-vector-for-vector-id1194343598',
-              height: UATheme.screenWidth,
+    return SafeArea(
+      child: DefaultTabController(
+        length: 6,
+        child: Scaffold(
+          appBar: AppBar(
+            titleSpacing: 5,
+            backgroundColor: Colors.transparent,
+            title: Row(
+              children: [
+                Image.asset('assets/images/logo1.png', width: UATheme.screenWidth * 0.3),
+                Container(
+                  padding: const EdgeInsets.only(left: 10.0, right: 5.0),
+                  margin: EdgeInsets.only(left: 5),
+                  height: 30,
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: AppSettings.primaryColor)),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<ListItem>(
+                        icon: Icon(
+                          Icons.keyboard_arrow_down,
+                          color: AppSettings.primaryColor,
+                        ),
+                        value: _selectedItem,
+                        items: _dropdownMenuItems,
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedItem = value;
+                          });
+                        }),
+                  ),
+                ),
+              ],
             ),
+            actions: [
+              IconButton(icon: Icon(Icons.shopping_cart_rounded, color: AppSettings.primaryColor), onPressed: null),
+            ],
           ),
-          GridView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 25),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, childAspectRatio: 1, mainAxisSpacing: 15, crossAxisSpacing: 10),
-            shrinkWrap: true,
-            itemCount: categories.length,
-            itemBuilder: (context, i) {
-              return CategoryItem(category: categories[i]);
-            },
+          body: Column(
+            children: [
+              TabBar(
+                isScrollable: true,
+                indicatorColor: Colors.orange,
+                labelColor: Colors.black,
+                indicatorSize: TabBarIndicatorSize.tab,
+                unselectedLabelColor: Colors.black,
+                labelStyle: TextStyle(fontSize: 12),
+                unselectedLabelStyle: TextStyle(fontSize: 12),
+                tabs: [
+                  Tab(text: 'Home'),
+                  Tab(text: 'Market'),
+                  Tab(text: 'BEST'),
+                  Tab(text: 'Today\'s Menu'),
+                  Tab(text: 'Notice'),
+                  Tab(text: 'Event'),
+                ],
+              ),
+              Expanded(
+                child: TabBarView(
+                  children: <Widget>[
+                    HomeTab(),
+                    Market(),
+                    Market(),
+                    Market(),
+                    Notices(),
+                    Events(),
+                  ],
+                ),
+              ),
+            ],
           ),
-          section('Market'),
-          section('BEST'),
-          section('Today\'s Menu'),
-        ],
+        ),
       ),
-    );
-  }
-
-  section(String title) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: Text(title, textScaleFactor: 1.4),
-        ),
-        Container(
-          height: 150,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.all(10),
-            shrinkWrap: true,
-            itemCount: products.length,
-            itemBuilder: (context, i) {
-              return Container(height: 150, width: 150, margin: EdgeInsets.only(right: 10), child: ProductItem(product: products[i]));
-            },
-          ),
-        ),
-        SizedBox(height: 25),
-      ],
     );
   }
 }

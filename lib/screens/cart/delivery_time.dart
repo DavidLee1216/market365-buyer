@@ -14,12 +14,6 @@ class _DeliveryTimeState extends State<DeliveryTime> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            close(context);
-          },
-        ),
         title: Text(
           'Select Delivery Time',
         ),

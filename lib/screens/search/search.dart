@@ -25,10 +25,6 @@ class _SearchState extends State<Search> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {},
-        ),
         title: Text(
           'Search',
         ),
@@ -61,7 +57,7 @@ class _SearchState extends State<Search> {
           ),
           Expanded(
             child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 0, childAspectRatio: 0.90),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10, childAspectRatio: 0.90),
               padding: EdgeInsets.all(10),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
