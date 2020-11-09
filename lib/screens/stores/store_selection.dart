@@ -1,5 +1,7 @@
 import 'package:buyer/models/mydropdown.dart';
 import 'package:buyer/models/shop.dart';
+import 'package:buyer/screens/cart/view_cart.dart';
+import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/utils/uatheme.dart';
 import 'package:buyer/widget/shop_item.dart';
@@ -83,7 +85,9 @@ class _StoreSelectState extends State<StoreSelect> {
               ),
             ],
           ),
-          actions: [IconButton(icon: Icon(Icons.shopping_cart_rounded, color: AppSettings.primaryColor), onPressed: null)],
+          actions: [
+            IconButton(icon: Icon(Icons.shopping_cart_rounded, color: AppSettings.primaryColor), onPressed: () => open(context, ViewCart())),
+          ],
         ),
         body: Column(
           children: [

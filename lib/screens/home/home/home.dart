@@ -1,9 +1,11 @@
 import 'package:buyer/models/mydropdown.dart';
 import 'package:buyer/models/shop.dart';
+import 'package:buyer/screens/cart/view_cart.dart';
 import 'package:buyer/screens/home/event/events.dart';
 import 'package:buyer/screens/home/home/home_tab.dart';
 import 'package:buyer/screens/home/market/market.dart';
 import 'package:buyer/screens/home/notices/notices.dart';
+import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/utils/uatheme.dart';
 import 'package:flutter/cupertino.dart';
@@ -92,7 +94,7 @@ class _HomeState extends State<Home> {
               ],
             ),
             actions: [
-              IconButton(icon: Icon(Icons.shopping_cart_rounded, color: AppSettings.primaryColor), onPressed: null),
+              IconButton(icon: Icon(Icons.shopping_cart_rounded, color: AppSettings.primaryColor), onPressed: () => open(context, ViewCart())),
             ],
           ),
           body: Column(

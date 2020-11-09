@@ -1,5 +1,6 @@
 import 'package:buyer/models/category.dart';
 import 'package:buyer/models/product.dart';
+import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/utils/uatheme.dart';
 import 'package:buyer/widget/cached_image.dart';
 import 'package:buyer/widget/category_item.dart';
@@ -26,7 +27,7 @@ class _HomeTabState extends State<HomeTab> {
   List<Product> products = [
     Product(image: 'https://cdn.pixabay.com/photo/2017/05/07/08/56/pancakes-2291908__480.jpg', title: 'Product Title', price: 38),
     Product(image: 'https://cdn.pixabay.com/photo/2015/03/26/09/39/cupcakes-690040__480.jpg', title: 'Product Title', price: 574),
-    Product(image: 'https://cdn.pixabay.com/photo/2014/12/11/02/55/food-563796__480.jpg', title: 'Product Title', price: 62),
+    Product(image: 'https://cdn.pixabay.com/photo/2017/07/20/18/44/dessert-2523289__480.jpg', title: 'Product Title', price: 62),
     Product(image: 'https://cdn.pixabay.com/photo/2014/08/14/14/21/shish-kebab-417994__480.jpg', title: 'Product Title', price: 62),
   ];
 
@@ -77,9 +78,23 @@ class _HomeTabState extends State<HomeTab> {
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.all(10),
             shrinkWrap: true,
-            itemCount: products.length,
+            itemCount: products.length + 1,
             itemBuilder: (context, i) {
-              return Container(height: 150, width: 150, margin: EdgeInsets.only(right: 10), child: ProductItem(product: products[i]));
+              if (i != products.length)
+                return Container(height: 150, width: 150, margin: EdgeInsets.only(right: 10), child: ProductItem(product: products[i]));
+              else
+                return Container(
+                  height: 150,
+                  width: 100,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleAvatar(child: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white), backgroundColor: AppSettings.primaryColor, radius: 20),
+                      SizedBox(height: 10),
+                      Text('View All'),
+                    ],
+                  ),
+                );
             },
           ),
         ),

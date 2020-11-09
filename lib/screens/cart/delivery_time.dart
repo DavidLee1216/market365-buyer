@@ -1,4 +1,4 @@
-import 'package:buyer/screens/cart/address.dart';
+import 'package:buyer/screens/orders/order_history.dart';
 import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/widget/custom_button.dart';
@@ -54,7 +54,7 @@ class _DeliveryTimeState extends State<DeliveryTime> {
               text: 'Next',
               showShadow: false,
               function: () {
-                open(context, Address());
+                open(context, OrderHistory());
               },
             ),
           ],
