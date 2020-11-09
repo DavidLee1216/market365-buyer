@@ -48,7 +48,7 @@ class _StoreProductsState extends State<StoreProducts> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: ListTile(
-                          onTap: () => open(context, ProductDetails()),
+                          onTap: () => open(context, ProductDetails(product: products[i])),
                           leading: CachedImage(rounded: false, height: 60, url: products[i].image),
                           title: Text(products[i].title),
                           subtitle: Text(products[i].price.toString()),
@@ -72,7 +72,7 @@ class _StoreProductsState extends State<StoreProducts> {
                     border: Border.all(color: Colors.grey.shade300),
                   ),
                   child: ListTile(
-                    onTap: () => open(context, ProductDetails()),
+                    onTap: () => open(context, ProductDetails(product: products[i])),
                     dense: true,
                     title: Text(products[i].title, style: TextStyle(fontWeight: FontWeight.bold)),
                     subtitle: Text(products[i].price.toString()),

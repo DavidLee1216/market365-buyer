@@ -92,6 +92,9 @@ class _ProductDetailsState extends State<ProductDetails> {
             child: CustomButton(
               text: 'Cart',
               showShadow: false,
+              function: () {
+                open(context, ViewCart());
+              },
             ),
           ),
         ],
