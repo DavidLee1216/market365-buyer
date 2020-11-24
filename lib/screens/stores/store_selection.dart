@@ -1,12 +1,19 @@
-import 'package:buyer/models/mydropdown.dart';
-import 'package:buyer/models/shop.dart';
+import 'package:buyer/models/market.dart';
+import 'package:buyer/models/store.dart';
 import 'package:buyer/screens/cart/view_cart.dart';
+import 'package:buyer/services/market_service.dart';
 import 'package:buyer/services/navigation_service.dart';
+import 'package:buyer/services/store_servic.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/utils/uatheme.dart';
+import 'package:buyer/widget/empty_box.dart';
+import 'package:buyer/widget/loading.dart';
 import 'package:buyer/widget/shop_item.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+int storeTab;
 
 class StoreSelect extends StatefulWidget {
   @override
@@ -14,47 +21,32 @@ class StoreSelect extends StatefulWidget {
 }
 
 class _StoreSelectState extends State<StoreSelect> {
-  List<ListItem> _dropdownItems = [ListItem(1, "Select Market"), ListItem(2, "Second Item"), ListItem(3, "Third Item"), ListItem(4, "Fourth Item")];
+  Market chosenMarket;
+  List<Market> markets;
+  bool isLoading = true;
 
-  List<DropdownMenuItem<ListItem>> _dropdownMenuItems;
-  ListItem _selectedItem;
+  getAllMarkets() async {
+    markets = List();
+    QuerySnapshot querySnapshot = await getMarkets();
+    for (int i = 0; i < querySnapshot.docs.length; i++) markets.add(Market.fromDocument(querySnapshot.docs[i]));
+
+    chosenMarket = markets[0];
+    selectedMarket = chosenMarket.name;
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   void initState() {
     super.initState();
-    _dropdownMenuItems = buildDropDownMenuItems(_dropdownItems);
-    _selectedItem = _dropdownMenuItems[0].value;
-    setState(() {});
+    getAllMarkets();
   }
-
-  List<DropdownMenuItem<ListItem>> buildDropDownMenuItems(List listItems) {
-    List<DropdownMenuItem<ListItem>> items = List();
-    for (ListItem listItem in listItems) {
-      items.add(
-        DropdownMenuItem(
-          child: Text(
-            listItem.name,
-            textScaleFactor: 0.8,
-          ),
-          value: listItem,
-        ),
-      );
-    }
-    return items;
-  }
-
-  List<Shop> shops = [
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00', telephone: '1234567890', taxID: 'ABCD1234'),
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00', telephone: '1234567890', taxID: 'ABCD1234'),
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00', telephone: '1234567890', taxID: 'ABCD1234'),
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00', telephone: '1234567890', taxID: 'ABCD1234'),
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00', telephone: '1234567890', taxID: 'ABCD1234'),
-    Shop(name: 'My Town Meat', address: 'Samgyeopsal 200g, Bulgogi...', reviews: '5 Reviews', closeDay: 'Every Tuesday', openTime: '09:00-21:00', telephone: '1234567890', taxID: 'ABCD1234'),
-  ];
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 6,
+      initialIndex: storeTab,
+      length: 8,
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -69,16 +61,21 @@ class _StoreSelectState extends State<StoreSelect> {
                 height: 30,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: AppSettings.primaryColor)),
                 child: DropdownButtonHideUnderline(
-                  child: DropdownButton<ListItem>(
+                  child: DropdownButton<Market>(
                       icon: Icon(
                         Icons.keyboard_arrow_down,
                         color: AppSettings.primaryColor,
                       ),
-                      value: _selectedItem,
-                      items: _dropdownMenuItems,
+                      value: chosenMarket,
+                      items: markets.map((Market c) {
+                        return DropdownMenuItem<Market>(
+                          value: c,
+                          child: Text(c.name),
+                        );
+                      }).toList(),
                       onChanged: (value) {
                         setState(() {
-                          _selectedItem = value;
+                          chosenMarket = value;
                         });
                       }),
                 ),
@@ -88,50 +85,59 @@ class _StoreSelectState extends State<StoreSelect> {
           actions: [
             IconButton(icon: Icon(Icons.shopping_cart_rounded, color: AppSettings.primaryColor), onPressed: () => open(context, ViewCart())),
           ],
+          bottom: TabBar(
+            isScrollable: true,
+            indicatorColor: Colors.orange,
+            labelColor: Colors.black,
+            indicatorSize: TabBarIndicatorSize.tab,
+            unselectedLabelColor: Colors.black,
+            labelStyle: TextStyle(fontSize: 12),
+            unselectedLabelStyle: TextStyle(fontSize: 12),
+            tabs: [
+              Tab(text: 'Meat'),
+              Tab(text: 'Seafood'),
+              Tab(text: 'Stock Fish'),
+              Tab(text: 'Vegetable'),
+              Tab(text: 'Fruit'),
+              Tab(text: 'Side Dish'),
+              Tab(text: 'Food'),
+              Tab(text: 'Etc'),
+            ],
+          ),
         ),
-        body: Column(
-          children: [
-            TabBar(
-              isScrollable: true,
-              indicatorColor: Colors.orange,
-              labelColor: Colors.black,
-              indicatorSize: TabBarIndicatorSize.tab,
-              unselectedLabelColor: Colors.black,
-              labelStyle: TextStyle(fontSize: 12),
-              unselectedLabelStyle: TextStyle(fontSize: 12),
-              tabs: [
-                Tab(text: 'Meat'),
-                Tab(text: 'Vegetable'),
-                Tab(text: 'Fruit'),
-                Tab(text: 'Sea Food'),
-                Tab(text: 'StockFish'),
-                Tab(text: 'Sides'),
-              ],
-            ),
-            Expanded(
-              child: TabBarView(
-                children: <Widget>[
-                  getScreen(1),
-                  getScreen(2),
-                  getScreen(3),
-                  getScreen(1),
-                  getScreen(2),
-                  getScreen(3),
-                ],
-              ),
-            ),
+        body: TabBarView(
+          children: <Widget>[
+            getScreen('Meat'),
+            getScreen('Seafood'),
+            getScreen('Stock Fish'),
+            getScreen('Vegetable'),
+            getScreen('Fruit'),
+            getScreen('Side Dish'),
+            getScreen('Food'),
+            getScreen('Etc'),
           ],
         ),
       ),
     );
   }
 
-  getScreen(int i) {
-    return ListView.builder(
-      padding: EdgeInsets.all(15),
-      itemCount: shops.length,
-      itemBuilder: (context, i) {
-        return ShopItem(shop: shops[i]);
+  getScreen(String category) {
+    return FutureBuilder(
+      future: getStoresForCategory(category),
+      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasData) {
+          return snapshot.data.docs.isNotEmpty
+              ? ListView.builder(
+                  padding: EdgeInsets.all(15),
+                  itemCount: snapshot.data.docs.length,
+                  itemBuilder: (context, i) {
+                    Store store = Store.fromDocument(snapshot.data.docs[i]);
+                    return ShopItem(store: store);
+                  },
+                )
+              : EmptyBox(text: 'Nothing to show');
+        } else
+          return LoadingData();
       },
     );
   }

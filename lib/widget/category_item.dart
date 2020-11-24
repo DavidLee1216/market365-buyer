@@ -6,13 +6,17 @@ import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
   final Category category;
+  final int jumpTo;
 
-  CategoryItem({this.category});
+  CategoryItem({this.category, this.jumpTo});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => open(context, StoreSelect()),
+      onTap: () {
+        open(context, StoreSelect());
+        storeTab = jumpTo;
+      },
       child: Column(
         children: [
           Expanded(

@@ -1,8 +1,12 @@
 import 'package:buyer/models/event.dart';
 import 'package:buyer/screens/home/event/event_details.dart';
+import 'package:buyer/services/event_service.dart';
 import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/utils/uatheme.dart';
 import 'package:buyer/widget/cached_image.dart';
+import 'package:buyer/widget/empty_box.dart';
+import 'package:buyer/widget/loading.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Events extends StatefulWidget {
@@ -11,43 +15,31 @@ class Events extends StatefulWidget {
 }
 
 class _EventsState extends State<Events> {
-  List<Event> events = [
-    Event(image: 'https://media.istockphoto.com/vectors/bright-modern-mega-sale-banner-for-advertising-discounts-vector-for-vector-id1194343598'),
-    Event(image: 'https://media.istockphoto.com/vectors/bright-modern-mega-sale-banner-for-advertising-discounts-vector-for-vector-id1194343598'),
-    Event(image: 'https://media.istockphoto.com/vectors/bright-modern-mega-sale-banner-for-advertising-discounts-vector-for-vector-id1194343598'),
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, i) {
-        return InkWell(
-          onTap: () => open(context, EventDetails(event: events[i])),
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: CachedImage(rounded: false, url: events[i].image, height: UATheme.screenWidth),
-          ),
-        );
+    return FutureBuilder(
+      future: getEvents(),
+      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasData)
+          return snapshot.data.docs.isNotEmpty
+              ? ListView.builder(
+                  padding: EdgeInsets.all(10),
+                  shrinkWrap: true,
+                  itemCount: snapshot.data.docs.length,
+                  itemBuilder: (context, i) {
+                    return InkWell(
+                      onTap: () => open(context, EventDetails(event: Event.fromDocument(snapshot.data.docs[i]))),
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: CachedImage(rounded: false, url: Event.fromDocument(snapshot.data.docs[i]).imageUrl, height: UATheme.screenWidth),
+                      ),
+                    );
+                  },
+                )
+              : EmptyBox(text: 'Nothing to show');
+        else
+          return LoadingData();
       },
-      itemCount: 3,
-    );
-  }
-
-  fullBody() {
-    return Scaffold(
-      appBar: AppBar(title: Text('Event')),
-      body: ListView.builder(
-        itemBuilder: (context, i) {
-          return InkWell(
-            onTap: () => open(context, EventDetails(event: events[i])),
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: CachedImage(rounded: false, url: events[i].image, height: UATheme.screenWidth),
-            ),
-          );
-        },
-        itemCount: 3,
-      ),
     );
   }
 }

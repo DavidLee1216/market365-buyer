@@ -1,12 +1,23 @@
 import 'package:buyer/models/mydropdown.dart';
+import 'package:buyer/models/order.dart';
+import 'package:buyer/screens/orders/order_history.dart';
 import 'package:buyer/services/navigation_service.dart';
+import 'package:buyer/services/order_service.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/widget/custom_button.dart';
 import 'package:buyer/widget/custom_textbox.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:uuid/uuid.dart';
 
 class Address extends StatefulWidget {
+  final DateTime date;
+  final String time;
+  final int total;
+
+  Address({this.date, this.time, this.total});
+
   @override
   _AddressState createState() => _AddressState();
 }
@@ -148,7 +159,7 @@ class _AddressState extends State<Address> {
                     dense: true,
                     contentPadding: EdgeInsets.zero,
                     title: Text('Product', style: TextStyle(fontWeight: FontWeight.bold)),
-                    trailing: Text('20000 원', style: TextStyle(fontWeight: FontWeight.bold)),
+                    trailing: Text('${widget.total} 원', style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                   ListTile(
                     dense: true,
@@ -160,7 +171,7 @@ class _AddressState extends State<Address> {
                     dense: true,
                     contentPadding: EdgeInsets.zero,
                     title: Text('Total', style: TextStyle(fontWeight: FontWeight.bold)),
-                    trailing: Text('22000 원', style: TextStyle(fontWeight: FontWeight.bold)),
+                    trailing: Text('${widget.total + 2000} 원', style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                   Divider(color: Colors.grey.shade300, height: 30, thickness: 1),
                   Text('Payment Method'),
@@ -205,13 +216,47 @@ class _AddressState extends State<Address> {
             child: CustomButton(
               text: 'Order',
               showShadow: false,
-              function: () {
-                //open(context, DeliveryTime());
+              function: () async {
+                await placeOrder(
+                  Order(
+                    orderID: Uuid().v1(),
+                    name: currentUser.name,
+                    date: Timestamp.fromDate(widget.date),
+                    address: '',
+                    delivery: 2000,
+                    fees: {},
+                    history: [
+                      {
+                        'status': 'Order placed',
+                        'time': Timestamp.now(),
+                      }
+                    ],
+                    paidDate: Timestamp.now(),
+                    payment: 'Credit Card',
+                    products: getProducts(),
+                    request: '',
+                    time: widget.time,
+                    user: currentUser.userID,
+                    total: widget.total,
+                  ),
+                );
+                cart.clear();
+                open(context, OrderHistory());
               },
             ),
           ),
         ],
       ),
     );
+  }
+
+  getProducts() {
+    List<Map> products = List();
+    for (int i = 0; i < cart.length; i++)
+      products.add({
+        'productID': cart[i].productID,
+        'quantity': cart[i].quantity,
+      });
+    return products;
   }
 }

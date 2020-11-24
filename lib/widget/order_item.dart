@@ -3,6 +3,7 @@ import 'package:buyer/screens/orders/order_details.dart';
 import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class OrderItem extends StatelessWidget {
   final Order order;
@@ -24,7 +25,7 @@ class OrderItem extends StatelessWidget {
             Row(
               children: [
                 Expanded(child: Text(order.name, textScaleFactor: 1.2, style: TextStyle(fontWeight: FontWeight.bold))),
-                Text(order.date, style: TextStyle(color: Colors.grey.shade400)),
+                Text(DateFormat.yMMMd().add_jm().format(order.date.toDate()), style: TextStyle(color: Colors.grey.shade400)),
               ],
             ),
             SizedBox(height: 10),
@@ -37,14 +38,14 @@ class OrderItem extends StatelessWidget {
             Row(
               children: [
                 Expanded(child: Text('Payment Method')),
-                Text(order.paymentMethod, style: TextStyle(fontWeight: FontWeight.bold)),
+                Text(order.payment, style: TextStyle(fontWeight: FontWeight.bold)),
               ],
             ),
             SizedBox(height: 10),
             Row(
               children: [
                 Expanded(child: Text('Total')),
-                Text(order.total.toString() + '원', style: TextStyle(fontWeight: FontWeight.bold, color: AppSettings.primaryColor)),
+                Text((order.total).toString() + '원', style: TextStyle(fontWeight: FontWeight.bold, color: AppSettings.primaryColor)),
               ],
             ),
           ],

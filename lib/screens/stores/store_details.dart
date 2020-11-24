@@ -1,13 +1,15 @@
-import 'package:buyer/models/shop.dart';
+import 'package:buyer/models/store.dart';
+import 'package:buyer/screens/cart/view_cart.dart';
 import 'package:buyer/screens/stores/shop_reviews.dart';
 import 'package:buyer/screens/stores/store_info.dart';
 import 'package:buyer/screens/stores/store_products.dart';
+import 'package:buyer/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 class StoreDetails extends StatefulWidget {
-  final Shop shop;
+  final Store store;
 
-  StoreDetails({this.shop});
+  StoreDetails({this.store});
 
   @override
   _StoreDetailsState createState() => _StoreDetailsState();
@@ -19,11 +21,11 @@ class _StoreDetailsState extends State<StoreDetails> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.shop.name,
+          widget.store.name,
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => open(context, ViewCart()),
             icon: Icon(
               Icons.shopping_cart_rounded,
               color: Colors.white,
@@ -43,7 +45,7 @@ class _StoreDetailsState extends State<StoreDetails> {
                 Padding(
                   padding: const EdgeInsets.all(30),
                   child: Text(
-                    widget.shop.name,
+                    widget.store.name,
                     textScaleFactor: 1.3,
                   ),
                 ),
@@ -56,7 +58,7 @@ class _StoreDetailsState extends State<StoreDetails> {
                       textScaleFactor: 0.8,
                     ),
                     Text(
-                      widget.shop.openTime,
+                      widget.store.openHour.toString() + " - " + widget.store.closeHour.toString(),
                       textScaleFactor: 0.8,
                     ),
                   ],
@@ -73,7 +75,7 @@ class _StoreDetailsState extends State<StoreDetails> {
                       textScaleFactor: 0.8,
                     ),
                     Text(
-                      widget.shop.closeDay,
+                      widget.store.closeDays.toString(),
                       textScaleFactor: 0.8,
                     ),
                   ],
@@ -82,7 +84,7 @@ class _StoreDetailsState extends State<StoreDetails> {
                   height: 20,
                 ),
                 Text(
-                  widget.shop.reviews,
+                  '', //widget.store.reviews,
                   textScaleFactor: 0.8,
                 ),
                 SizedBox(
@@ -115,9 +117,9 @@ class _StoreDetailsState extends State<StoreDetails> {
                   Expanded(
                     child: TabBarView(
                       children: <Widget>[
-                        StoreProducts(),
-                        StoreInfo(shop: widget.shop),
-                        ShopReview(),
+                        StoreProducts(store: widget.store),
+                        StoreInfo(store: widget.store),
+                        ShopReview(storeID: widget.store.storeID, reviews: widget.store.reviews),
                       ],
                     ),
                   ),

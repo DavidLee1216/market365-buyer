@@ -1,10 +1,16 @@
 import 'package:buyer/models/category.dart';
 import 'package:buyer/models/product.dart';
+import 'package:buyer/screens/home/home/home.dart';
+import 'package:buyer/screens/stores/store_selection.dart';
+import 'package:buyer/services/navigation_service.dart';
+import 'package:buyer/services/poducts_service.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/utils/uatheme.dart';
 import 'package:buyer/widget/cached_image.dart';
-import 'package:buyer/widget/category_item.dart';
+import 'package:buyer/widget/empty_box.dart';
+import 'package:buyer/widget/loading.dart';
 import 'package:buyer/widget/product_item.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class HomeTab extends StatefulWidget {
@@ -14,21 +20,14 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   List<Category> categories = [
-    Category(name: 'Category', image: ''),
-    Category(name: 'Category', image: ''),
-    Category(name: 'Category', image: ''),
-    Category(name: 'Category', image: ''),
-    Category(name: 'Category', image: ''),
-    Category(name: 'Category', image: ''),
-    Category(name: 'Category', image: ''),
-    Category(name: 'Category', image: ''),
-  ];
-
-  List<Product> products = [
-    Product(image: 'https://cdn.pixabay.com/photo/2017/05/07/08/56/pancakes-2291908__480.jpg', title: 'Product Title', price: 38),
-    Product(image: 'https://cdn.pixabay.com/photo/2015/03/26/09/39/cupcakes-690040__480.jpg', title: 'Product Title', price: 574),
-    Product(image: 'https://cdn.pixabay.com/photo/2017/07/20/18/44/dessert-2523289__480.jpg', title: 'Product Title', price: 62),
-    Product(image: 'https://cdn.pixabay.com/photo/2014/08/14/14/21/shish-kebab-417994__480.jpg', title: 'Product Title', price: 62),
+    Category(name: 'Meat', image: ''),
+    Category(name: 'Seafood', image: ''),
+    Category(name: 'Stock Fish', image: ''),
+    Category(name: 'Vegetable', image: ''),
+    Category(name: 'Fruit', image: ''),
+    Category(name: 'Side Dish', image: ''),
+    Category(name: 'Food', image: ''),
+    Category(name: 'Etc', image: ''),
   ];
 
   @override
@@ -36,6 +35,7 @@ class _HomeTabState extends State<HomeTab> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: UATheme.screenHeight * 0.3,
@@ -52,19 +52,36 @@ class _HomeTabState extends State<HomeTab> {
               shrinkWrap: true,
               itemCount: categories.length,
               itemBuilder: (context, i) {
-                return CategoryItem(category: categories[i]);
+                return InkWell(
+                  onTap: () {
+                    open(context, StoreSelect());
+                    storeTab = i;
+                  },
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 0.75), borderRadius: BorderRadius.circular(5)),
+                          child: CachedImage(rounded: false, height: double.infinity, url: categories[i].image),
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(categories[i].name),
+                    ],
+                  ),
+                );
               },
             ),
-            section('Market'),
-            section('BEST'),
-            section('Today\'s Menu'),
+            section('Market', 'isMarket', 1),
+            section('BEST', 'isBest', 2),
+            section('Today\'s Menu', 'isToday', 3),
           ],
         ),
       ),
     );
   }
 
-  section(String title) {
+  section(String title, String type, int jumpTo) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -74,27 +91,44 @@ class _HomeTabState extends State<HomeTab> {
         ),
         Container(
           height: 150,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.all(10),
-            shrinkWrap: true,
-            itemCount: products.length + 1,
-            itemBuilder: (context, i) {
-              if (i != products.length)
-                return Container(height: 150, width: 150, margin: EdgeInsets.only(right: 10), child: ProductItem(product: products[i]));
+          child: FutureBuilder(
+            future: getProductsList(type, true),
+            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasData)
+                return snapshot.data.docs.isNotEmpty
+                    ? ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        padding: EdgeInsets.all(10),
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.docs.length + 1,
+                        itemBuilder: (context, i) {
+                          if (i != snapshot.data.docs.length)
+                            return Container(height: 150, width: 150, margin: EdgeInsets.only(right: 10), child: ProductItem(product: Product.fromDocument(snapshot.data.docs[i])));
+                          else
+                            return InkWell(
+                              onTap: () {
+                                setState(() {
+                                  controller.animateTo(jumpTo);
+                                });
+                              },
+                              child: Container(
+                                height: 150,
+                                width: 100,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    CircleAvatar(child: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white), backgroundColor: AppSettings.primaryColor, radius: 20),
+                                    SizedBox(height: 10),
+                                    Text('View All'),
+                                  ],
+                                ),
+                              ),
+                            );
+                        },
+                      )
+                    : EmptyBox(text: 'Nothing to show');
               else
-                return Container(
-                  height: 150,
-                  width: 100,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircleAvatar(child: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white), backgroundColor: AppSettings.primaryColor, radius: 20),
-                      SizedBox(height: 10),
-                      Text('View All'),
-                    ],
-                  ),
-                );
+                return LoadingData();
             },
           ),
         ),

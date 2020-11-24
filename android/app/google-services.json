@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "836926782201",
+    "firebase_url": "https://market365-twoguys.firebaseio.com",
+    "project_id": "market365-twoguys",
+    "storage_bucket": "market365-twoguys.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836926782201:android:c453c2ca120f4785a10028",
+        "android_client_info": {
+          "package_name": "com.market365.buyer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836926782201-t6tn5c0ffcnd6k26f9jkfvicnffmvn0l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.market365.buyer",
+            "certificate_hash": "afbdb2993005807a187ad5503fa7b95c3ec96a27"
+          }
+        },
+        {
+          "client_id": "836926782201-asvjuab8r6c8laqrui7kgduq2ehfjnu4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9yHLGNzStMzXOUC0eyJveukhsbTYPyBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836926782201-asvjuab8r6c8laqrui7kgduq2ehfjnu4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

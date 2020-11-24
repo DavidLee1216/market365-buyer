@@ -1,6 +1,7 @@
 import 'package:buyer/models/review.dart';
 import 'package:buyer/widget/cached_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ReviewItem extends StatelessWidget {
   final Review reviewItems;
@@ -20,24 +21,24 @@ class ReviewItem extends StatelessWidget {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text(reviewItems.title), Text(reviewItems.date), Visibility(visible: showDelete != null && showDelete, child: IconButton(icon: Icon(Icons.delete), onPressed: () {}))],
+              children: [Expanded(child: Text(DateFormat.yMMMd().add_jm().format(reviewItems.postingDate.toDate()))), Visibility(visible: showDelete != null && showDelete, child: IconButton(icon: Icon(Icons.delete), onPressed: () {}))],
             ),
-            reviewItems.images != null && reviewItems.images.isNotEmpty
+            reviewItems.imageUrls != null && reviewItems.imageUrls.isNotEmpty
                 ? Container(
                     padding: EdgeInsets.symmetric(vertical: 10),
                     height: 170,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: reviewItems.images.length,
+                        itemCount: reviewItems.imageUrls.length,
                         itemBuilder: (context, i) {
                           return Padding(
                             padding: const EdgeInsets.only(right: 10),
-                            child: CachedImage(rounded: false, height: 150, url: reviewItems.images[i]),
+                            child: CachedImage(rounded: false, height: 150, url: reviewItems.imageUrls[i]),
                           );
                         }),
                   )
                 : Container(),
-            Text(reviewItems.review),
+            Text(reviewItems.content),
           ],
         ));
   }

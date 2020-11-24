@@ -7,20 +7,20 @@ import 'package:buyer/utils/app_settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+int currentIndex = 0;
+
 class MainScreen extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped,
-        currentIndex: _currentIndex,
+        currentIndex: currentIndex,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white24,
         backgroundColor: AppSettings.primaryColor,
@@ -32,13 +32,14 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(backgroundColor: AppSettings.primaryColor, icon: Icon(Icons.person), title: Text('My Page')),
         ],
       ),
-      body: _children[_currentIndex],
+      body: _children[currentIndex],
     );
   }
 
   void onTabTapped(int index) {
+    storeTab = 0;
     setState(() {
-      _currentIndex = index;
+      currentIndex = index;
     });
   }
 

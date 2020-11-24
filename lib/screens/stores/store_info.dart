@@ -1,10 +1,10 @@
-import 'package:buyer/models/shop.dart';
+import 'package:buyer/models/store.dart';
 import 'package:flutter/material.dart';
 
 class StoreInfo extends StatelessWidget {
-  final Shop shop;
+  final Store store;
 
-  StoreInfo({this.shop});
+  StoreInfo({this.store});
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +22,19 @@ class StoreInfo extends StatelessWidget {
             dense: true,
             contentPadding: EdgeInsets.zero,
             title: Text('Open/Closed'),
-            trailing: Text(shop.openTime),
+            trailing: Text(store.openHour.toString() + " - " + store.closeHour.toString()),
           ),
           ListTile(
             dense: true,
             contentPadding: EdgeInsets.zero,
             title: Text('Closed Day'),
-            trailing: Text(shop.closeDay),
+            trailing: Text(store.closeDays.toString()),
           ),
           ListTile(
             dense: true,
             contentPadding: EdgeInsets.zero,
             title: Text('Telephone'),
-            trailing: Text(shop.telephone),
+            trailing: Text(store.tel),
           ),
           Divider(height: 25, thickness: 2, color: Colors.grey.shade200),
           ListTile(
@@ -45,17 +45,17 @@ class StoreInfo extends StatelessWidget {
           ListTile(
             dense: true,
             contentPadding: EdgeInsets.zero,
-            title: Text(shop.name),
+            title: Text(store.name),
           ),
           ListTile(
             dense: true,
             contentPadding: EdgeInsets.zero,
-            title: Text(shop.address),
+            title: Text(store.address),
           ),
           ListTile(
             dense: true,
             contentPadding: EdgeInsets.zero,
-            title: Text(shop.taxID),
+            title: Text(store.taxId),
           ),
         ],
       ),

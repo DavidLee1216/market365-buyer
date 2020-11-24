@@ -1,12 +1,15 @@
-import 'package:buyer/models/order.dart';
+import 'package:buyer/models/product.dart';
+import 'package:buyer/screens/stores/post_review.dart';
+import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/widget/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class OrderDetailsItem extends StatelessWidget {
-  final Order order;
+  final Product product;
+  final String orderID;
 
-  OrderDetailsItem({this.order});
+  OrderDetailsItem({this.product, this.orderID});
 
   @override
   Widget build(BuildContext context) {
@@ -18,21 +21,14 @@ class OrderDetailsItem extends StatelessWidget {
         children: [
           Row(
             children: [
-              Expanded(child: Text(order.address)),
-            ],
-          ),
-          SizedBox(height: 10),
-          Row(
-            children: [
-              Expanded(child: Text('-Use : Bolied')),
-              Text('+0'),
+              Expanded(child: Text(product.title)),
             ],
           ),
           SizedBox(height: 10),
           Row(
             children: [
               Expanded(child: Text('Total')),
-              Text(order.total.toString() + '원', style: TextStyle(fontWeight: FontWeight.bold, color: AppSettings.primaryColor)),
+              Text(product.price.toString() + ' 원', style: TextStyle(fontWeight: FontWeight.bold, color: AppSettings.primaryColor)),
             ],
           ),
           Row(
@@ -46,7 +42,7 @@ class OrderDetailsItem extends StatelessWidget {
                   showShadow: false,
                   text: 'Write a Review',
                   function: () {
-                    //open(context, widget)
+                    open(context, PostReview(product: product, orderID: orderID));
                   },
                 ),
               )

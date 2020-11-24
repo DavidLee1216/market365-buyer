@@ -19,7 +19,7 @@ class EventDetails extends StatelessWidget {
         ),
       ),
       body: CachedImage(
-        url: event.image,
+        url: event.imageUrl,
         rounded: false,
         height: double.infinity,
       ),

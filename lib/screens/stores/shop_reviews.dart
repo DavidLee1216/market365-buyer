@@ -1,50 +1,19 @@
 import 'package:buyer/models/review.dart';
-import 'package:buyer/screens/stores/post_review.dart';
+import 'package:buyer/screens/stores/post_store_review.dart';
 import 'package:buyer/services/navigation_service.dart';
+import 'package:buyer/services/store_servic.dart';
 import 'package:buyer/widget/custom_button.dart';
+import 'package:buyer/widget/empty_box.dart';
+import 'package:buyer/widget/loading.dart';
 import 'package:buyer/widget/reviewitem.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ShopReview extends StatefulWidget {
-  List<Review> reviewItems = [
+  final String storeID;
+  final num reviews;
 
-    Review(
-      title: 'ID',
-      date: '2020.10.10',
-      review:
-          'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.',
-    ),
-    Review(
-      title: 'ID',
-      date: '2020.10.10',
-      review:
-          'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.',
-
-    ),
-    Review(
-      title: 'ID',
-      date: '2020.10.10',
-
-      review:
-      'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.',
-
-    ),
-    Review(
-      title: 'ID',
-      date: '2020.10.10',
-      review:
-      'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.',
-
-
-    ), Review(
-      title: 'ID',
-      date: '2020.10.10',
-      review:
-      'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.',
-
-    ),
-
-  ];
+  ShopReview({this.storeID, this.reviews});
 
   @override
   _ShopReviewState createState() => _ShopReviewState();
@@ -59,32 +28,35 @@ class _ShopReviewState extends State<ShopReview> {
         children: [
           Row(
             children: [
-              Expanded(
-                  flex: 2,
-                  child: Text('5 Reviews',
-                      textScaleFactor: 1.3,
-                      style: TextStyle(fontWeight: FontWeight.bold))),
+              Expanded(flex: 2, child: Text('${widget.reviews} Reviews', textScaleFactor: 1.3, style: TextStyle(fontWeight: FontWeight.bold))),
               Expanded(
                 child: CustomButton(
                   text: 'Write Review',
                   showShadow: false,
                   function: () {
-                    open(context, PostReview());
+                    open(context, PostStoreReview(storeID: widget.storeID));
                   },
                 ),
               )
             ],
           ),
           Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.all(10),
-              shrinkWrap: true,
-              itemCount: 5,
-              itemBuilder: (context, i) {
-                return ReviewItem(
-                  reviewItems: widget.reviewItems[i],
-                  showDelete: false,
-                );
+            child: FutureBuilder(
+              future: getStoreReviews(widget.storeID),
+              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasData)
+                  return snapshot.data.docs.isNotEmpty
+                      ? ListView.builder(
+                          padding: EdgeInsets.all(15),
+                          itemBuilder: (context, i) {
+                            Review order = Review.fromDocument(snapshot.data.docs[i]);
+                            return ReviewItem(reviewItems: order);
+                          },
+                          itemCount: snapshot.data.docs.length,
+                        )
+                      : EmptyBox(text: 'Nothing to show');
+                else
+                  return LoadingData();
               },
             ),
           ),
