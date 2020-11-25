@@ -32,7 +32,7 @@ addUser(User user) async {
   String firebaseToken = await _firebaseMessaging.getToken();
   await ref.collection('users').doc(auth.FirebaseAuth.instance.currentUser.uid).set({
     'userID': auth.FirebaseAuth.instance.currentUser.uid,
-    'email': '',
+    'email': user.email,
     'name': user.name,
     'photoURL': user.photoURL,
     'mobile': user.kToken,

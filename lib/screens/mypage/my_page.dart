@@ -1,8 +1,12 @@
+import 'package:buyer/screens/auth/login.dart';
 import 'package:buyer/screens/mypage/change_password.dart';
 import 'package:buyer/screens/mypage/help_support.dart';
 import 'package:buyer/screens/mypage/information_settings.dart';
+import 'package:buyer/screens/mypage/notices.dart';
 import 'package:buyer/screens/mypage/review_settings.dart';
 import 'package:buyer/screens/mypage/user.dart';
+import 'package:buyer/screens/orders/order_history.dart';
+import 'package:buyer/services/auth_service.dart';
 import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/widget/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +44,9 @@ class _MyPageState extends State<MyPage> {
             child: Column(
               children: [
                 ListTile(
+                  onTap: () {
+                    open(context, OrderHistory());
+                  },
                   leading: Icon(
                     Icons.person,
                     color: Colors.black,
@@ -49,16 +56,16 @@ class _MyPageState extends State<MyPage> {
                     'Order History',
                     textScaleFactor: 0.9,
                   ),
-                  trailing: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                      color: Colors.black,
-                    ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 18,
+                    color: Colors.black,
                   ),
                 ),
                 ListTile(
+                  onTap: () {
+                    open(context, Notices());
+                  },
                   leading: Icon(
                     Icons.edit,
                     color: Colors.black,
@@ -68,13 +75,10 @@ class _MyPageState extends State<MyPage> {
                     'Notice',
                     textScaleFactor: 0.9,
                   ),
-                  trailing: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                      color: Colors.black,
-                    ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 18,
+                    color: Colors.black,
                   ),
                 ),
                 ListTile(
@@ -90,13 +94,10 @@ class _MyPageState extends State<MyPage> {
                     'Help Support',
                     textScaleFactor: 0.9,
                   ),
-                  trailing: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                      color: Colors.black,
-                    ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 18,
+                    color: Colors.black,
                   ),
                 ),
                 ListTile(
@@ -112,13 +113,10 @@ class _MyPageState extends State<MyPage> {
                     'Review Settings',
                     textScaleFactor: 0.9,
                   ),
-                  trailing: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                      color: Colors.black,
-                    ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 18,
+                    color: Colors.black,
                   ),
                 ),
                 ListTile(
@@ -134,13 +132,10 @@ class _MyPageState extends State<MyPage> {
                     'My Information Settings',
                     textScaleFactor: 0.9,
                   ),
-                  trailing: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                      color: Colors.black,
-                    ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 18,
+                    color: Colors.black,
                   ),
                 ),
                 ListTile(
@@ -156,13 +151,10 @@ class _MyPageState extends State<MyPage> {
                     'User Guide',
                     textScaleFactor: 0.9,
                   ),
-                  trailing: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                      color: Colors.black,
-                    ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 18,
+                    color: Colors.black,
                   ),
                 ),
                 ListTile(
@@ -178,13 +170,10 @@ class _MyPageState extends State<MyPage> {
                     'Change Password',
                     textScaleFactor: 0.9,
                   ),
-                  trailing: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                      color: Colors.black,
-                    ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 18,
+                    color: Colors.black,
                   ),
                 ),
               ],
@@ -192,7 +181,10 @@ class _MyPageState extends State<MyPage> {
           ),
           CustomButton(
             color: Color(0xffF7973B),
-            function: () {},
+            function: () async {
+              await signOut();
+              closeOpen(context, Login());
+            },
             text: 'Log Out',
           )
         ],

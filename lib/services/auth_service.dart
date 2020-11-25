@@ -41,7 +41,7 @@ signInWithGoogle(BuildContext context) async {
   } catch (e) {
     print(e);
     alert('Something went wrong. Sign in failed');
-    closeDialog(context);
+    //closeDialog(context);
   }
 }
 
@@ -55,7 +55,7 @@ signUp({name, email, password, context}) async {
     assert(await user.getIdToken() != null);
     DocumentSnapshot documentSnapshot = await checkIfUserExists();
     if (!documentSnapshot.exists) {
-      await addUser(new u.User(name: user.displayName, email: user.email, photoURL: user.photoURL));
+      await addUser(new u.User(name: email, email: email, photoURL: user.photoURL));
       await getCurrentUser();
       closeDialog(context);
       closeOpen(context, MainScreen());
@@ -64,7 +64,6 @@ signUp({name, email, password, context}) async {
     }
   } catch (e) {
     alert(e.message);
-    closeDialog(context);
     return null;
   }
 }
@@ -82,7 +81,12 @@ signIn({String email, String password, BuildContext context}) async {
     closeOpen(context, MainScreen());
   } catch (e) {
     alert(e.message);
-    closeDialog(context);
+    //closeDialog(context);
     return null;
   }
+}
+
+signOut() async {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  await auth.signOut();
 }

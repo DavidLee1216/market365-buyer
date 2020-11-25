@@ -1,16 +1,27 @@
+import 'package:buyer/services/validation_service.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hint;
+  final TextEditingController controller;
+  final bool isPassword;
+  final node;
 
-  CustomTextField({this.hint});
+  CustomTextField({this.hint, this.controller, this.isPassword, this.node});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 45,
-      child: TextField(
+      child: TextFormField(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        controller: controller,
+        validator: (val) => validateText(val),
+        textInputAction: TextInputAction.next,
+        onEditingComplete: () => node.nextFocus(),
+        style: TextStyle(fontFamily: 'Font'),
+        obscureText: isPassword,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(left: 15),

@@ -37,12 +37,19 @@ class _HomeTabState extends State<HomeTab> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: UATheme.screenHeight * 0.3,
-              child: CachedImage(
-                rounded: false,
-                url: 'https://media.istockphoto.com/vectors/bright-modern-mega-sale-banner-for-advertising-discounts-vector-for-vector-id1194343598',
-                height: UATheme.screenWidth,
+            InkWell(
+              onTap: () {
+                setState(() {
+                  controller.animateTo(5);
+                });
+              },
+              child: Container(
+                height: UATheme.screenHeight * 0.3,
+                child: CachedImage(
+                  rounded: false,
+                  url: 'https://media.istockphoto.com/vectors/bright-modern-mega-sale-banner-for-advertising-discounts-vector-for-vector-id1194343598',
+                  height: UATheme.screenWidth,
+                ),
               ),
             ),
             GridView.builder(

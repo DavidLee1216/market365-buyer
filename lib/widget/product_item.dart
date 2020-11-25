@@ -18,6 +18,7 @@ class ProductItem extends StatelessWidget {
           Expanded(child: CachedImage(rounded: false, height: double.infinity, url: product.imageUrl)),
           SizedBox(height: 10),
           Text(product.title),
+          Text(product.price.toString() + ' 원', textScaleFactor: 0.8),
         ],
       ),
     );

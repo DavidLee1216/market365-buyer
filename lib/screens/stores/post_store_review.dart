@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:buyer/models/store_review.dart';
-import 'package:buyer/services/alert_service.dart';
 import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/services/poducts_service.dart';
 import 'package:buyer/services/store_servic.dart';
@@ -85,10 +84,6 @@ class _PostStoreReviewState extends State<PostStoreReview> {
   }
 
   proceed() async {
-    if (images.length == 1) {
-      alert('Please add at least one image');
-      return;
-    }
     if (controller.text.isEmpty) return;
     for (int i = 0; i < images.length; i++)
       if (images[i] != 'add') {

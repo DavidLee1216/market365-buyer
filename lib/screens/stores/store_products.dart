@@ -30,7 +30,7 @@ class _StoreProductsState extends State<StoreProducts> {
             child: Text(widget.store.description),
           ),
           Container(
-            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+            padding: EdgeInsets.symmetric(vertical: 15),
             color: AppSettings.primaryColor.withAlpha(20),
             child: Column(
               children: [
@@ -49,6 +49,7 @@ class _StoreProductsState extends State<StoreProducts> {
                               itemBuilder: (context, i) {
                                 Product product = Product.fromDocument(snapshot.data.docs[i]);
                                 return Container(
+                                  padding: EdgeInsets.all(15),
                                   margin: EdgeInsets.only(bottom: 10),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
@@ -58,8 +59,8 @@ class _StoreProductsState extends State<StoreProducts> {
                                   child: ListTile(
                                     onTap: () => open(context, ProductDetails(product: product)),
                                     dense: true,
-                                    title: Text(product.title, style: TextStyle(fontWeight: FontWeight.bold)),
-                                    subtitle: Text(product.price.toString()),
+                                    title: Text(product.title, textScaleFactor: 1.2, style: TextStyle(fontWeight: FontWeight.bold)),
+                                    subtitle: Text(product.price.toString() + ' 원', textScaleFactor: 1.1),
                                   ),
                                 );
                               })
@@ -94,7 +95,7 @@ class _StoreProductsState extends State<StoreProducts> {
                               onTap: () => open(context, ProductDetails(product: product)),
                               dense: true,
                               title: Text(product.title, style: TextStyle(fontWeight: FontWeight.bold)),
-                              subtitle: Text(product.price.toString()),
+                              subtitle: Text(product.price.toString() + ' 원'),
                             ),
                           );
                         })
