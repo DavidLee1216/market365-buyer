@@ -37,7 +37,6 @@ class MainApp extends StatelessWidget {
   }
 
   open() {
-    cart = List();
     if (FirebaseAuth.instance.currentUser == null)
       return Login();
     else

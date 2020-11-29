@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String hint;
   final TextEditingController controller;
-  final bool isPassword;
+  final bool isPassword, isEmail;
   final node;
 
-  CustomTextField({this.hint, this.controller, this.isPassword, this.node});
+  CustomTextField({this.hint, this.controller, this.isPassword, this.node, this.isEmail});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
         autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controller,
-        validator: (val) => validateText(val),
+        validator: (val) => validate(val),
         textInputAction: TextInputAction.next,
         onEditingComplete: () => node.nextFocus(),
         style: TextStyle(fontFamily: 'Font'),
@@ -38,5 +38,12 @@ class CustomTextField extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  validate(val) {
+    if (isEmail != null && isEmail)
+      return validateEmail(val);
+    else
+      return validateText(val);
   }
 }

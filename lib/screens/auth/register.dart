@@ -1,7 +1,5 @@
-import 'package:buyer/screens/home/main_screen.dart';
 import 'package:buyer/services/alert_service.dart';
 import 'package:buyer/services/auth_service.dart';
-import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/widget/custom_button.dart';
 import 'package:buyer/widget/custom_textbox.dart';
@@ -36,11 +34,11 @@ class _RegisterState extends State<Register> {
           child: Column(
             children: [
               SizedBox(height: 15),
-              CustomTextField(hint: 'Email', controller: emailTEC, node: node, isPassword: false),
+              CustomTextField(hint: 'Email', controller: emailTEC, node: node, isPassword: false, isEmail: true),
               SizedBox(height: 15),
-              CustomTextField(hint: 'Password', controller: passwordTEC, node: node, isPassword: true),
+              CustomTextField(hint: 'Password', controller: passwordTEC, node: node, isPassword: true, isEmail: false),
               SizedBox(height: 15),
-              CustomTextField(hint: 'Confirm Password', controller: confirmTEC, node: node, isPassword: true),
+              CustomTextField(hint: 'Confirm Password', controller: confirmTEC, node: node, isPassword: true, isEmail: false),
               SizedBox(height: 15),
               Row(
                 children: [
@@ -139,8 +137,6 @@ class _RegisterState extends State<Register> {
                       if (passwordTEC.text == confirmTEC.text) {
                         if (checkAll || (checkAge && checkTerms && checkPrivacy)) {
                           signUp(name: emailTEC.text, email: emailTEC.text, password: passwordTEC.text, context: context);
-
-                          closeOpen(context, MainScreen());
                         } else
                           alert('Please accept required conditions to proceed');
                       } else

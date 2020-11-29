@@ -63,8 +63,8 @@ signUp({name, email, password, context}) async {
       alert('Already registered. Please sign in');
     }
   } catch (e) {
+    closeDialog(context);
     alert(e.message);
-    return null;
   }
 }
 

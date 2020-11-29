@@ -84,8 +84,9 @@ class _StoreDetailsState extends State<StoreDetails> {
                   height: 20,
                 ),
                 Text(
-                  '', //widget.store.reviews,
+                  widget.store.reviews.toString() + ' reviews',
                   textScaleFactor: 0.8,
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 20,

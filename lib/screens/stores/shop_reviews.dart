@@ -44,13 +44,14 @@ class _ShopReviewState extends State<ShopReview> {
             child: FutureBuilder(
               future: getStoreReviews(widget.storeID),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                print(snapshot);
                 if (snapshot.hasData)
                   return snapshot.data.docs.isNotEmpty
                       ? ListView.builder(
                           padding: EdgeInsets.all(15),
                           itemBuilder: (context, i) {
                             Review order = Review.fromDocument(snapshot.data.docs[i]);
-                            return ReviewItem(reviewItems: order);
+                            return ReviewItem(review: order);
                           },
                           itemCount: snapshot.data.docs.length,
                         )

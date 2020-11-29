@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:buyer/models/store_review.dart';
+import 'package:buyer/services/alert_service.dart';
 import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/services/poducts_service.dart';
 import 'package:buyer/services/store_servic.dart';
@@ -84,6 +85,7 @@ class _PostStoreReviewState extends State<PostStoreReview> {
   }
 
   proceed() async {
+    showLoading(context);
     if (controller.text.isEmpty) return;
     for (int i = 0; i < images.length; i++)
       if (images[i] != 'add') {
@@ -99,6 +101,7 @@ class _PostStoreReviewState extends State<PostStoreReview> {
       storeID: widget.storeID,
       postingDate: Timestamp.now(),
     ));
+    closeDialog(context);
     close(context);
   }
 

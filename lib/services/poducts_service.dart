@@ -79,3 +79,8 @@ Future<QuerySnapshot> getSignatureProducts(String storeID) {
 Future<QuerySnapshot> getStoreProducts(String storeID) {
   return ref.collection('products').where('stores', arrayContains: storeID).get();
 }
+
+deleteReview(Review review) async {
+  QuerySnapshot querySnapshot = await ref.collection('store_reviews').where('orderID', isEqualTo: review.orderID).where('userID', isEqualTo: review.userID).get();
+  ref.collection('store_reviews').doc(querySnapshot.docs[0].id).delete();
+}

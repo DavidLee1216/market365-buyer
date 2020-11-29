@@ -10,11 +10,11 @@ Future<QuerySnapshot> getStoresForCategory(String category) async {
 }
 
 getStoreReviews(String storeID) {
-  return ref.collection('store_reviews').where('storeID', isEqualTo: storeID).get();
+  return ref.collection('store_reviews').where('storeID', isEqualTo: storeID).orderBy('postingDate', descending: true).get();
 }
 
 getMyStoreReviews() {
-  return ref.collection('store_reviews').where('userID', isEqualTo: currentUser.userID).get();
+  return ref.collection('store_reviews').where('userID', isEqualTo: currentUser.userID).orderBy('postingDate', descending: true).snapshots();
 }
 
 postStoreReview(StoreReview review) async {

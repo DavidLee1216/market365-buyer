@@ -22,31 +22,33 @@ class ReviewSettings extends StatelessWidget {
           },
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: FutureBuilder(
-              future: getMyStoreReviews(),
-              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.hasData)
-                  return snapshot.data.docs.isNotEmpty
-                      ? ListView.builder(
+      body: StreamBuilder(
+        stream: getMyStoreReviews(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasData)
+            return snapshot.data.docs.isNotEmpty
+                ? Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: Text(snapshot.data.docs.length.toString() + " Reviews", textScaleFactor: 1.2),
+                      ),
+                      Expanded(
+                        child: ListView.builder(
                           padding: EdgeInsets.all(15),
                           itemBuilder: (context, i) {
                             Review order = Review.fromDocument(snapshot.data.docs[i]);
-                            return ReviewItem(reviewItems: order);
+                            return ReviewItem(review: order, showDelete: true);
                           },
                           itemCount: snapshot.data.docs.length,
-                        )
-                      : EmptyBox(text: 'Nothing to show');
-                else
-                  return LoadingData();
-              },
-            ),
-          ),
-        ],
+                        ),
+                      ),
+                    ],
+                  )
+                : EmptyBox(text: 'Nothing to show');
+          else
+            return LoadingData();
+        },
       ),
     );
   }

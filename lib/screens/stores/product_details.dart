@@ -1,12 +1,10 @@
 import 'package:buyer/models/product.dart';
 import 'package:buyer/screens/cart/view_cart.dart';
-import 'package:buyer/services/alert_service.dart';
 import 'package:buyer/services/navigation_service.dart';
-import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/utils/uatheme.dart';
+import 'package:buyer/widget/add_to_cart_button.dart';
 import 'package:buyer/widget/cached_image.dart';
 import 'package:buyer/widget/counter.dart';
-import 'package:buyer/widget/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetails extends StatefulWidget {
@@ -96,23 +94,25 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CustomButton(
-              color: cart.contains(widget.product) ? Colors.grey : AppSettings.primaryColor,
-              text: cart.contains(widget.product) ? 'Remove from cart' : 'Add to Cart',
-              showShadow: false,
-              function: () {
-                setState(() {
-                  if (cart.contains(widget.product))
-                    cart.remove(widget.product);
-                  else
-                    cart.add(widget.product);
-                  alert('Cart updated');
-                });
-              },
-            ),
-          ),
+          AddToCartButton(product: widget.product),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: CustomButton(
+          //     color: cart.contains(widget.product) ? Colors.grey : AppSettings.primaryColor,
+          //     text: cart.contains(widget.product) ? 'Remove from cart' : 'Add to Cart',
+          //     showShadow: false,
+          //     function: () {
+          //       setState(() {
+          //         if (cart.contains(widget.product))
+          //           cart.remove(widget.product);
+          //         else
+          //           cart.add(widget.product);
+          //         alert('Cart updated');
+          //         addToCart(widget.product);
+          //       });
+          //     },
+          //   ),
+          // ),
         ],
       ),
     );

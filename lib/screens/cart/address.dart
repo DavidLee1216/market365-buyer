@@ -1,6 +1,7 @@
 import 'package:buyer/models/mydropdown.dart';
 import 'package:buyer/models/order.dart';
 import 'package:buyer/screens/orders/order_history.dart';
+import 'package:buyer/services/alert_service.dart';
 import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/services/order_service.dart';
 import 'package:buyer/utils/app_settings.dart';
@@ -23,6 +24,7 @@ class Address extends StatefulWidget {
 }
 
 class _AddressState extends State<Address> {
+  bool confirmOrder = false;
   List<ListItem> _dropdownItems = [
     ListItem(1, "Select"),
     ListItem(2, "Second Item"),
@@ -128,7 +130,7 @@ class _AddressState extends State<Address> {
                     ],
                   ),
                   SizedBox(height: 30),
-                  CustomTextField(hint: 'Detailed Address'),
+                  CustomTextField(hint: 'Detailed Address', isPassword: false),
                   Divider(color: Colors.grey.shade300, height: 30, thickness: 1),
                   Text('010-1234-1234'),
                   SizedBox(height: 20),
@@ -165,13 +167,13 @@ class _AddressState extends State<Address> {
                     dense: true,
                     contentPadding: EdgeInsets.zero,
                     title: Text('Delivery Fee', style: TextStyle(fontWeight: FontWeight.bold)),
-                    trailing: Text('2000 원', style: TextStyle(fontWeight: FontWeight.bold)),
+                    trailing: Text('${AppSettings.deliveryFee} 원', style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                   ListTile(
                     dense: true,
                     contentPadding: EdgeInsets.zero,
                     title: Text('Total', style: TextStyle(fontWeight: FontWeight.bold)),
-                    trailing: Text('${widget.total + 2000} 원', style: TextStyle(fontWeight: FontWeight.bold)),
+                    trailing: Text('${widget.total + AppSettings.deliveryFee} 원', style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                   Divider(color: Colors.grey.shade300, height: 30, thickness: 1),
                   Text('Payment Method'),
@@ -199,7 +201,15 @@ class _AddressState extends State<Address> {
                   Divider(color: Colors.grey.shade300, height: 30, thickness: 1),
                   Row(
                     children: [
-                      Checkbox(materialTapTargetSize: MaterialTapTargetSize.shrinkWrap, value: false, activeColor: Colors.green, onChanged: (bool newValue) {}),
+                      Checkbox(
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          value: confirmOrder,
+                          activeColor: Colors.green,
+                          onChanged: (bool newValue) {
+                            setState(() {
+                              confirmOrder = newValue;
+                            });
+                          }),
                       Expanded(child: Text('Confirm Order (Required)', textScaleFactor: 0.9)),
                       SizedBox(width: 15),
                       Expanded(child: Text('View Terms & Conditions', textScaleFactor: 0.9)),
@@ -217,46 +227,37 @@ class _AddressState extends State<Address> {
               text: 'Order',
               showShadow: false,
               function: () async {
-                await placeOrder(
-                  Order(
-                    orderID: Uuid().v1(),
-                    name: currentUser.name,
-                    date: Timestamp.fromDate(widget.date),
-                    address: '',
-                    delivery: 2000,
-                    fees: {},
-                    history: [
-                      {
-                        'status': 'Order placed',
-                        'time': Timestamp.now(),
-                      }
-                    ],
-                    paidDate: Timestamp.now(),
-                    payment: 'Credit Card',
-                    products: getProducts(),
-                    request: '',
-                    time: widget.time,
-                    user: currentUser.userID,
-                    total: widget.total,
-                  ),
-                );
-                cart.clear();
-                open(context, OrderHistory());
+                if (confirmOrder) {
+                  await placeOrder(
+                    Order(
+                      orderID: Uuid().v1(),
+                      name: currentUser.name,
+                      date: Timestamp.fromDate(widget.date),
+                      address: '',
+                      delivery: AppSettings.deliveryFee,
+                      fees: {},
+                      history: [
+                        {
+                          'status': 'Order placed',
+                          'time': Timestamp.now(),
+                        }
+                      ],
+                      paidDate: Timestamp.now(),
+                      payment: 'Credit Card',
+                      request: '',
+                      time: widget.time,
+                      user: currentUser.userID,
+                      total: widget.total,
+                    ),
+                  );
+                  open(context, OrderHistory());
+                } else
+                  alert('Please confirm the order to continue');
               },
             ),
           ),
         ],
       ),
     );
-  }
-
-  getProducts() {
-    List<Map> products = List();
-    for (int i = 0; i < cart.length; i++)
-      products.add({
-        'productID': cart[i].productID,
-        'quantity': cart[i].quantity,
-      });
-    return products;
   }
 }
