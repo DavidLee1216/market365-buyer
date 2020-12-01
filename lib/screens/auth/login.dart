@@ -106,7 +106,7 @@ class Login extends StatelessWidget {
                 Expanded(
                   child: FlatButton(
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    onPressed: () => closeOpen(context, Register()),
+                    onPressed: () => open(context, Register()),
                     child: Text(
                       '이메일로 가입하기',
                       textScaleFactor: 0.85,

@@ -26,49 +26,72 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     node = FocusScope.of(context);
     return Scaffold(
-      appBar: AppBar(title: Text('Register')),
+      appBar: AppBar(title: Text('회원가입')),
       body: Form(
         key: formKey,
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.fromLTRB(25, 15, 25, 15),
           child: Column(
             children: [
               SizedBox(height: 15),
-              CustomTextField(hint: 'Email', controller: emailTEC, node: node, isPassword: false, isEmail: true),
+              CustomTextField(
+                  hint: 'Email',
+                  controller: emailTEC,
+                  node: node,
+                  isPassword: false,
+                  isEmail: true),
               SizedBox(height: 15),
-              CustomTextField(hint: 'Password', controller: passwordTEC, node: node, isPassword: true, isEmail: false),
+              CustomTextField(
+                  hint: '비밀번호',
+                  controller: passwordTEC,
+                  node: node,
+                  isPassword: true,
+                  isEmail: false),
               SizedBox(height: 15),
-              CustomTextField(hint: 'Confirm Password', controller: confirmTEC, node: node, isPassword: true, isEmail: false),
-              SizedBox(height: 15),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 8,
-                    child: Text('I agree all the terms and condition and all the privacy policy', textScaleFactor: 0.9),
-                  ),
-                  Checkbox(
-                      value: checkAll,
-                      activeColor: Colors.green,
-                      onChanged: (bool newValue) {
-                        setState(() {
-                          if (newValue)
-                            checkAll = checkAge = checkPromo = checkPrivacy = checkTerms = true;
-                          else
-                            checkAll = checkAge = checkPromo = checkPrivacy = checkTerms = false;
-                        });
-                      }),
-                  Expanded(flex: 3, child: Text('Agree to all', textScaleFactor: 0.9)),
-                ],
+              CustomTextField(
+                  hint: '비밀번호 재확인',
+                  controller: confirmTEC,
+                  node: node,
+                  isPassword: true,
+                  isEmail: false),
+              SizedBox(height: 30),
+              Text(
+                  '장날365 이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(선택), 프로모션 정보 수신(선택)에 모두 동의합니다.',
+                  textScaleFactor: 0.9),
+              Container(
+                padding: const EdgeInsets.only(right: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Checkbox(
+                        value: checkAll,
+                        activeColor: Colors.green,
+                        onChanged: (bool newValue) {
+                          setState(() {
+                            if (newValue)
+                              checkAll = checkAge =
+                                  checkPromo = checkPrivacy = checkTerms = true;
+                            else
+                              checkAll = checkAge = checkPromo =
+                                  checkPrivacy = checkTerms = false;
+                          });
+                        }),
+                    Text('모두 동의', textScaleFactor: 0.9),
+                  ],
+                ),
               ),
               Container(
                 width: double.infinity,
-                decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)), border: Border.all(width: 0.75, color: Colors.grey.shade400)),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    border:
+                        Border.all(width: 0.75, color: Colors.grey.shade400)),
                 padding: EdgeInsets.all(15),
-                margin: EdgeInsets.only(top: 20, bottom: 20),
+                margin: EdgeInsets.only(bottom: 20),
                 child: Column(
                   children: [
                     Row(children: [
-                      Expanded(child: Text('14 or Older', textScaleFactor: 0.9)),
+                      Expanded(child: Text('14세 이상 가입', textScaleFactor: 0.9)),
                       Checkbox(
                           value: checkAge,
                           activeColor: Colors.green,
@@ -77,12 +100,15 @@ class _RegisterState extends State<Register> {
                               checkAge = newValue;
                             });
                           }),
-                      Text('Agree', textScaleFactor: 0.9),
-                      Text(' (required)', textScaleFactor: 0.8, style: TextStyle(color: AppSettings.primaryColor)),
+                      Text('동의', textScaleFactor: 0.9),
+                      Text(' (필수)',
+                          textScaleFactor: 0.8,
+                          style: TextStyle(color: AppSettings.primaryColor)),
                     ]),
                     Row(
                       children: [
-                        Expanded(child: Text('Terms of services', textScaleFactor: 0.9)),
+                        Expanded(
+                            child: Text('장날 365 이용약관', textScaleFactor: 0.9)),
                         Checkbox(
                             value: checkTerms,
                             activeColor: Colors.green,
@@ -91,13 +117,16 @@ class _RegisterState extends State<Register> {
                                 checkTerms = newValue;
                               });
                             }),
-                        Text('Agree', textScaleFactor: 0.9),
-                        Text(' (required)', textScaleFactor: 0.8, style: TextStyle(color: AppSettings.primaryColor)),
+                        Text('동의', textScaleFactor: 0.9),
+                        Text(' (필수)',
+                            textScaleFactor: 0.8,
+                            style: TextStyle(color: AppSettings.primaryColor)),
                       ],
                     ),
                     Row(
                       children: [
-                        Expanded(child: Text('Privacy Policy', textScaleFactor: 0.9)),
+                        Expanded(
+                            child: Text('개인정보 수집 및 이용', textScaleFactor: 0.9)),
                         Checkbox(
                             value: checkPrivacy,
                             activeColor: Colors.green,
@@ -106,13 +135,15 @@ class _RegisterState extends State<Register> {
                                 checkPrivacy = newValue;
                               });
                             }),
-                        Text('Agree', textScaleFactor: 0.9),
-                        Text(' (required)', textScaleFactor: 0.8, style: TextStyle(color: AppSettings.primaryColor)),
+                        Text('동의', textScaleFactor: 0.9),
+                        Text(' (필수)',
+                            textScaleFactor: 0.8,
+                            style: TextStyle(color: AppSettings.primaryColor)),
                       ],
                     ),
                     Row(
                       children: [
-                        Expanded(child: Text('Receive Promotional info', textScaleFactor: 0.9)),
+                        Expanded(child: Text('마케팅 사용', textScaleFactor: 0.9)),
                         Checkbox(
                             value: checkPromo,
                             activeColor: Colors.green,
@@ -121,8 +152,10 @@ class _RegisterState extends State<Register> {
                                 checkPromo = newValue;
                               });
                             }),
-                        Text('Agree', textScaleFactor: 0.9),
-                        Text(' (Optional)', textScaleFactor: 0.8, style: TextStyle(color: Colors.grey.shade400)),
+                        Text('동의', textScaleFactor: 0.9),
+                        Text(' (선택)',
+                            textScaleFactor: 0.8,
+                            style: TextStyle(color: Colors.grey.shade400)),
                       ],
                     ),
                   ],
@@ -131,12 +164,17 @@ class _RegisterState extends State<Register> {
               Container(
                 width: double.infinity,
                 child: CustomButton(
-                    text: 'Register',
+                    text: '회원가입',
                     function: () async {
                       if (!formKey.currentState.validate()) return;
                       if (passwordTEC.text == confirmTEC.text) {
-                        if (checkAll || (checkAge && checkTerms && checkPrivacy)) {
-                          signUp(name: emailTEC.text, email: emailTEC.text, password: passwordTEC.text, context: context);
+                        if (checkAll ||
+                            (checkAge && checkTerms && checkPrivacy)) {
+                          signUp(
+                              name: emailTEC.text,
+                              email: emailTEC.text,
+                              password: passwordTEC.text,
+                              context: context);
                         } else
                           alert('Please accept required conditions to proceed');
                       } else
