@@ -10,16 +10,36 @@ class Login extends StatelessWidget {
 
   containerButton(String title, String imgURL, Color color, Color textColor) {
     return Container(
-      height: 45,
+      height: 50,
       width: double.infinity,
-      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.all(Radius.circular(5)), border: Border.all(width: 1, color: color == Colors.white ? Colors.grey.shade300 : color)),
+      decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.all(Radius.circular(7)),
+          border: Border.all(
+              width: 1,
+              color: color == Colors.white ? Colors.grey.shade300 : color)),
       margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image(image: AssetImage(imgURL), height: 20, width: 20),
-          SizedBox(width: 10),
-          Text(title, style: TextStyle(color: textColor)),
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            width: 20,
+            height: 20,
+            child: Image.asset(imgURL),
+          ),
+          Expanded(
+            child: Container(
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: 14.5,
+                  color: textColor,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -32,7 +52,7 @@ class Login extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 100),
+              padding: const EdgeInsets.fromLTRB(10, 80, 10, 50),
               child: Image.asset(
                 'assets/images/logo1.png',
                 height: 150,
@@ -40,23 +60,44 @@ class Login extends StatelessWidget {
                 width: UATheme.screenWidth - 100,
               ),
             ),
-            InkWell(
-              //onTap: () => closeOpen(context, MainScreen()),
-              child: containerButton('Login with Kakao Talk', 'assets/images/kako.png', Color(0xffFFED16), Colors.black),
-            ),
-            containerButton('Login with Naver', 'assets/images/naver.png', Color(0xff28BF0A), Colors.white),
-            containerButton('Login with Facebook', 'assets/images/facebook.png', Color(0xff3A559F), Colors.white),
-            InkWell(onTap: () => signInWithGoogle(context), child: containerButton('Login with Google', 'assets/images/google.png', Colors.white, Colors.black)),
-            containerButton('Login with Apple', 'assets/images/apple.png', Color(0xff161616), Colors.white),
+            Container(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: Column(
+                  children: [
+                    InkWell(
+                      //onTap: () => closeOpen(context, MainScreen()),
+                      child: containerButton(
+                          '카카오로 로그인 하기',
+                          'assets/images/kako.png',
+                          Color(0xffFFED16),
+                          Colors.black),
+                    ),
+                    containerButton('네이버로 로그인 하기', 'assets/images/naver.png',
+                        Color(0xff28BF0A), Colors.white),
+                    containerButton(
+                        '페이스북으로 로그인 하기',
+                        'assets/images/facebook.png',
+                        Color(0xff3b5998),
+                        Colors.white),
+                    InkWell(
+                        onTap: () => signInWithGoogle(context),
+                        child: containerButton(
+                            '구글로 로그인 하기',
+                            'assets/images/google.png',
+                            Colors.white,
+                            Colors.black)),
+                    containerButton('Apple로 로그인 하기', 'assets/images/apple.png',
+                        Color(0xff161616), Colors.white),
+                  ],
+                )),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
                   child: FlatButton(
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     onPressed: () {},
                     child: Text(
-                      'Login with Email',
+                      '이메일로 로그인',
                       textScaleFactor: 0.85,
                     ),
                     textColor: Colors.black,
@@ -67,7 +108,7 @@ class Login extends StatelessWidget {
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     onPressed: () => closeOpen(context, Register()),
                     child: Text(
-                      'Register with Email',
+                      '이메일로 가입하기',
                       textScaleFactor: 0.85,
                     ),
                     textColor: Color(0xff585858),

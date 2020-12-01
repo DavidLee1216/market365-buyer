@@ -41,6 +41,12 @@ flutter:
     - assets/images/
 
   fonts:
+    # - family: Font
+    #   fonts:
+    #     - asset: assets/fonts/font.ttf
+
     - family: Font
       fonts:
-        - asset: assets/fonts/font.ttf
+        - asset: assets/fonts/NanumSquare_acR.ttf
+        - asset: assets/fonts/NanumSquare_acB.ttf
+          weight: 700
