@@ -15,12 +15,17 @@ class _NoticeDetailsState extends State<NoticeDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Notice')),
+      appBar: AppBar(title: Text('공지사항')),
       body: Column(
         children: [
           ListTile(
             title: Text(widget.announcement.title),
-            subtitle: Text(DateFormat.yMMMd().add_jm().format(widget.announcement.postingDate.toDate()), textScaleFactor: 0.8, style: TextStyle(color: Color(0xff585858))),
+            subtitle: Text(
+                DateFormat.yMMMd()
+                    .add_jm()
+                    .format(widget.announcement.postingDate.toDate()),
+                textScaleFactor: 0.8,
+                style: TextStyle(color: Color(0xff585858))),
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),
