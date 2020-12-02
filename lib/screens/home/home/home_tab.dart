@@ -20,14 +20,14 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   List<Category> categories = [
-    Category(name: 'Meat', image: ''),
-    Category(name: 'Seafood', image: ''),
-    Category(name: 'Stock Fish', image: ''),
-    Category(name: 'Vegetable', image: ''),
-    Category(name: 'Fruit', image: ''),
-    Category(name: 'Side Dish', image: ''),
-    Category(name: 'Food', image: ''),
-    Category(name: 'Etc', image: ''),
+    Category(name: '정육/닭', image: ''),
+    Category(name: '수산', image: ''),
+    Category(name: '건어물', image: ''),
+    Category(name: '야채', image: ''),
+    Category(name: '과일', image: ''),
+    Category(name: '국/반찬', image: ''),
+    Category(name: '먹거리', image: ''),
+    Category(name: '기타', image: ''),
   ];
 
   @override
@@ -47,7 +47,8 @@ class _HomeTabState extends State<HomeTab> {
                 height: UATheme.screenHeight * 0.3,
                 child: CachedImage(
                   rounded: false,
-                  url: 'https://media.istockphoto.com/vectors/bright-modern-mega-sale-banner-for-advertising-discounts-vector-for-vector-id1194343598',
+                  url:
+                      'https://media.istockphoto.com/vectors/bright-modern-mega-sale-banner-for-advertising-discounts-vector-for-vector-id1194343598',
                   height: UATheme.screenWidth,
                 ),
               ),
@@ -55,7 +56,11 @@ class _HomeTabState extends State<HomeTab> {
             GridView.builder(
               physics: NeverScrollableScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 25),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, childAspectRatio: 1, mainAxisSpacing: 15, crossAxisSpacing: 10),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  childAspectRatio: 1,
+                  mainAxisSpacing: 15,
+                  crossAxisSpacing: 10),
               shrinkWrap: true,
               itemCount: categories.length,
               itemBuilder: (context, i) {
@@ -68,8 +73,14 @@ class _HomeTabState extends State<HomeTab> {
                     children: [
                       Expanded(
                         child: Container(
-                          decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 0.75), borderRadius: BorderRadius.circular(5)),
-                          child: CachedImage(rounded: false, height: double.infinity, url: categories[i].image),
+                          decoration: BoxDecoration(
+                              border:
+                                  Border.all(color: Colors.grey, width: 0.75),
+                              borderRadius: BorderRadius.circular(5)),
+                          child: CachedImage(
+                              rounded: false,
+                              height: double.infinity,
+                              url: categories[i].image),
                         ),
                       ),
                       SizedBox(height: 5),
@@ -79,12 +90,27 @@ class _HomeTabState extends State<HomeTab> {
                 );
               },
             ),
-            section('Market', 'isMarket', 1),
-            section('BEST', 'isBest', 2),
-            section('Today\'s Menu', 'isToday', 3),
+            section('번개장터', 'isMarket', 1),
+            section('베스트', 'isBest', 2),
+            section('오늘의 밥상', 'isToday', 3),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildBottom() {
+    final items = List.generate(10, (i) {
+      return ListTile(
+        leading: Icon(Icons.notifications_none),
+        title: Text('공지사항'),
+      );
+    });
+
+    return ListView(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      children: items,
     );
   }
 
@@ -110,7 +136,13 @@ class _HomeTabState extends State<HomeTab> {
                         itemCount: snapshot.data.docs.length + 1,
                         itemBuilder: (context, i) {
                           if (i != snapshot.data.docs.length)
-                            return Container(height: 150, width: 150, margin: EdgeInsets.only(right: 10), child: ProductItem(product: Product.fromDocument(snapshot.data.docs[i])));
+                            return Container(
+                                height: 150,
+                                width: 150,
+                                margin: EdgeInsets.only(right: 10),
+                                child: ProductItem(
+                                    product: Product.fromDocument(
+                                        snapshot.data.docs[i])));
                           else
                             return InkWell(
                               onTap: () {
@@ -124,9 +156,15 @@ class _HomeTabState extends State<HomeTab> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    CircleAvatar(child: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white), backgroundColor: AppSettings.primaryColor, radius: 20),
+                                    CircleAvatar(
+                                        child: Icon(
+                                            Icons.arrow_forward_ios_rounded,
+                                            color: Colors.white),
+                                        backgroundColor:
+                                            AppSettings.primaryColor,
+                                        radius: 20),
                                     SizedBox(height: 10),
-                                    Text('View All'),
+                                    Text('전체보기'),
                                   ],
                                 ),
                               ),

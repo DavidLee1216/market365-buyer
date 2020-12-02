@@ -28,7 +28,8 @@ class _StoreSelectState extends State<StoreSelect> {
   getAllMarkets() async {
     markets = List();
     QuerySnapshot querySnapshot = await getMarkets();
-    for (int i = 0; i < querySnapshot.docs.length; i++) markets.add(Market.fromDocument(querySnapshot.docs[i]));
+    for (int i = 0; i < querySnapshot.docs.length; i++)
+      markets.add(Market.fromDocument(querySnapshot.docs[i]));
 
     chosenMarket = markets[0];
     selectedMarket = chosenMarket.name;
@@ -54,12 +55,15 @@ class _StoreSelectState extends State<StoreSelect> {
           backgroundColor: Colors.transparent,
           title: Row(
             children: [
-              Image.asset('assets/images/logo1.png', width: UATheme.screenWidth * 0.3),
+              Image.asset('assets/images/logo1.png',
+                  width: UATheme.screenWidth * 0.3),
               Container(
                 padding: const EdgeInsets.only(left: 10.0, right: 5.0),
                 margin: EdgeInsets.only(left: 5),
                 height: 30,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: AppSettings.primaryColor)),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: AppSettings.primaryColor)),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<Market>(
                       icon: Icon(
@@ -83,7 +87,10 @@ class _StoreSelectState extends State<StoreSelect> {
             ],
           ),
           actions: [
-            IconButton(icon: Icon(Icons.shopping_cart_rounded, color: AppSettings.primaryColor), onPressed: () => open(context, ViewCart())),
+            IconButton(
+                icon: Icon(Icons.shopping_cart_rounded,
+                    color: AppSettings.primaryColor),
+                onPressed: () => open(context, ViewCart())),
           ],
           bottom: TabBar(
             isScrollable: true,
@@ -94,27 +101,27 @@ class _StoreSelectState extends State<StoreSelect> {
             labelStyle: TextStyle(fontSize: 12),
             unselectedLabelStyle: TextStyle(fontSize: 12),
             tabs: [
-              Tab(text: 'Meat'),
-              Tab(text: 'Seafood'),
-              Tab(text: 'Stock Fish'),
-              Tab(text: 'Vegetable'),
-              Tab(text: 'Fruit'),
-              Tab(text: 'Side Dish'),
-              Tab(text: 'Food'),
-              Tab(text: 'Etc'),
+              Tab(text: '정육/닭'),
+              Tab(text: '수산'),
+              Tab(text: '건어물'),
+              Tab(text: '야채'),
+              Tab(text: '과일'),
+              Tab(text: '국/반찬'),
+              Tab(text: '먹거리'),
+              Tab(text: '기타'),
             ],
           ),
         ),
         body: TabBarView(
           children: <Widget>[
-            getScreen('Meat'),
-            getScreen('Seafood'),
-            getScreen('Stock Fish'),
-            getScreen('Vegetable'),
-            getScreen('Fruit'),
-            getScreen('Side Dish'),
-            getScreen('Food'),
-            getScreen('Etc'),
+            getScreen('정육/닭'),
+            getScreen('수산'),
+            getScreen('건어물'),
+            getScreen('야채'),
+            getScreen('과일'),
+            getScreen('국/반찬'),
+            getScreen('먹거리'),
+            getScreen('기타'),
           ],
         ),
       ),

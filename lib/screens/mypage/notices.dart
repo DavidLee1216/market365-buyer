@@ -18,7 +18,7 @@ class _NoticesState extends State<Notices> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notices'),
+        title: Text('공지사항'),
       ),
       body: FutureBuilder(
         future: getAnnouncements(),
@@ -30,11 +30,18 @@ class _NoticesState extends State<Notices> {
                     shrinkWrap: true,
                     itemCount: snapshot.data.docs.length,
                     itemBuilder: (context, i) {
-                      Announcement announcement = Announcement.fromDocument(snapshot.data.docs[i]);
+                      Announcement announcement =
+                          Announcement.fromDocument(snapshot.data.docs[i]);
                       return ListTile(
-                        onTap: () => open(context, NoticeDetails(announcement: announcement)),
+                        onTap: () => open(
+                            context, NoticeDetails(announcement: announcement)),
                         title: Text(announcement.title, textScaleFactor: 0.9),
-                        subtitle: Text(DateFormat.yMMMd().add_jm().format(announcement.postingDate.toDate()), textScaleFactor: 0.8, style: TextStyle(color: Color(0xff585858))),
+                        subtitle: Text(
+                            DateFormat.yMMMd()
+                                .add_jm()
+                                .format(announcement.postingDate.toDate()),
+                            textScaleFactor: 0.8,
+                            style: TextStyle(color: Color(0xff585858))),
                       );
                     },
                   )
