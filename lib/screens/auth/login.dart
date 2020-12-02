@@ -21,26 +21,42 @@ class Login extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
             width: 20,
             height: 20,
             child: Image.asset(imgURL),
           ),
-          Expanded(
-            child: Container(
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontSize: 14.5,
-                  color: textColor,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
+          SizedBox(
+            width: 10,
           ),
+          Text(
+            title,
+            style: TextStyle(
+                fontSize: 14.5, color: textColor, fontWeight: FontWeight.bold),
+          )
         ],
+
+        // children: <Widget>[
+        //   Container(
+        //     width: 20,
+        //     height: 20,
+        //     child: Image.asset(imgURL),
+        //   ),
+        //   Expanded(
+        //     child: Container(
+        //       child: Text(
+        //         title,
+        //         style: TextStyle(
+        //           fontSize: 14.5,
+        //           color: textColor,
+        //         ),
+        //         textAlign: TextAlign.center,
+        //       ),
+        //     ),
+        //   ),
+        // ],
       ),
     );
   }
@@ -52,7 +68,7 @@ class Login extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(10, 80, 10, 50),
+              padding: const EdgeInsets.fromLTRB(10, 130, 10, 100),
               child: Image.asset(
                 'assets/images/logo1.png',
                 height: 150,
@@ -61,7 +77,7 @@ class Login extends StatelessWidget {
               ),
             ),
             Container(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: Column(
                   children: [
                     InkWell(
@@ -82,7 +98,7 @@ class Login extends StatelessWidget {
                     InkWell(
                         onTap: () => signInWithGoogle(context),
                         child: containerButton(
-                            '구글로 로그인 하기',
+                            'Google로 로그인 하기',
                             'assets/images/google.png',
                             Colors.white,
                             Colors.black)),

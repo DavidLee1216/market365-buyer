@@ -20,63 +20,73 @@ class _AvailableDeliveryTimesState extends State<AvailableDeliveryTimes> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          '배송시간 지정',
-        ),
+    return Container(
+      padding: const EdgeInsets.only(
+        top: 15,
+        bottom: 20,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Text(
-              selectedMarket,
-              textScaleFactor: 1.5,
-            ),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            '배송가능시간안내',
+            style: TextStyle(fontWeight: FontWeight.w700),
           ),
-          Expanded(
-              child: FutureBuilder(
-            future: getDeliveryTimeForMarket(),
-            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasData) {
-                if (snapshot.data.docs.isNotEmpty) {
-                  TimeTable timeTable =
-                      TimeTable.fromDocument(snapshot.data.docs[0]);
-                  List<DataRow> rows = List();
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Text(
+                selectedMarket,
+                textScaleFactor: 1.5,
+              ),
+            ),
+            Expanded(
+                child: FutureBuilder(
+              future: getDeliveryTimeForMarket(),
+              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasData) {
+                  if (snapshot.data.docs.isNotEmpty) {
+                    TimeTable timeTable =
+                        TimeTable.fromDocument(snapshot.data.docs[0]);
+                    List<DataRow> rows = List();
 
-                  List<String> times = ['09.00', '11.00'];
-                  for (int i = 0; i < times.length; i++) {
-                    rows.add(myDataRow(
-                        times[i],
-                        timeTable.time[0][times[i]],
-                        timeTable.time[1][times[i]],
-                        timeTable.time[2][times[i]],
-                        i));
-                  }
-                  return DataTable(
-                    dividerThickness: 0,
-                    columnSpacing: 20.0,
-                    columns: [
-                      DataColumn(label: Text('Delivery Time')),
-                      DataColumn(
-                          label: Text(DateFormat('dd MMM').format(headers[0]))),
-                      DataColumn(
-                          label: Text(DateFormat('dd MMM').format(headers[1]))),
-                      DataColumn(
-                          label: Text(DateFormat('dd MMM').format(headers[2]))),
-                    ],
-                    rows: rows,
-                  );
+                    List<String> times = ['09.00', '11.00'];
+                    for (int i = 0; i < times.length; i++) {
+                      rows.add(myDataRow(
+                          times[i],
+                          timeTable.time[0][times[i]],
+                          timeTable.time[1][times[i]],
+                          timeTable.time[2][times[i]],
+                          i));
+                    }
+                    return DataTable(
+                      dividerThickness: 0,
+                      columnSpacing: 20.0,
+                      columns: [
+                        DataColumn(label: Text('Delivery Time')),
+                        DataColumn(
+                            label:
+                                Text(DateFormat('dd MMM').format(headers[0]))),
+                        DataColumn(
+                            label:
+                                Text(DateFormat('dd MMM').format(headers[1]))),
+                        DataColumn(
+                            label:
+                                Text(DateFormat('dd MMM').format(headers[2]))),
+                      ],
+                      rows: rows,
+                    );
+                  } else
+                    return EmptyBox(text: 'Nothing to show ');
                 } else
-                  return EmptyBox(text: 'Nothing to show ');
-              } else
-                return LoadingData();
-            },
-          )),
-        ],
+                  return LoadingData();
+              },
+            )),
+          ],
+        ),
       ),
     );
   }

@@ -19,115 +19,131 @@ class ProductDetails extends StatefulWidget {
 class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.product.title),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.shopping_cart_rounded, color: Colors.white),
-            onPressed: () => open(context, ViewCart()),
-          )
-        ],
+    return Container(
+      padding: const EdgeInsets.only(
+        top: 15,
+        bottom: 20,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.all(15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                      height: UATheme.screenHeight * 0.3,
-                      child: CachedImage(
-                          rounded: true,
-                          height: double.infinity,
-                          url: widget.product.imageUrl)),
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(widget.product.title, textScaleFactor: 1.2),
-                    trailing: Text(widget.product.price.toString() + ' 원',
-                        textScaleFactor: 1.1,
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                  ),
-                  Text(widget.product.description),
-                  SizedBox(height: 25),
-                  Text('Use'),
-                  ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: widget.product.extras.length,
-                      itemBuilder: (context, i) {
-                        return Row(
-                          children: [
-                            Checkbox(
-                                materialTapTargetSize:
-                                    MaterialTapTargetSize.shrinkWrap,
-                                value: widget.product.extras[i].selected,
-                                activeColor: Colors.green,
-                                onChanged: (bool newValue) {
-                                  setState(() {
-                                    widget.product.extras[i].selected =
-                                        !widget.product.extras[i].selected;
-                                  });
-                                }),
-                            Expanded(
-                                child: Text(widget.product.extras[i].key,
-                                    textScaleFactor: 0.9)),
-                            Text('+ ${widget.product.extras[i].value} 원',
-                                textScaleFactor: 0.9),
-                          ],
-                        );
-                      }),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Quantity'),
-                      Counter(
-                        initialValue: widget.product.quantity,
-                        minValue: 0,
-                        maxValue: 10,
-                        step: 1,
-                        decimalPlaces: 0,
-                        onChanged: (value) {
-                          setState(() {
-                            widget.product.quantity = value;
-                          });
-                        },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            widget.product.title,
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.shopping_cart_rounded, color: Colors.white),
+              onPressed: () => open(context, ViewCart()),
+            )
+          ],
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.all(15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                        height: UATheme.screenHeight * 0.3,
+                        child: CachedImage(
+                            rounded: true,
+                            height: double.infinity,
+                            url: widget.product.imageUrl)),
+                    ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(widget.product.title, textScaleFactor: 1.2),
+                      trailing: Text(widget.product.price.toString() + ' 원',
+                          textScaleFactor: 1.1,
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    Text(widget.product.description),
+                    SizedBox(height: 25),
+                    Text('용도별'),
+                    ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: widget.product.extras.length,
+                        itemBuilder: (context, i) {
+                          return Row(
+                            children: [
+                              Checkbox(
+                                  materialTapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                  value: widget.product.extras[i].selected,
+                                  activeColor: Colors.green,
+                                  onChanged: (bool newValue) {
+                                    setState(() {
+                                      widget.product.extras[i].selected =
+                                          !widget.product.extras[i].selected;
+                                    });
+                                  }),
+                              Expanded(
+                                  child: Text(widget.product.extras[i].key,
+                                      textScaleFactor: 0.9)),
+                              Text('+ ${widget.product.extras[i].value} 원',
+                                  textScaleFactor: 0.9),
+                            ],
+                          );
+                        }),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('수량'),
+                        Counter(
+                          initialValue: widget.product.quantity,
+                          minValue: 0,
+                          maxValue: 10,
+                          step: 1,
+                          decimalPlaces: 0,
+                          onChanged: (value) {
+                            setState(() {
+                              widget.product.quantity = value;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(
+                        'Total',
+                        textScaleFactor: 1.4,
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                    ],
-                  ),
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text('Total', textScaleFactor: 1.2),
-                    trailing: Text(getTotal().toString() + ' 원',
-                        textScaleFactor: 1.1,
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                  ),
-                ],
+                      trailing: Text(getTotal().toString() + ' 원',
+                          textScaleFactor: 1.4,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff005D45),
+                          )),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          AddToCartButton(product: widget.product),
-          // Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: CustomButton(
-          //     color: cart.contains(widget.product) ? Colors.grey : AppSettings.primaryColor,
-          //     text: cart.contains(widget.product) ? 'Remove from cart' : 'Add to Cart',
-          //     showShadow: false,
-          //     function: () {
-          //       setState(() {
-          //         if (cart.contains(widget.product))
-          //           cart.remove(widget.product);
-          //         else
-          //           cart.add(widget.product);
-          //         alert('Cart updated');
-          //         addToCart(widget.product);
-          //       });
-          //     },
-          //   ),
-          // ),
-        ],
+            AddToCartButton(product: widget.product),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: CustomButton(
+            //     color: cart.contains(widget.product) ? Colors.grey : AppSettings.primaryColor,
+            //     text: cart.contains(widget.product) ? 'Remove from cart' : 'Add to Cart',
+            //     showShadow: false,
+            //     function: () {
+            //       setState(() {
+            //         if (cart.contains(widget.product))
+            //           cart.remove(widget.product);
+            //         else
+            //           cart.add(widget.product);
+            //         alert('Cart updated');
+            //         addToCart(widget.product);
+            //       });
+            //     },
+            //   ),
+            // ),
+          ],
+        ),
       ),
     );
   }

@@ -35,79 +35,97 @@ class _ViewCartState extends State<ViewCart> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('장바구니'),
-        actions: [
-          FlatButton(
-              onPressed: () async {
-                await clearCart();
-              },
-              child: Text('Clear'))
-        ],
+    return Container(
+      padding: const EdgeInsets.only(
+        top: 15,
+        bottom: 20,
       ),
-      body: StreamBuilder(
-        stream: getCartItems(),
-        builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-          if (snapshot.hasData) {
-            Cart cart = Cart.fromDocument(snapshot.data);
-            return cart != null
-                ? Padding(
-                    padding: EdgeInsets.all(15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Expanded(
-                          child: ListView.builder(
-                            itemBuilder: (context, i) {
-                              return CartItem(cartProduct: cart.products[i]);
-                            },
-                            itemCount: cart.products.length,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('장바구니', style: TextStyle(fontWeight: FontWeight.w700)),
+          actions: [
+            Container(
+              padding: const EdgeInsets.only(right: 10),
+              child: IconButton(
+                icon: Icon(Icons.remove_shopping_cart),
+                onPressed: () async {
+                  await clearCart();
+                },
+              ),
+            )
+            // FlatButton(
+            //     onPressed: () async {
+            //       await clearCart();
+            //     },
+          ],
+        ),
+        body: StreamBuilder(
+          stream: getCartItems(),
+          builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+            if (snapshot.hasData) {
+              Cart cart = Cart.fromDocument(snapshot.data);
+              return cart != null
+                  ? Padding(
+                      padding: EdgeInsets.all(15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: ListView.builder(
+                              itemBuilder: (context, i) {
+                                return CartItem(cartProduct: cart.products[i]);
+                              },
+                              itemCount: cart.products.length,
+                            ),
                           ),
-                        ),
-                        ListTile(
-                          dense: true,
-                          contentPadding: EdgeInsets.zero,
-                          title: Text('상품',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                          trailing: Text('${AppSettings.cartTotal} 원',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                        ),
-                        ListTile(
-                          dense: true,
-                          contentPadding: EdgeInsets.zero,
-                          title: Text('배달료',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                          trailing: Text('${AppSettings.deliveryFee} 원',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                        ),
-                        ListTile(
-                          dense: true,
-                          contentPadding: EdgeInsets.zero,
-                          title: Text('Total',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                          trailing: Text(
-                              '${AppSettings.cartTotal + AppSettings.deliveryFee} 원',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                        ),
-                        CustomButton(
-                          text: '결제하기',
-                          showShadow: false,
-                          function: () {
-                            open(
-                                context,
-                                DeliveryTime(
-                                    total: AppSettings.cartTotal +
-                                        AppSettings.deliveryFee));
-                          },
-                        ),
-                      ],
-                    ),
-                  )
-                : EmptyBox(text: 'Nothing in cart. Start adding items');
-          } else
-            return EmptyBox(text: 'Nothing in cart. Start adding items');
-        },
+                          ListTile(
+                            dense: true,
+                            contentPadding: EdgeInsets.zero,
+                            title: Text('상품',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            trailing: Text('${AppSettings.cartTotal} 원',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                          ListTile(
+                            dense: true,
+                            contentPadding: EdgeInsets.zero,
+                            title: Text('배달료',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            trailing: Text('${AppSettings.deliveryFee} 원',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                          ListTile(
+                            dense: true,
+                            contentPadding: EdgeInsets.zero,
+                            title: Text('Total',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20)),
+                            trailing: Text(
+                                '${AppSettings.cartTotal + AppSettings.deliveryFee} 원',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff005D45),
+                                    fontSize: 20)),
+                          ),
+                          CustomButton(
+                            text: '주문하기',
+                            showShadow: false,
+                            function: () {
+                              open(
+                                  context,
+                                  DeliveryTime(
+                                      total: AppSettings.cartTotal +
+                                          AppSettings.deliveryFee));
+                            },
+                          ),
+                        ],
+                      ),
+                    )
+                  : EmptyBox(text: 'Nothing in cart. Start adding items');
+            } else
+              return EmptyBox(text: 'Nothing in cart. Start adding items');
+          },
+        ),
       ),
     );
   }

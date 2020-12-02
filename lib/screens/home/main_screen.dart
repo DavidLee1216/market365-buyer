@@ -28,23 +28,23 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(
               backgroundColor: AppSettings.primaryColor,
               icon: Icon(Icons.home),
-              title: Text('Home')),
+              title: Text('홈')),
           BottomNavigationBarItem(
               backgroundColor: AppSettings.primaryColor,
               icon: Icon(Icons.access_time),
-              title: Text('Delivery')),
+              title: Text('배송')),
           BottomNavigationBarItem(
               backgroundColor: AppSettings.primaryColor,
               icon: Icon(Icons.category),
-              title: Text('Category')),
+              title: Text('품목')),
           BottomNavigationBarItem(
               backgroundColor: AppSettings.primaryColor,
               icon: Icon(Icons.search),
-              title: Text('Search')),
+              title: Text('검색')),
           BottomNavigationBarItem(
               backgroundColor: AppSettings.primaryColor,
               icon: Icon(Icons.person),
-              title: Text('My Page')),
+              title: Text('마이페이지')),
         ],
       ),
       body: _children[currentIndex],

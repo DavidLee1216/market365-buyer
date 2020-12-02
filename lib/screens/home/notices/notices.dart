@@ -26,11 +26,18 @@ class _NoticesState extends State<Notices> {
                   shrinkWrap: true,
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (context, i) {
-                    Announcement announcement = Announcement.fromDocument(snapshot.data.docs[i]);
+                    Announcement announcement =
+                        Announcement.fromDocument(snapshot.data.docs[i]);
                     return ListTile(
-                      onTap: () => open(context, NoticeDetails(announcement: announcement)),
-                      title: Text(announcement.title, textScaleFactor: 0.9),
-                      subtitle: Text(DateFormat.yMMMd().add_jm().format(announcement.postingDate.toDate()), textScaleFactor: 0.8, style: TextStyle(color: Color(0xff585858))),
+                      onTap: () => open(
+                          context, NoticeDetails(announcement: announcement)),
+                      title: Text(announcement.title, textScaleFactor: 1.3),
+                      subtitle: Text(
+                          DateFormat.yMMMd()
+                              .add_jm()
+                              .format(announcement.postingDate.toDate()),
+                          textScaleFactor: 0.9,
+                          style: TextStyle(color: Color(0xff585858))),
                     );
                   },
                 )

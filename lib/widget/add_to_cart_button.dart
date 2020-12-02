@@ -22,10 +22,14 @@ class AddToCartButton extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: CustomButton(
-              color: cart != null && checkIfInCart(cart) ? Colors.grey : AppSettings.primaryColor,
-              text: (cart != null && checkIfInCart(cart) ? 'REMOVE FROM CART' : 'ADD TO CART'),
+              color: cart != null && checkIfInCart(cart)
+                  ? Colors.grey
+                  : AppSettings.primaryColor,
+              text: (cart != null && checkIfInCart(cart) ? '장바구니 비우기' : '장바구니'),
               function: () {
-                cart != null && checkIfInCart(cart) ? removeFromCart(cart.products[index]) : addToCart(product);
+                cart != null && checkIfInCart(cart)
+                    ? removeFromCart(cart.products[index])
+                    : addToCart(product);
               },
             ),
           );

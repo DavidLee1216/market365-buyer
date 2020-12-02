@@ -126,7 +126,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     padding: const EdgeInsets.only(right: 10),
                     child: IconButton(
                         icon: Icon(Icons.shopping_cart_rounded,
-                            color: AppSettings.primaryColor),
+                            size: 28, color: AppSettings.primaryColor),
                         onPressed: () => open(context, ViewCart())),
                   ),
                 ],

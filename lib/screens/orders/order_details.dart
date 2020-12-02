@@ -123,7 +123,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                   ListTile(
                     dense: true,
                     contentPadding: EdgeInsets.zero,
-                    title: Text('Delivery Time'),
+                    title: Text('배송시간'),
                     trailing: Text(DateFormat('MMM dd, yyyy ')
                             .format(widget.order.date.toDate()) +
                         widget.order.time),

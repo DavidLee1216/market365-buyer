@@ -19,77 +19,84 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          '검색',
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.shopping_cart_rounded,
-              color: Colors.white,
-            ),
-          )
-        ],
+    return Container(
+      padding: const EdgeInsets.only(
+        top: 15,
+        bottom: 20,
       ),
-      body: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            padding: EdgeInsets.only(left: 20),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                border: Border.all(color: AppSettings.primaryColor)),
-            child: TextFormField(
-              decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        query = textEditingController.text;
-                        print(query);
-                      });
-                    },
-                    icon: Icon(
-                      Icons.search,
-                      color: AppSettings.primaryColor,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            '검색',
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.shopping_cart_rounded,
+                color: Colors.white,
+              ),
+            )
+          ],
+        ),
+        body: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+              padding: EdgeInsets.only(left: 20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  border: Border.all(color: AppSettings.primaryColor)),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          query = textEditingController.text;
+                          print(query);
+                        });
+                      },
+                      icon: Icon(
+                        Icons.search,
+                        color: AppSettings.primaryColor,
+                      ),
                     ),
-                  ),
-                  border: InputBorder.none,
-                  hintText: 'Search',
-                  hintStyle: TextStyle(color: Colors.black, fontSize: 15)),
+                    border: InputBorder.none,
+                    hintText: '검색',
+                    hintStyle: TextStyle(color: Colors.grey, fontSize: 15)),
+              ),
             ),
-          ),
-          Expanded(
-            child: FutureBuilder(
-              future: searchProducts(query),
-              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.hasData)
-                  return snapshot.data.docs.isNotEmpty
-                      ? GridView.builder(
-                          padding: EdgeInsets.all(10),
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  mainAxisSpacing: 10,
-                                  crossAxisSpacing: 10,
-                                  childAspectRatio: 0.8),
-                          shrinkWrap: true,
-                          itemCount: snapshot.data.docs.length,
-                          itemBuilder: (context, i) {
-                            return ProductItem(
-                                product: Product.fromDocument(
-                                    snapshot.data.docs[i]));
-                          },
-                        )
-                      : EmptyBox(text: 'Nothing to show');
-                else
-                  return LoadingData();
-              },
+            Expanded(
+              child: FutureBuilder(
+                future: searchProducts(query),
+                builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasData)
+                    return snapshot.data.docs.isNotEmpty
+                        ? GridView.builder(
+                            padding: EdgeInsets.all(10),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 10,
+                                    crossAxisSpacing: 10,
+                                    childAspectRatio: 0.8),
+                            shrinkWrap: true,
+                            itemCount: snapshot.data.docs.length,
+                            itemBuilder: (context, i) {
+                              return ProductItem(
+                                  product: Product.fromDocument(
+                                      snapshot.data.docs[i]));
+                            },
+                          )
+                        : EmptyBox(text: 'Nothing to show');
+                  else
+                    return LoadingData();
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

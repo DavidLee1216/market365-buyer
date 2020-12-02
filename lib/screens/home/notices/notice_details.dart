@@ -14,24 +14,37 @@ class NoticeDetails extends StatefulWidget {
 class _NoticeDetailsState extends State<NoticeDetails> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('공지사항')),
-      body: Column(
-        children: [
-          ListTile(
-            title: Text(widget.announcement.title),
-            subtitle: Text(
-                DateFormat.yMMMd()
-                    .add_jm()
-                    .format(widget.announcement.postingDate.toDate()),
-                textScaleFactor: 0.8,
-                style: TextStyle(color: Color(0xff585858))),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Text(widget.announcement.content),
-          )
-        ],
+    return Container(
+      padding: const EdgeInsets.only(
+        top: 15,
+        bottom: 20,
+      ),
+      child: Scaffold(
+        appBar: AppBar(
+            title: Text(
+          '공지사항',
+          style: TextStyle(fontWeight: FontWeight.w700),
+        )),
+        body: Column(
+          children: [
+            ListTile(
+              title: Text(
+                widget.announcement.title,
+                style: TextStyle(fontSize: 20),
+              ),
+              subtitle: Text(
+                  DateFormat.yMMMd()
+                      .add_jm()
+                      .format(widget.announcement.postingDate.toDate()),
+                  textScaleFactor: 1,
+                  style: TextStyle(color: Color(0xff585858))),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(widget.announcement.content),
+            )
+          ],
+        ),
       ),
     );
   }
