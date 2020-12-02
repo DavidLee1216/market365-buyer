@@ -68,7 +68,7 @@ class _ViewCartState extends State<ViewCart> {
                         ListTile(
                           dense: true,
                           contentPadding: EdgeInsets.zero,
-                          title: Text('Product',
+                          title: Text('상품',
                               style: TextStyle(fontWeight: FontWeight.bold)),
                           trailing: Text('${AppSettings.cartTotal} 원',
                               style: TextStyle(fontWeight: FontWeight.bold)),
@@ -76,7 +76,7 @@ class _ViewCartState extends State<ViewCart> {
                         ListTile(
                           dense: true,
                           contentPadding: EdgeInsets.zero,
-                          title: Text('Delivery Fee',
+                          title: Text('배달료',
                               style: TextStyle(fontWeight: FontWeight.bold)),
                           trailing: Text('${AppSettings.deliveryFee} 원',
                               style: TextStyle(fontWeight: FontWeight.bold)),
@@ -91,7 +91,7 @@ class _ViewCartState extends State<ViewCart> {
                               style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
                         CustomButton(
-                          text: 'Order',
+                          text: '결제하기',
                           showShadow: false,
                           function: () {
                             open(

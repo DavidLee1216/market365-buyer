@@ -23,7 +23,7 @@ class _AvailableDeliveryTimesState extends State<AvailableDeliveryTimes> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Available Delivery Time',
+          '배송시간 지정',
         ),
       ),
       body: Column(
@@ -43,21 +43,30 @@ class _AvailableDeliveryTimesState extends State<AvailableDeliveryTimes> {
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data.docs.isNotEmpty) {
-                  TimeTable timeTable = TimeTable.fromDocument(snapshot.data.docs[0]);
+                  TimeTable timeTable =
+                      TimeTable.fromDocument(snapshot.data.docs[0]);
                   List<DataRow> rows = List();
 
                   List<String> times = ['09.00', '11.00'];
                   for (int i = 0; i < times.length; i++) {
-                    rows.add(myDataRow(times[i], timeTable.time[0][times[i]], timeTable.time[1][times[i]], timeTable.time[2][times[i]], i));
+                    rows.add(myDataRow(
+                        times[i],
+                        timeTable.time[0][times[i]],
+                        timeTable.time[1][times[i]],
+                        timeTable.time[2][times[i]],
+                        i));
                   }
                   return DataTable(
                     dividerThickness: 0,
                     columnSpacing: 20.0,
                     columns: [
                       DataColumn(label: Text('Delivery Time')),
-                      DataColumn(label: Text(DateFormat('dd MMM').format(headers[0]))),
-                      DataColumn(label: Text(DateFormat('dd MMM').format(headers[1]))),
-                      DataColumn(label: Text(DateFormat('dd MMM').format(headers[2]))),
+                      DataColumn(
+                          label: Text(DateFormat('dd MMM').format(headers[0]))),
+                      DataColumn(
+                          label: Text(DateFormat('dd MMM').format(headers[1]))),
+                      DataColumn(
+                          label: Text(DateFormat('dd MMM').format(headers[2]))),
                     ],
                     rows: rows,
                   );
@@ -81,7 +90,8 @@ class _AvailableDeliveryTimesState extends State<AvailableDeliveryTimes> {
         child: Center(
           child: Text(
             col1 ? 'Open' : 'Closed',
-            style: TextStyle(color: col1 ? AppSettings.primaryColor : Color(0xffFF002E)),
+            style: TextStyle(
+                color: col1 ? AppSettings.primaryColor : Color(0xffFF002E)),
           ),
         ),
       )),

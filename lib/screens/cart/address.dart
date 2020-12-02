@@ -63,7 +63,7 @@ class _AddressState extends State<Address> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Order',
+          '주문서',
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -87,12 +87,12 @@ class _AddressState extends State<Address> {
                       Expanded(
                           flex: 2,
                           child: Text(
-                            'Delivery Address',
+                            '배송 주소지',
                             textScaleFactor: 0.9,
                           )),
                       Expanded(
                         child: CustomButton(
-                          text: 'Change Address',
+                          text: '주소지 변경',
                           function: () {},
                           showShadow: false,
                         ),
@@ -103,11 +103,15 @@ class _AddressState extends State<Address> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(flex: 3, child: Text('Cheongjusi Chungbuk', textScaleFactor: 0.9)),
+                      Expanded(
+                          flex: 3, child: Text('충북 청주시', textScaleFactor: 0.9)),
                       Row(
                         children: [
-                          Icon(FontAwesomeIcons.ban, color: Colors.red, size: 18),
-                          Text(' Delivery Unavailable', style: TextStyle(color: Colors.red), textScaleFactor: 0.9),
+                          Icon(FontAwesomeIcons.ban,
+                              color: Colors.red, size: 18),
+                          Text(' 배달 불가능',
+                              style: TextStyle(color: Colors.red),
+                              textScaleFactor: 0.9),
                         ],
                       ),
                     ],
@@ -116,7 +120,9 @@ class _AddressState extends State<Address> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(flex: 3, child: Text('[Address Name] 000Ro123', textScaleFactor: 0.9)),
+                      Expanded(
+                          flex: 3,
+                          child: Text('[도로명] 000로123', textScaleFactor: 0.9)),
                       Row(
                         children: [
                           Icon(
@@ -124,22 +130,27 @@ class _AddressState extends State<Address> {
                             color: AppSettings.primaryColor,
                             size: 18,
                           ),
-                          Text(' Delivery available', style: TextStyle(color: AppSettings.primaryColor), textScaleFactor: 0.9),
+                          Text(' 배달 가능',
+                              style: TextStyle(color: AppSettings.primaryColor),
+                              textScaleFactor: 0.9),
                         ],
                       ),
                     ],
                   ),
                   SizedBox(height: 30),
-                  CustomTextField(hint: 'Detailed Address', isPassword: false),
-                  Divider(color: Colors.grey.shade300, height: 30, thickness: 1),
+                  CustomTextField(hint: '상세주소', isPassword: false),
+                  Divider(
+                      color: Colors.grey.shade300, height: 30, thickness: 1),
                   Text('010-1234-1234'),
                   SizedBox(height: 20),
-                  Text('Request'),
+                  Text('요청사항'),
                   Container(
                     padding: const EdgeInsets.only(left: 10.0, right: 5.0),
                     margin: EdgeInsets.only(top: 10),
                     height: 30,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: AppSettings.primaryColor)),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: AppSettings.primaryColor)),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton<ListItem>(
                           isExpanded: true,
@@ -156,32 +167,43 @@ class _AddressState extends State<Address> {
                           }),
                     ),
                   ),
-                  Divider(color: Colors.grey.shade300, height: 30, thickness: 1),
+                  Divider(
+                      color: Colors.grey.shade300, height: 30, thickness: 1),
                   ListTile(
                     dense: true,
                     contentPadding: EdgeInsets.zero,
-                    title: Text('Product', style: TextStyle(fontWeight: FontWeight.bold)),
-                    trailing: Text('${widget.total} 원', style: TextStyle(fontWeight: FontWeight.bold)),
+                    title: Text('상품 금액',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    trailing: Text('${widget.total} 원',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                   ListTile(
                     dense: true,
                     contentPadding: EdgeInsets.zero,
-                    title: Text('Delivery Fee', style: TextStyle(fontWeight: FontWeight.bold)),
-                    trailing: Text('${AppSettings.deliveryFee} 원', style: TextStyle(fontWeight: FontWeight.bold)),
+                    title: Text('배달료',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    trailing: Text('${AppSettings.deliveryFee} 원',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                   ListTile(
                     dense: true,
                     contentPadding: EdgeInsets.zero,
-                    title: Text('Total', style: TextStyle(fontWeight: FontWeight.bold)),
-                    trailing: Text('${widget.total + AppSettings.deliveryFee} 원', style: TextStyle(fontWeight: FontWeight.bold)),
+                    title: Text('합계',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    trailing: Text(
+                        '${widget.total + AppSettings.deliveryFee} 원',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
-                  Divider(color: Colors.grey.shade300, height: 30, thickness: 1),
-                  Text('Payment Method'),
+                  Divider(
+                      color: Colors.grey.shade300, height: 30, thickness: 1),
+                  Text('결제수단'),
                   Container(
                     padding: const EdgeInsets.only(left: 10.0, right: 5.0),
                     margin: EdgeInsets.only(top: 10),
                     height: 30,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: AppSettings.primaryColor)),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: AppSettings.primaryColor)),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton<ListItem>(
                           isExpanded: true,
@@ -198,11 +220,13 @@ class _AddressState extends State<Address> {
                           }),
                     ),
                   ),
-                  Divider(color: Colors.grey.shade300, height: 30, thickness: 1),
+                  Divider(
+                      color: Colors.grey.shade300, height: 30, thickness: 1),
                   Row(
                     children: [
                       Checkbox(
-                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
                           value: confirmOrder,
                           activeColor: Colors.green,
                           onChanged: (bool newValue) {
@@ -210,13 +234,15 @@ class _AddressState extends State<Address> {
                               confirmOrder = newValue;
                             });
                           }),
-                      Expanded(child: Text('Confirm Order (Required)', textScaleFactor: 0.9)),
+                      Expanded(
+                          child: Text('결제 진행 동의(필수)', textScaleFactor: 0.9)),
                       SizedBox(width: 15),
-                      Expanded(child: Text('View Terms & Conditions', textScaleFactor: 0.9)),
+                      Expanded(child: Text('약관보기 >', textScaleFactor: 0.9)),
                     ],
                   ),
                   SizedBox(height: 15),
-                  Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. '),
+                  Text(
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. '),
                 ],
               ),
             ),
@@ -224,7 +250,7 @@ class _AddressState extends State<Address> {
           Padding(
             padding: const EdgeInsets.all(15),
             child: CustomButton(
-              text: 'Order',
+              text: '결제하기',
               showShadow: false,
               function: () async {
                 if (confirmOrder) {

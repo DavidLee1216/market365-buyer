@@ -25,11 +25,26 @@ class _MainScreenState extends State<MainScreen> {
         unselectedItemColor: Colors.white24,
         backgroundColor: AppSettings.primaryColor,
         items: [
-          BottomNavigationBarItem(backgroundColor: AppSettings.primaryColor, icon: Icon(Icons.home), title: Text('Home')),
-          BottomNavigationBarItem(backgroundColor: AppSettings.primaryColor, icon: Icon(Icons.access_time), title: Text('Delivery')),
-          BottomNavigationBarItem(backgroundColor: AppSettings.primaryColor, icon: Icon(Icons.category), title: Text('Category')),
-          BottomNavigationBarItem(backgroundColor: AppSettings.primaryColor, icon: Icon(Icons.search), title: Text('Search')),
-          BottomNavigationBarItem(backgroundColor: AppSettings.primaryColor, icon: Icon(Icons.person), title: Text('My Page')),
+          BottomNavigationBarItem(
+              backgroundColor: AppSettings.primaryColor,
+              icon: Icon(Icons.home),
+              title: Text('Home')),
+          BottomNavigationBarItem(
+              backgroundColor: AppSettings.primaryColor,
+              icon: Icon(Icons.access_time),
+              title: Text('Delivery')),
+          BottomNavigationBarItem(
+              backgroundColor: AppSettings.primaryColor,
+              icon: Icon(Icons.category),
+              title: Text('Category')),
+          BottomNavigationBarItem(
+              backgroundColor: AppSettings.primaryColor,
+              icon: Icon(Icons.search),
+              title: Text('Search')),
+          BottomNavigationBarItem(
+              backgroundColor: AppSettings.primaryColor,
+              icon: Icon(Icons.person),
+              title: Text('My Page')),
         ],
       ),
       body: _children[currentIndex],

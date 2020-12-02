@@ -35,7 +35,7 @@ class _DeliveryTimeState extends State<DeliveryTime> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Select Delivery Time',
+          '배송시간 지정',
         ),
       ),
       body: Column(
@@ -55,21 +55,33 @@ class _DeliveryTimeState extends State<DeliveryTime> {
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasData) {
                   if (snapshot.data.docs.isNotEmpty) {
-                    TimeTable timeTable = TimeTable.fromDocument(snapshot.data.docs[0]);
+                    TimeTable timeTable =
+                        TimeTable.fromDocument(snapshot.data.docs[0]);
                     List<DataRow> rows = List();
 
                     List<String> times = ['09.00', '11.00'];
                     for (int i = 0; i < times.length; i++) {
-                      rows.add(myDataRow(times[i], timeTable.time[0][times[i]], timeTable.time[1][times[i]], timeTable.time[2][times[i]], i));
+                      rows.add(myDataRow(
+                          times[i],
+                          timeTable.time[0][times[i]],
+                          timeTable.time[1][times[i]],
+                          timeTable.time[2][times[i]],
+                          i));
                     }
                     return DataTable(
                       dividerThickness: 0,
                       columnSpacing: 20.0,
                       columns: [
                         DataColumn(label: Text('Delivery Time')),
-                        DataColumn(label: Text(DateFormat('dd MMM').format(headers[0]))),
-                        DataColumn(label: Text(DateFormat('dd MMM').format(headers[1]))),
-                        DataColumn(label: Text(DateFormat('dd MMM').format(headers[2]))),
+                        DataColumn(
+                            label:
+                                Text(DateFormat('dd MMM').format(headers[0]))),
+                        DataColumn(
+                            label:
+                                Text(DateFormat('dd MMM').format(headers[1]))),
+                        DataColumn(
+                            label:
+                                Text(DateFormat('dd MMM').format(headers[2]))),
                       ],
                       rows: rows,
                     );
@@ -81,12 +93,17 @@ class _DeliveryTimeState extends State<DeliveryTime> {
             ),
           ),
           Container(
-            margin: EdgeInsets.all(8),
+            margin: EdgeInsets.all(7),
             width: double.infinity,
             child: CustomButton(
-              text: 'Next',
+              text: '다음 단계',
               function: () {
-                open(context, Address(total: widget.total, time: selectedTime, date: selectedDate));
+                open(
+                    context,
+                    Address(
+                        total: widget.total,
+                        time: selectedTime,
+                        date: selectedDate));
               },
             ),
           ),
@@ -119,7 +136,10 @@ class _DeliveryTimeState extends State<DeliveryTime> {
                   })
               : Text(
                   'Closed',
-                  style: TextStyle(color: col1 ? AppSettings.primaryColor : Color(0xffFF002E), fontWeight: col1 ? FontWeight.bold : FontWeight.normal),
+                  style: TextStyle(
+                      color:
+                          col1 ? AppSettings.primaryColor : Color(0xffFF002E),
+                      fontWeight: col1 ? FontWeight.bold : FontWeight.normal),
                 ),
         ),
       ),
@@ -140,7 +160,10 @@ class _DeliveryTimeState extends State<DeliveryTime> {
                   })
               : Text(
                   'Closed',
-                  style: TextStyle(color: col2 ? AppSettings.primaryColor : Color(0xffFF002E), fontWeight: col2 ? FontWeight.bold : FontWeight.normal),
+                  style: TextStyle(
+                      color:
+                          col2 ? AppSettings.primaryColor : Color(0xffFF002E),
+                      fontWeight: col2 ? FontWeight.bold : FontWeight.normal),
                 ),
         ),
       ),
@@ -161,7 +184,10 @@ class _DeliveryTimeState extends State<DeliveryTime> {
                   })
               : Text(
                   'Closed',
-                  style: TextStyle(color: col3 ? AppSettings.primaryColor : Color(0xffFF002E), fontWeight: col3 ? FontWeight.bold : FontWeight.normal),
+                  style: TextStyle(
+                      color:
+                          col3 ? AppSettings.primaryColor : Color(0xffFF002E),
+                      fontWeight: col3 ? FontWeight.bold : FontWeight.normal),
                 ),
         ),
       ),

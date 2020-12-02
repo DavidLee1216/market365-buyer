@@ -38,11 +38,18 @@ class _ProductDetailsState extends State<ProductDetails> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(height: UATheme.screenHeight * 0.3, child: CachedImage(rounded: true, height: double.infinity, url: widget.product.imageUrl)),
+                  Container(
+                      height: UATheme.screenHeight * 0.3,
+                      child: CachedImage(
+                          rounded: true,
+                          height: double.infinity,
+                          url: widget.product.imageUrl)),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     title: Text(widget.product.title, textScaleFactor: 1.2),
-                    trailing: Text(widget.product.price.toString() + ' 원', textScaleFactor: 1.1, style: TextStyle(fontWeight: FontWeight.bold)),
+                    trailing: Text(widget.product.price.toString() + ' 원',
+                        textScaleFactor: 1.1,
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                   Text(widget.product.description),
                   SizedBox(height: 25),
@@ -54,16 +61,21 @@ class _ProductDetailsState extends State<ProductDetails> {
                         return Row(
                           children: [
                             Checkbox(
-                                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                materialTapTargetSize:
+                                    MaterialTapTargetSize.shrinkWrap,
                                 value: widget.product.extras[i].selected,
                                 activeColor: Colors.green,
                                 onChanged: (bool newValue) {
                                   setState(() {
-                                    widget.product.extras[i].selected = !widget.product.extras[i].selected;
+                                    widget.product.extras[i].selected =
+                                        !widget.product.extras[i].selected;
                                   });
                                 }),
-                            Expanded(child: Text(widget.product.extras[i].key, textScaleFactor: 0.9)),
-                            Text('+ ${widget.product.extras[i].value} 원', textScaleFactor: 0.9),
+                            Expanded(
+                                child: Text(widget.product.extras[i].key,
+                                    textScaleFactor: 0.9)),
+                            Text('+ ${widget.product.extras[i].value} 원',
+                                textScaleFactor: 0.9),
                           ],
                         );
                       }),
@@ -88,7 +100,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     title: Text('Total', textScaleFactor: 1.2),
-                    trailing: Text(getTotal().toString() + ' 원', textScaleFactor: 1.1, style: TextStyle(fontWeight: FontWeight.bold)),
+                    trailing: Text(getTotal().toString() + ' 원',
+                        textScaleFactor: 1.1,
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                 ],
               ),
@@ -121,7 +135,8 @@ class _ProductDetailsState extends State<ProductDetails> {
   getTotal() {
     num extra = 0;
     for (int i = 0; i < widget.product.extras.length; i++) {
-      if (widget.product.extras[i].selected) extra = extra + widget.product.extras[i].value;
+      if (widget.product.extras[i].selected)
+        extra = extra + widget.product.extras[i].value;
     }
 
     extra = extra * widget.product.quantity;

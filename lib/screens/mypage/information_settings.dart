@@ -46,11 +46,15 @@ class InformationSettings extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(flex: 3, child: Text('Cheongjusi Chungbuk', textScaleFactor: 0.9)),
+                Expanded(
+                    flex: 3,
+                    child: Text('Cheongjusi Chungbuk', textScaleFactor: 0.9)),
                 Row(
                   children: [
                     Icon(FontAwesomeIcons.ban, color: Colors.red, size: 18),
-                    Text(' Delivery Unavailable', style: TextStyle(color: Colors.red), textScaleFactor: 0.9),
+                    Text(' Delivery Unavailable',
+                        style: TextStyle(color: Colors.red),
+                        textScaleFactor: 0.9),
                   ],
                 ),
               ],
@@ -59,7 +63,10 @@ class InformationSettings extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(flex: 3, child: Text('[Address Name] 000Ro123', textScaleFactor: 0.9)),
+                Expanded(
+                    flex: 3,
+                    child:
+                        Text('[Address Name] 000Ro123', textScaleFactor: 0.9)),
                 Row(
                   children: [
                     Icon(
@@ -67,14 +74,16 @@ class InformationSettings extends StatelessWidget {
                       color: AppSettings.primaryColor,
                       size: 18,
                     ),
-                    Text(' Delivery available', style: TextStyle(color: AppSettings.primaryColor), textScaleFactor: 0.9),
+                    Text(' Delivery available',
+                        style: TextStyle(color: AppSettings.primaryColor),
+                        textScaleFactor: 0.9),
                   ],
                 ),
               ],
             ),
             SizedBox(height: 30),
             CustomTextField(hint: 'Detailed Address', isPassword: false),
-            SizedBox(height: 50),
+            SizedBox(height: 10),
             CustomButton(text: 'Save', function: () {}, showShadow: true)
           ],
         ),

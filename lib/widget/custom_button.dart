@@ -16,25 +16,30 @@ class CustomButton extends StatelessWidget {
       onTap: function,
       child: Container(
         alignment: Alignment.center,
-        height: 45,
+        height: 56,
         width: UATheme.screenWidth * .45,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: color != null ? color : AppSettings.primaryColor, boxShadow: [
-          showShadow != null && !showShadow
-              ? BoxShadow(blurRadius: 0, spreadRadius: 0)
-              : BoxShadow(
-                  color: color != null ? color.withOpacity(0.2) : AppSettings.primaryColor.withOpacity(0.2),
-                  spreadRadius: 2,
-                  blurRadius: 3,
-                  offset: Offset(0, 5),
-                )
-        ]),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(1),
+            color: color != null ? color : AppSettings.primaryColor,
+            boxShadow: [
+              showShadow != null && !showShadow
+                  ? BoxShadow(blurRadius: 0, spreadRadius: 0)
+                  : BoxShadow(
+                      color: color != null
+                          ? color.withOpacity(0.2)
+                          : AppSettings.primaryColor.withOpacity(0.2),
+                      spreadRadius: 2,
+                      blurRadius: 3,
+                      offset: Offset(0, 5),
+                    )
+            ]),
         child: Text(
           text,
           style: TextStyle(
             color: Colors.white,
           ),
           textAlign: TextAlign.center,
-          textScaleFactor: 0.9,
+          textScaleFactor: 1.1,
         ),
       ),
     );
