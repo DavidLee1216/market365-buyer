@@ -53,20 +53,22 @@ class _StoreSelectState extends State<StoreSelect> {
         child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            titleSpacing: 5,
+            titleSpacing: 10,
             backgroundColor: Colors.transparent,
             title: Row(
               children: [
                 Image.asset('assets/images/logo1.png',
                     width: UATheme.screenWidth * 0.35),
                 Container(
-                  padding: const EdgeInsets.only(left: 10.0, right: 5.0),
-                  margin: EdgeInsets.only(left: 20),
-                  height: 30,
+                  padding: const EdgeInsets.only(left: 20.0, right: 5.0),
+                  margin: EdgeInsets.only(left: 10),
+                  height: 35,
+                  width: 120,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
                       color: AppSettings.primaryColor,
+                      width: 1.5,
                     ),
                   ),
                   child: DropdownButtonHideUnderline(
