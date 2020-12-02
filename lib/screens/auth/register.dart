@@ -35,7 +35,7 @@ class _RegisterState extends State<Register> {
             children: [
               SizedBox(height: 15),
               CustomTextField(
-                  hint: 'Email',
+                  hint: '이메일',
                   controller: emailTEC,
                   node: node,
                   isPassword: false,
@@ -55,8 +55,7 @@ class _RegisterState extends State<Register> {
                   isPassword: true,
                   isEmail: false),
               SizedBox(height: 30),
-              Text(
-                  '장날365 이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(선택), 프로모션 정보 수신(선택)에 모두 동의합니다.',
+              Text('만 14세 이상가입 및 이용약관, 개인정보처리방침, 마케팅사용 동의애 모두 동의합니다.',
                   textScaleFactor: 0.9),
               Container(
                 padding: const EdgeInsets.only(right: 15),
@@ -76,7 +75,13 @@ class _RegisterState extends State<Register> {
                                   checkPrivacy = checkTerms = false;
                           });
                         }),
-                    Text('모두 동의', textScaleFactor: 0.9),
+                    Text(
+                      '모두 동의',
+                      textScaleFactor: 0.9,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -100,10 +105,19 @@ class _RegisterState extends State<Register> {
                               checkAge = newValue;
                             });
                           }),
-                      Text('동의', textScaleFactor: 0.9),
+                      Text(
+                        '동의',
+                        textScaleFactor: 0.9,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                       Text(' (필수)',
-                          textScaleFactor: 0.8,
-                          style: TextStyle(color: AppSettings.primaryColor)),
+                          textScaleFactor: 0.7,
+                          style: TextStyle(
+                            color: AppSettings.primaryColor,
+                            fontWeight: FontWeight.w700,
+                          )),
                     ]),
                     Row(
                       children: [
@@ -117,10 +131,19 @@ class _RegisterState extends State<Register> {
                                 checkTerms = newValue;
                               });
                             }),
-                        Text('동의', textScaleFactor: 0.9),
+                        Text(
+                          '동의',
+                          textScaleFactor: 0.9,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                         Text(' (필수)',
-                            textScaleFactor: 0.8,
-                            style: TextStyle(color: AppSettings.primaryColor)),
+                            textScaleFactor: 0.7,
+                            style: TextStyle(
+                              color: AppSettings.primaryColor,
+                              fontWeight: FontWeight.w700,
+                            )),
                       ],
                     ),
                     Row(
@@ -135,10 +158,19 @@ class _RegisterState extends State<Register> {
                                 checkPrivacy = newValue;
                               });
                             }),
-                        Text('동의', textScaleFactor: 0.9),
+                        Text(
+                          '동의',
+                          textScaleFactor: 0.9,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                         Text(' (필수)',
-                            textScaleFactor: 0.8,
-                            style: TextStyle(color: AppSettings.primaryColor)),
+                            textScaleFactor: 0.7,
+                            style: TextStyle(
+                              color: AppSettings.primaryColor,
+                              fontWeight: FontWeight.w700,
+                            )),
                       ],
                     ),
                     Row(
@@ -152,10 +184,19 @@ class _RegisterState extends State<Register> {
                                 checkPromo = newValue;
                               });
                             }),
-                        Text('동의', textScaleFactor: 0.9),
+                        Text(
+                          '동의',
+                          textScaleFactor: 0.9,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                         Text(' (선택)',
-                            textScaleFactor: 0.8,
-                            style: TextStyle(color: Colors.grey.shade400)),
+                            textScaleFactor: 0.7,
+                            style: TextStyle(
+                              color: Colors.grey.shade400,
+                              fontWeight: FontWeight.w700,
+                            )),
                       ],
                     ),
                   ],

@@ -4,7 +4,10 @@ class Market {
   String name;
   bool active;
 
-  Market({this.name, this.active,});
+  Market({
+    this.name,
+    this.active,
+  });
 
   factory Market.fromDocument(DocumentSnapshot doc) {
     try {

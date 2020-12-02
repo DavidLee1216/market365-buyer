@@ -15,6 +15,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "836926782201-tn6pddp4ru3olr313fs9rtobb769a71k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.market365.buyer",
+            "certificate_hash": "6fccbd8f024b5ba5fe3191ff57b1d3d3ce795513"
+          }
+        },
+        {
+          "client_id": "836926782201-n4n4te9d1mgk7af0rp6b2ic281pg0vqb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.market365.buyer",
+            "certificate_hash": "152c245d2b079cf530866275b14d7da4b6ea4caf"
+          }
+        },
+        {
+          "client_id": "836926782201-p5kcjjbc0d6obnc8ed12mt4j8a009a46.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.market365.buyer",
+            "certificate_hash": "c5e3dfd07ac57087f35288b245f00c51ba373bd4"
+          }
+        },
+        {
           "client_id": "836926782201-asvjuab8r6c8laqrui7kgduq2ehfjnu4.apps.googleusercontent.com",
           "client_type": 3
         }
