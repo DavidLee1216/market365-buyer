@@ -37,7 +37,7 @@ class _ViewCartState extends State<ViewCart> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cart'),
+        title: Text('장바구니'),
         actions: [
           FlatButton(
               onPressed: () async {
@@ -68,26 +68,37 @@ class _ViewCartState extends State<ViewCart> {
                         ListTile(
                           dense: true,
                           contentPadding: EdgeInsets.zero,
-                          title: Text('Product', style: TextStyle(fontWeight: FontWeight.bold)),
-                          trailing: Text('${AppSettings.cartTotal} 원', style: TextStyle(fontWeight: FontWeight.bold)),
+                          title: Text('Product',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          trailing: Text('${AppSettings.cartTotal} 원',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
                         ListTile(
                           dense: true,
                           contentPadding: EdgeInsets.zero,
-                          title: Text('Delivery Fee', style: TextStyle(fontWeight: FontWeight.bold)),
-                          trailing: Text('${AppSettings.deliveryFee} 원', style: TextStyle(fontWeight: FontWeight.bold)),
+                          title: Text('Delivery Fee',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          trailing: Text('${AppSettings.deliveryFee} 원',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
                         ListTile(
                           dense: true,
                           contentPadding: EdgeInsets.zero,
-                          title: Text('Total', style: TextStyle(fontWeight: FontWeight.bold)),
-                          trailing: Text('${AppSettings.cartTotal + AppSettings.deliveryFee} 원', style: TextStyle(fontWeight: FontWeight.bold)),
+                          title: Text('Total',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          trailing: Text(
+                              '${AppSettings.cartTotal + AppSettings.deliveryFee} 원',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
                         CustomButton(
                           text: 'Order',
                           showShadow: false,
                           function: () {
-                            open(context, DeliveryTime(total: AppSettings.cartTotal + AppSettings.deliveryFee));
+                            open(
+                                context,
+                                DeliveryTime(
+                                    total: AppSettings.cartTotal +
+                                        AppSettings.deliveryFee));
                           },
                         ),
                       ],

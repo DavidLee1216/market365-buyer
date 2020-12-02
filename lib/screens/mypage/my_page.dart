@@ -40,7 +40,9 @@ class _MyPageState extends State<MyPage> {
             padding: EdgeInsets.all(15),
             margin: EdgeInsets.all(15),
             width: double.infinity,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey.shade200)),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.grey.shade200)),
             child: Column(
               children: [
                 ListTile(
@@ -72,7 +74,7 @@ class _MyPageState extends State<MyPage> {
                     size: 18,
                   ),
                   title: Text(
-                    'Notice',
+                    '공지사항',
                     textScaleFactor: 0.9,
                   ),
                   trailing: Icon(

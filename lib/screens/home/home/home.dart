@@ -30,7 +30,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   getAllMarkets() async {
     markets = List();
     QuerySnapshot querySnapshot = await getMarkets();
-    for (int i = 0; i < querySnapshot.docs.length; i++) markets.add(Market.fromDocument(querySnapshot.docs[i]));
+    for (int i = 0; i < querySnapshot.docs.length; i++)
+      markets.add(Market.fromDocument(querySnapshot.docs[i]));
 
     chosenMarket = markets[0];
     selectedMarket = markets[0].name;
@@ -80,12 +81,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               backgroundColor: Colors.transparent,
               title: Row(
                 children: [
-                  Image.asset('assets/images/logo1.png', width: UATheme.screenWidth * 0.3),
+                  Image.asset('assets/images/logo1.png',
+                      width: UATheme.screenWidth * 0.3),
                   Container(
                     padding: const EdgeInsets.only(left: 10.0, right: 5.0),
                     margin: EdgeInsets.only(left: 5),
                     height: 30,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: AppSettings.primaryColor)),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: AppSettings.primaryColor)),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton<Market>(
                           icon: Icon(
@@ -110,7 +114,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 ],
               ),
               actions: [
-                IconButton(icon: Icon(Icons.shopping_cart_rounded, color: AppSettings.primaryColor), onPressed: () => open(context, ViewCart())),
+                IconButton(
+                    icon: Icon(Icons.shopping_cart_rounded,
+                        color: AppSettings.primaryColor),
+                    onPressed: () => open(context, ViewCart())),
               ],
               bottom: TabBar(
                 controller: controller,
@@ -122,12 +129,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 labelStyle: TextStyle(fontSize: 12),
                 unselectedLabelStyle: TextStyle(fontSize: 12),
                 tabs: [
-                  Tab(text: 'Home'),
-                  Tab(text: 'Market'),
-                  Tab(text: 'BEST'),
-                  Tab(text: 'Today\'s Menu'),
-                  Tab(text: 'Notice'),
-                  Tab(text: 'Event'),
+                  Tab(text: '홈'),
+                  Tab(text: '번개장터'),
+                  Tab(text: '베스트'),
+                  Tab(text: '오늘의밥상'),
+                  Tab(text: '공지사항'),
+                  Tab(text: '이벤트'),
                 ],
               ),
             ),
@@ -135,7 +142,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               controller: controller,
               children: <Widget>[
                 HomeTab(),
-                ProductsList(type: 'isMarket'),
+                ProductsList(type: 'isMaket'),
                 ProductsList(type: 'isBest'),
                 ProductsList(type: 'isToday'),
                 Notices(),
