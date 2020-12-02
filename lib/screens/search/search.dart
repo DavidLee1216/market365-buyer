@@ -22,7 +22,7 @@ class _SearchState extends State<Search> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Search',
+          '검색',
         ),
         actions: [
           IconButton(
@@ -39,7 +39,9 @@ class _SearchState extends State<Search> {
           Container(
             margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             padding: EdgeInsets.only(left: 20),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), border: Border.all(color: AppSettings.primaryColor)),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                border: Border.all(color: AppSettings.primaryColor)),
             child: TextFormField(
               decoration: InputDecoration(
                   suffixIcon: IconButton(
@@ -67,11 +69,18 @@ class _SearchState extends State<Search> {
                   return snapshot.data.docs.isNotEmpty
                       ? GridView.builder(
                           padding: EdgeInsets.all(10),
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10, childAspectRatio: 0.8),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 10,
+                                  crossAxisSpacing: 10,
+                                  childAspectRatio: 0.8),
                           shrinkWrap: true,
                           itemCount: snapshot.data.docs.length,
                           itemBuilder: (context, i) {
-                            return ProductItem(product: Product.fromDocument(snapshot.data.docs[i]));
+                            return ProductItem(
+                                product: Product.fromDocument(
+                                    snapshot.data.docs[i]));
                           },
                         )
                       : EmptyBox(text: 'Nothing to show');

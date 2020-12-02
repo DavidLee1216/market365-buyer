@@ -12,7 +12,7 @@ class EventDetails extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Event'),
+        title: Text('이벤트'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {},

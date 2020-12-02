@@ -27,8 +27,15 @@ class _OrderDetailsState extends State<OrderDetails> {
           children: [
             Row(
               children: [
-                Expanded(child: Text(widget.order.name, textScaleFactor: 1.2, style: TextStyle(fontWeight: FontWeight.bold))),
-                Text(DateFormat.yMMMd().add_jm().format(widget.order.date.toDate()), style: TextStyle(color: Colors.grey.shade400)),
+                Expanded(
+                    child: Text(widget.order.name,
+                        textScaleFactor: 1.2,
+                        style: TextStyle(fontWeight: FontWeight.bold))),
+                Text(
+                    DateFormat.yMMMd()
+                        .add_jm()
+                        .format(widget.order.date.toDate()),
+                    style: TextStyle(color: Colors.grey.shade400)),
               ],
             ),
             SizedBox(height: 20),
@@ -54,20 +61,24 @@ class _OrderDetailsState extends State<OrderDetails> {
             ListTile(
               dense: true,
               contentPadding: EdgeInsets.zero,
-              title: Text('Product', style: TextStyle(fontWeight: FontWeight.bold)),
-              trailing: Text(widget.order.total.toString() + ' 원', style: TextStyle(fontWeight: FontWeight.bold)),
+              title: Text('상품', style: TextStyle(fontWeight: FontWeight.bold)),
+              trailing: Text(widget.order.total.toString() + ' 원',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             ListTile(
               dense: true,
               contentPadding: EdgeInsets.zero,
-              title: Text('Delivery Fee', style: TextStyle(fontWeight: FontWeight.bold)),
-              trailing: Text(widget.order.delivery.toString() + ' 원', style: TextStyle(fontWeight: FontWeight.bold)),
+              title: Text('배달료', style: TextStyle(fontWeight: FontWeight.bold)),
+              trailing: Text(widget.order.delivery.toString() + ' 원',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             ListTile(
               dense: true,
               contentPadding: EdgeInsets.zero,
-              title: Text('Total', style: TextStyle(fontWeight: FontWeight.bold)),
-              trailing: Text((widget.order.total).toString() + ' 원', style: TextStyle(fontWeight: FontWeight.bold)),
+              title:
+                  Text('Total', style: TextStyle(fontWeight: FontWeight.bold)),
+              trailing: Text((widget.order.total).toString() + ' 원',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             Container(
               margin: EdgeInsets.only(top: 30),
@@ -99,7 +110,9 @@ class _OrderDetailsState extends State<OrderDetails> {
                     dense: true,
                     contentPadding: EdgeInsets.zero,
                     title: Text('Payment Date'),
-                    trailing: Text(DateFormat.yMMMd().add_jm().format(widget.order.paidDate.toDate())),
+                    trailing: Text(DateFormat.yMMMd()
+                        .add_jm()
+                        .format(widget.order.paidDate.toDate())),
                   ),
                   ListTile(
                     dense: true,
@@ -111,7 +124,9 @@ class _OrderDetailsState extends State<OrderDetails> {
                     dense: true,
                     contentPadding: EdgeInsets.zero,
                     title: Text('Delivery Time'),
-                    trailing: Text(DateFormat('MMM dd, yyyy ').format(widget.order.date.toDate()) + widget.order.time),
+                    trailing: Text(DateFormat('MMM dd, yyyy ')
+                            .format(widget.order.date.toDate()) +
+                        widget.order.time),
                   ),
                 ],
               ),

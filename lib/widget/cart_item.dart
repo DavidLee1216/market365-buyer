@@ -33,23 +33,18 @@ class _CartItemState extends State<CartItem> {
               ? Container(
                   padding: EdgeInsets.all(10),
                   margin: EdgeInsets.only(bottom: 10),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.grey.shade200)),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey.shade200)),
                   child: Column(
                     children: [
                       ListTile(
                         dense: true,
                         contentPadding: EdgeInsets.zero,
-                        title: Text(product.title,
-                            textScaleFactor: 1.5,
-                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        title: Text(product.title, textScaleFactor: 1.5, style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       ListTile(
                         dense: true,
                         contentPadding: EdgeInsets.zero,
-                        title: Text(product.title,
-                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        title: Text(product.title, style: TextStyle(fontWeight: FontWeight.bold)),
                         trailing: Text(product.price.toString() + ' 원'),
                       ),
                       ListView.builder(
@@ -59,20 +54,15 @@ class _CartItemState extends State<CartItem> {
                             return ListTile(
                               dense: true,
                               contentPadding: EdgeInsets.zero,
-                              title: Text(
-                                  widget.cartProduct.options.keys.toList()[i],
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                              trailing: Text(
-                                  '+ ${widget.cartProduct.options.values.toList()[i]} 원'),
+                              title: Text(widget.cartProduct.options.keys.toList()[i], style: TextStyle(fontWeight: FontWeight.bold)),
+                              trailing: Text('+ ${widget.cartProduct.options.values.toList()[i]} 원'),
                             );
                           }),
                       Divider(color: Colors.grey.shade400),
                       ListTile(
                         dense: true,
                         contentPadding: EdgeInsets.zero,
-                        title: Text('Quantity',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        title: Text('Quantity', style: TextStyle(fontWeight: FontWeight.bold)),
                         // trailing: Counter(
                         //   initialValue: cart[widget.i].quantity,
                         //   minValue: 0,
@@ -84,17 +74,13 @@ class _CartItemState extends State<CartItem> {
                         //     });
                         //   },
                         // ),
-                        trailing:
-                            Text('X ' + widget.cartProduct.quantity.toString()),
+                        trailing: Text('X ' + widget.cartProduct.quantity.toString()),
                       ),
                       ListTile(
                         dense: true,
                         contentPadding: EdgeInsets.zero,
-                        title: Text('Total',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        trailing: Text(
-                            getTotal(product.price).toString() + ' 원',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        title: Text('Total', style: TextStyle(fontWeight: FontWeight.bold)),
+                        trailing: Text(getTotal(product.price).toString() + ' 원', style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                     ],
                   ),
@@ -115,8 +101,7 @@ class _CartItemState extends State<CartItem> {
       extras = extras + widget.cartProduct.options.values.toList()[i];
     }
 
-    AppSettings.cartTotal =
-        AppSettings.cartTotal + (extras + price) * widget.cartProduct.quantity;
+    AppSettings.cartTotal = AppSettings.cartTotal + (extras + price) * widget.cartProduct.quantity;
     return (extras + price) * widget.cartProduct.quantity;
   }
 }
