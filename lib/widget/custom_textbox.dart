@@ -8,7 +8,8 @@ class CustomTextField extends StatelessWidget {
   final bool isPassword, isEmail;
   final node;
 
-  CustomTextField({this.hint, this.controller, this.isPassword, this.node, this.isEmail});
+  CustomTextField(
+      {this.hint, this.controller, this.isPassword, this.node, this.isEmail});
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +27,13 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(left: 15),
           hintText: hint,
-          hintStyle: TextStyle(color: Colors.grey.shade300),
+          hintStyle: TextStyle(
+              color: Colors.grey.shade300,
+              fontSize: 13,
+              fontWeight: FontWeight.bold),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide(width: 0.75, color: Colors.grey.shade400),
+            borderSide: BorderSide(width: 1.2, color: Color(0xff005D45)),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0)),

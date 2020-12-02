@@ -75,79 +75,98 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   page() {
     return isLoading
         ? loading()
-        : Scaffold(
-            appBar: AppBar(
-              titleSpacing: 5,
-              backgroundColor: Colors.transparent,
-              title: Row(
-                children: [
-                  Image.asset('assets/images/logo1.png',
-                      width: UATheme.screenWidth * 0.3),
-                  Container(
-                    padding: const EdgeInsets.only(left: 10.0, right: 5.0),
-                    margin: EdgeInsets.only(left: 5),
-                    height: 30,
-                    decoration: BoxDecoration(
+        : Container(
+            padding: const EdgeInsets.only(top: 15, bottom: 20),
+            child: Scaffold(
+              appBar: AppBar(
+                titleSpacing: 10,
+                backgroundColor: Colors.transparent,
+                title: Row(
+                  children: [
+                    Image.asset('assets/images/logo1.png',
+                        width: UATheme.screenWidth * 0.35),
+                    Container(
+                      padding: const EdgeInsets.only(left: 20.0, right: 5.0),
+                      margin: EdgeInsets.only(left: 10),
+                      height: 35,
+                      width: 120,
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        border: Border.all(color: AppSettings.primaryColor)),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<Market>(
-                          icon: Icon(
-                            Icons.keyboard_arrow_down,
-                            color: AppSettings.primaryColor,
-                          ),
-                          value: chosenMarket,
-                          items: markets.map((Market c) {
-                            return DropdownMenuItem<Market>(
-                              value: c,
-                              child: Text(c.name),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              chosenMarket = value;
-                              selectedMarket = chosenMarket.name;
-                            });
-                          }),
+                        border: Border.all(
+                          color: AppSettings.primaryColor,
+                          width: 1.5,
+                        ),
+                      ),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<Market>(
+                            icon: Icon(
+                              Icons.keyboard_arrow_down,
+                              color: AppSettings.primaryColor,
+                            ),
+                            value: chosenMarket,
+                            items: markets.map((Market c) {
+                              return DropdownMenuItem<Market>(
+                                value: c,
+                                child: Text(c.name,
+                                    style: TextStyle(fontSize: 13)),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                chosenMarket = value;
+                                selectedMarket = chosenMarket.name;
+                              });
+                            }),
+                      ),
                     ),
+                  ],
+                ),
+                actions: [
+                  Container(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: IconButton(
+                        icon: Icon(Icons.shopping_cart_rounded,
+                            color: AppSettings.primaryColor),
+                        onPressed: () => open(context, ViewCart())),
                   ),
                 ],
+                bottom: TabBar(
+                  indicatorWeight: 3,
+                  controller: controller,
+                  isScrollable: true,
+                  indicatorColor: Colors.orange,
+                  labelColor: Colors.black,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  unselectedLabelColor: Colors.black,
+                  labelStyle: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w800,
+                  ),
+                  unselectedLabelStyle: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  tabs: [
+                    Tab(text: '홈'),
+                    Tab(text: '번개장터'),
+                    Tab(text: '베스트'),
+                    Tab(text: '오늘의밥상'),
+                    Tab(text: '공지사항'),
+                    Tab(text: '이벤트'),
+                  ],
+                ),
               ),
-              actions: [
-                IconButton(
-                    icon: Icon(Icons.shopping_cart_rounded,
-                        color: AppSettings.primaryColor),
-                    onPressed: () => open(context, ViewCart())),
-              ],
-              bottom: TabBar(
+              body: TabBarView(
                 controller: controller,
-                isScrollable: true,
-                indicatorColor: Colors.orange,
-                labelColor: Colors.black,
-                indicatorSize: TabBarIndicatorSize.tab,
-                unselectedLabelColor: Colors.black,
-                labelStyle: TextStyle(fontSize: 12),
-                unselectedLabelStyle: TextStyle(fontSize: 12),
-                tabs: [
-                  Tab(text: '홈'),
-                  Tab(text: '번개장터'),
-                  Tab(text: '베스트'),
-                  Tab(text: '오늘의밥상'),
-                  Tab(text: '공지사항'),
-                  Tab(text: '이벤트'),
+                children: <Widget>[
+                  HomeTab(),
+                  ProductsList(type: 'isMaket'),
+                  ProductsList(type: 'isBest'),
+                  ProductsList(type: 'isToday'),
+                  Notices(),
+                  Events(),
                 ],
               ),
-            ),
-            body: TabBarView(
-              controller: controller,
-              children: <Widget>[
-                HomeTab(),
-                ProductsList(type: 'isMaket'),
-                ProductsList(type: 'isBest'),
-                ProductsList(type: 'isToday'),
-                Notices(),
-                Events(),
-              ],
             ),
           );
   }

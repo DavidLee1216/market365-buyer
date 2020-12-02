@@ -19,177 +19,187 @@ class MyPage extends StatefulWidget {
 class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'MyPage',
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.shopping_cart_rounded,
-              color: Colors.white,
-            ),
-          )
-        ],
+    return Container(
+      padding: const EdgeInsets.only(
+        top: 15,
+        bottom: 20,
       ),
-      body: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.all(15),
-            margin: EdgeInsets.all(15),
-            width: double.infinity,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.grey.shade200)),
-            child: Column(
-              children: [
-                ListTile(
-                  onTap: () {
-                    open(context, OrderHistory());
-                  },
-                  leading: Icon(
-                    Icons.person,
-                    color: Colors.black,
-                    size: 18,
-                  ),
-                  title: Text(
-                    'Order History',
-                    textScaleFactor: 0.9,
-                  ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 18,
-                    color: Colors.black,
-                  ),
-                ),
-                ListTile(
-                  onTap: () {
-                    open(context, Notices());
-                  },
-                  leading: Icon(
-                    Icons.edit,
-                    color: Colors.black,
-                    size: 18,
-                  ),
-                  title: Text(
-                    '공지사항',
-                    textScaleFactor: 0.9,
-                  ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 18,
-                    color: Colors.black,
-                  ),
-                ),
-                ListTile(
-                  onTap: () {
-                    open(context, HelpSupport());
-                  },
-                  leading: Icon(
-                    Icons.live_help,
-                    color: Colors.black,
-                    size: 18,
-                  ),
-                  title: Text(
-                    'Help Support',
-                    textScaleFactor: 0.9,
-                  ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 18,
-                    color: Colors.black,
-                  ),
-                ),
-                ListTile(
-                  onTap: () {
-                    open(context, ReviewSettings());
-                  },
-                  leading: Icon(
-                    Icons.note_sharp,
-                    color: Colors.black,
-                    size: 18,
-                  ),
-                  title: Text(
-                    'Review Settings',
-                    textScaleFactor: 0.9,
-                  ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 18,
-                    color: Colors.black,
-                  ),
-                ),
-                ListTile(
-                  onTap: () {
-                    open(context, InformationSettings());
-                  },
-                  leading: Icon(
-                    Icons.person,
-                    color: Colors.black,
-                    size: 18,
-                  ),
-                  title: Text(
-                    'My Information Settings',
-                    textScaleFactor: 0.9,
-                  ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 18,
-                    color: Colors.black,
-                  ),
-                ),
-                ListTile(
-                  onTap: () {
-                    open(context, User());
-                  },
-                  leading: Icon(
-                    Icons.help_rounded,
-                    color: Colors.black,
-                    size: 18,
-                  ),
-                  title: Text(
-                    'User Guide',
-                    textScaleFactor: 0.9,
-                  ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 18,
-                    color: Colors.black,
-                  ),
-                ),
-                ListTile(
-                  onTap: () {
-                    open(context, ChangePassword());
-                  },
-                  leading: Icon(
-                    Icons.lock,
-                    color: Colors.black,
-                    size: 18,
-                  ),
-                  title: Text(
-                    'Change Password',
-                    textScaleFactor: 0.9,
-                  ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 18,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
-            ),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            '마이페이지',
+            style: TextStyle(fontWeight: FontWeight.w700),
           ),
-          CustomButton(
-            color: Color(0xffF7973B),
-            function: () async {
-              await signOut();
-              closeOpen(context, Login());
-            },
-            text: 'Log Out',
-          )
-        ],
+          actions: [
+            Container(
+              padding: const EdgeInsets.only(right: 10),
+              child: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.shopping_cart_rounded,
+                  color: Colors.white,
+                ),
+              ),
+            )
+          ],
+        ),
+        body: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.all(20),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.grey.shade200)),
+              child: Column(
+                children: [
+                  ListTile(
+                    onTap: () {
+                      open(context, OrderHistory());
+                    },
+                    leading: Icon(
+                      Icons.person,
+                      color: Colors.black,
+                      size: 25,
+                    ),
+                    title: Text(
+                      '주문내역 리스트',
+                      textScaleFactor: 1,
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      open(context, Notices());
+                    },
+                    leading: Icon(
+                      Icons.edit,
+                      color: Colors.black,
+                      size: 25,
+                    ),
+                    title: Text(
+                      '공지사항',
+                      textScaleFactor: 1,
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      open(context, HelpSupport());
+                    },
+                    leading: Icon(
+                      Icons.live_help,
+                      color: Colors.black,
+                      size: 25,
+                    ),
+                    title: Text(
+                      '고객센터',
+                      textScaleFactor: 1,
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      open(context, ReviewSettings());
+                    },
+                    leading: Icon(
+                      Icons.note_sharp,
+                      color: Colors.black,
+                      size: 25,
+                    ),
+                    title: Text(
+                      '리뷰관리',
+                      textScaleFactor: 1,
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      open(context, InformationSettings());
+                    },
+                    leading: Icon(
+                      Icons.person,
+                      color: Colors.black,
+                      size: 25,
+                    ),
+                    title: Text(
+                      '개인정보 수정',
+                      textScaleFactor: 1,
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      open(context, User());
+                    },
+                    leading: Icon(
+                      Icons.help_rounded,
+                      color: Colors.black,
+                      size: 25,
+                    ),
+                    title: Text(
+                      '이용안내',
+                      textScaleFactor: 1,
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      open(context, ChangePassword());
+                    },
+                    leading: Icon(
+                      Icons.lock,
+                      color: Colors.black,
+                      size: 25,
+                    ),
+                    title: Text(
+                      '비밀번호 변경',
+                      textScaleFactor: 1,
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            CustomButton(
+              color: Color(0xffF7973B),
+              function: () async {
+                await signOut();
+                closeOpen(context, Login());
+              },
+              text: '로그아웃',
+            ),
+          ],
+        ),
       ),
     );
   }

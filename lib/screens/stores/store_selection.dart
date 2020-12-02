@@ -81,7 +81,7 @@ class _StoreSelectState extends State<StoreSelect> {
                         items: markets.map((Market c) {
                           return DropdownMenuItem<Market>(
                             value: c,
-                            child: Text(c.name),
+                            child: Text(c.name, style: TextStyle(fontSize: 13)),
                           );
                         }).toList(),
                         onChanged: (value) {
@@ -103,6 +103,7 @@ class _StoreSelectState extends State<StoreSelect> {
               ),
             ],
             bottom: TabBar(
+              indicatorWeight: 3,
               isScrollable: true,
               indicatorColor: Colors.orange,
               labelColor: Colors.black,
@@ -110,9 +111,12 @@ class _StoreSelectState extends State<StoreSelect> {
               unselectedLabelColor: Colors.black,
               labelStyle: TextStyle(
                 fontSize: 13,
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w800,
               ),
-              unselectedLabelStyle: TextStyle(fontSize: 13),
+              unselectedLabelStyle: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+              ),
               tabs: [
                 Tab(text: '정육'),
                 Tab(text: '야채'),
