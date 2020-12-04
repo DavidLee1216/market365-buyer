@@ -54,6 +54,7 @@ class _CartItemState extends State<CartItem> {
                       ),
                       ListView.builder(
                           shrinkWrap: true,
+                          physics: ClampingScrollPhysics(),
                           itemCount: widget.cartProduct.options.length,
                           itemBuilder: (context, i) {
                             return ListTile(

@@ -13,10 +13,6 @@ class EventDetails extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text('이벤트'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {},
-        ),
       ),
       body: CachedImage(
         url: event.imageUrl,

@@ -92,24 +92,24 @@ class _OrderDetailsState extends State<OrderDetails> {
                   ListTile(
                     dense: true,
                     contentPadding: EdgeInsets.zero,
-                    title: Text('Other Information', textScaleFactor: 1.3),
+                    title: Text('주문정보', textScaleFactor: 1.3),
                   ),
                   ListTile(
                     dense: true,
                     contentPadding: EdgeInsets.zero,
-                    title: Text('Payment Method'),
+                    title: Text('결제방법'),
                     trailing: Text(widget.order.payment),
                   ),
                   ListTile(
                     dense: true,
                     contentPadding: EdgeInsets.zero,
-                    title: Text('Name'),
+                    title: Text('주문자명'),
                     trailing: Text(widget.order.name),
                   ),
                   ListTile(
                     dense: true,
                     contentPadding: EdgeInsets.zero,
-                    title: Text('Payment Date'),
+                    title: Text('졀제일시'),
                     trailing: Text(DateFormat.yMMMd()
                         .add_jm()
                         .format(widget.order.paidDate.toDate())),
@@ -117,7 +117,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                   ListTile(
                     dense: true,
                     contentPadding: EdgeInsets.zero,
-                    title: Text('Delivery Address'),
+                    title: Text('배송자주소'),
                     trailing: Text(widget.order.address),
                   ),
                   ListTile(

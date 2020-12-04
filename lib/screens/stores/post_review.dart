@@ -39,7 +39,7 @@ class _PostReviewState extends State<PostReview> {
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text(
-          'Post Review',
+          '리뷰작성',
         ),
         actions: [
           IconButton(
@@ -73,7 +73,7 @@ class _PostReviewState extends State<PostReview> {
             ),
             buildCoverImages(),
             Text(
-              'False-written reviews notice',
+              '허위 작성 제재안내문',
               textScaleFactor: 0.9,
               style: TextStyle(
                 color: Color(0xff717171),

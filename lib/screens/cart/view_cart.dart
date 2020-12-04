@@ -72,6 +72,7 @@ class _ViewCartState extends State<ViewCart> {
                         children: [
                           Expanded(
                             child: ListView.builder(
+                              physics: ClampingScrollPhysics(),
                               itemBuilder: (context, i) {
                                 return CartItem(cartProduct: cart.products[i]);
                               },

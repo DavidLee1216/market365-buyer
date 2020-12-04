@@ -15,7 +15,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Change Password',
+          '비밀번호 변경',
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -26,33 +26,33 @@ class _ChangePasswordState extends State<ChangePassword> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: Column(
+        child: ListView(
           children: [
             Row(
               children: [
-                Expanded(flex: 2, child: Text('Current Password')),
-                Expanded(flex: 3, child: CustomTextField()),
+                Expanded(flex: 2, child: Text('현재 비밀번호')),
+                Expanded(flex: 3, child: CustomTextField(isPassword: true)),
               ],
             ),
             SizedBox(height: 20),
             Row(
               children: [
-                Expanded(flex: 2, child: Text('New Password')),
-                Expanded(flex: 3, child: CustomTextField()),
+                Expanded(flex: 2, child: Text('새로운 비밀번호')),
+                Expanded(flex: 3, child: CustomTextField(isPassword: true)),
               ],
             ),
             SizedBox(height: 20),
             Row(
               children: [
-                Expanded(flex: 2, child: Text('Confirm Password')),
-                Expanded(flex: 3, child: CustomTextField()),
+                Expanded(flex: 2, child: Text('새로운 비밀번호 확인')),
+                Expanded(flex: 3, child: CustomTextField(isPassword: true)),
               ],
             ),
             SizedBox(height: 40),
             CustomButton(
               color: AppSettings.primaryColor,
               function: () {},
-              text: 'Change',
+              text: '변경',
             )
           ],
         ),

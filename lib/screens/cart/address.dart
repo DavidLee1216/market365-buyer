@@ -26,7 +26,7 @@ class Address extends StatefulWidget {
 class _AddressState extends State<Address> {
   bool confirmOrder = false;
   List<ListItem> _dropdownItems = [
-    ListItem(1, "Select"),
+    ListItem(1, "First Item"),
     ListItem(2, "Second Item"),
     ListItem(3, "Third Item"),
     ListItem(4, "Fourth Item"),
@@ -38,7 +38,7 @@ class _AddressState extends State<Address> {
   void initState() {
     super.initState();
     _dropdownMenuItems = buildDropDownMenuItems(_dropdownItems);
-    _selectedItem = _dropdownMenuItems[0].value;
+//    _selectedItem = _dropdownMenuItems[0].value;
     setState(() {});
   }
 
@@ -178,6 +178,14 @@ class _AddressState extends State<Address> {
                               color: AppSettings.primaryColor,
                             ),
                             value: _selectedItem,
+                            hint: Container(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                '[선택]',
+                                textAlign: TextAlign.left,
+                              ),
+                              alignment: Alignment.centerLeft,
+                            ),
                             items: _dropdownMenuItems,
                             onChanged: (value) {
                               setState(() {
@@ -240,6 +248,14 @@ class _AddressState extends State<Address> {
                               color: AppSettings.primaryColor,
                             ),
                             value: _selectedItem,
+                            hint: Container(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                '[선택]',
+                                textAlign: TextAlign.left,
+                              ),
+                              alignment: Alignment.centerLeft,
+                            ),
                             items: _dropdownMenuItems,
                             onChanged: (value) {
                               setState(() {
@@ -265,16 +281,25 @@ class _AddressState extends State<Address> {
                         Container(
                             child: Text(
                           '결제 진행 동의(필수)',
-                          textScaleFactor: 0.9,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )),
-                        SizedBox(width: 15),
-                        Expanded(child: Text('약관보기 >', textScaleFactor: 0.9)),
+                        Expanded(child: SizedBox(width: 15)),
+                        Container(
+                            child: Text('약관보기 >'),
+                            alignment: Alignment.centerRight,
+                        ),
                       ],
                     ),
-                    SizedBox(height: 15),
-                    Text(
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. '),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text('개인정보 수집 이용 및 위탁 동의', style: TextStyle(fontSize: 14, decoration: TextDecoration.underline,),),
+                    ),
+                    SizedBox(height: 10,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text('전자 금융 거래 기본 약관 동의', style: TextStyle(fontSize: 14, decoration: TextDecoration.underline,),),
+                    ),
                   ],
                 ),
               ),
@@ -310,7 +335,7 @@ class _AddressState extends State<Address> {
                     );
                     open(context, OrderHistory());
                   } else
-                    alert('Please confirm the order to continue');
+                    alert('계속하려면 결제 진행에 동의하여야 합니다.');
                 },
               ),
             ),

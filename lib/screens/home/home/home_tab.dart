@@ -32,6 +32,173 @@ class _HomeTabState extends State<HomeTab> {
 
   @override
   Widget build(BuildContext context) {
+    var TermsOfUse = Container(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+      children: [
+        Row(
+          children: [
+            Text(
+              '이용약관',
+              style: TextStyle(
+                color: Color(0xff595959),
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            SizedBox(
+              width: 30,
+            ),
+            Text(
+              '개인정보처리방침',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Row(
+          children: [
+            Text(
+              '장날 365 | ',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              '대표자 : 고동훈',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Text(
+              '개인정보보호책임자 : ',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            Text(
+              '고동훈',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Text(
+              '사업자등록번호 : ',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            Text(
+              '834-87-01698',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            SizedBox(
+              width: 50,
+            ),
+            Text(
+              '사업자정보확인',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Text(
+              '통신판매업 : ',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            Text(
+              '제1234-지역이름-12345 호',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Text(
+              '주소 : ',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            Text(
+              '충북 청주시 서원구 신성화로 33, 성화빌딩 301호',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 30,
+        ),
+        Row(
+          children: [
+            Text(
+              '고객센터 : ',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            Text(
+              '1234-1234',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        )
+      ],
+    ));
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -93,6 +260,7 @@ class _HomeTabState extends State<HomeTab> {
             section('번개장터', 'isMarket', 1),
             section('베스트', 'isBest', 2),
             section('오늘의 밥상', 'isToday', 3),
+            TermsOfUse,
           ],
         ),
       ),

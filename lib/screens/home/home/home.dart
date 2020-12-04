@@ -73,9 +73,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   }
 
   page() {
-    return isLoading
-        ? loading()
-        : Container(
+    if (isLoading) {
+      return loading();
+    } else {
+      return Container(
             padding: const EdgeInsets.only(top: 15, bottom: 20),
             child: Scaffold(
               appBar: AppBar(
@@ -89,7 +90,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       padding: const EdgeInsets.only(left: 20.0, right: 5.0),
                       margin: EdgeInsets.only(left: 10),
                       height: 35,
-                      width: 120,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(
@@ -169,5 +169,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               ),
             ),
           );
+    }
   }
 }

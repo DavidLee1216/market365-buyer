@@ -22,13 +22,16 @@ class OrderDetailsItem extends StatelessWidget {
           Row(
             children: [
               Expanded(child: Text(product.title)),
+              Text(product.price.toString() + '원')
             ],
           ),
           SizedBox(height: 10),
+          Text('- 용도별 : ${product.category}'),
+          SizedBox(height: 10),
           Row(
             children: [
-              Expanded(child: Text('Total')),
-              Text(product.price.toString() + ' 원', style: TextStyle(fontWeight: FontWeight.bold, color: AppSettings.primaryColor)),
+              Expanded(child: Text('합계')),
+              Text(product.price.toString() + '원', style: TextStyle(fontWeight: FontWeight.bold, color: AppSettings.primaryColor)),
             ],
           ),
           Row(
@@ -40,7 +43,7 @@ class OrderDetailsItem extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 15, horizontal: 5),
                 child: CustomButton(
                   showShadow: false,
-                  text: 'Write a Review',
+                  text: '리뷰 작성',
                   function: () {
                     open(context, PostReview(product: product, orderID: orderID));
                   },

@@ -9,7 +9,11 @@ import 'package:buyer/screens/orders/order_history.dart';
 import 'package:buyer/services/auth_service.dart';
 import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/widget/custom_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/app_settings.dart';
+import '../../utils/uatheme.dart';
 
 class MyPage extends StatefulWidget {
   @override
@@ -43,12 +47,11 @@ class _MyPageState extends State<MyPage> {
             )
           ],
         ),
-        body: Column(
+        body: ListView(
           children: [
             Container(
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.all(20),
-              width: double.infinity,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey.shade200)),
@@ -190,13 +193,19 @@ class _MyPageState extends State<MyPage> {
                 ],
               ),
             ),
-            CustomButton(
-              color: Color(0xffF7973B),
-              function: () async {
-                await signOut();
-                closeOpen(context, Login());
-              },
-              text: '로그아웃',
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomButton(
+                color: Color(0xffF7973B),
+                function: () async {
+                  await signOut();
+                  closeOpen(context, Login());
+                },
+                text: '로그아웃',
+              ),
+              ]
             ),
           ],
         ),
