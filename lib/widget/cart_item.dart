@@ -5,6 +5,8 @@ import 'package:buyer/services/poducts_service.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:flutter/material.dart';
 
+import 'counter.dart';
+
 class CartItem extends StatefulWidget {
   final CartProducts cartProduct;
 
@@ -69,24 +71,23 @@ class _CartItemState extends State<CartItem> {
                             );
                           }),
                       Divider(color: Colors.grey.shade400),
-                      ListTile(
-                        dense: true,
-                        contentPadding: EdgeInsets.zero,
-                        title: Text('수량',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        // trailing: Counter(
-                        //   initialValue: cart[widget.i].quantity,
-                        //   minValue: 0,
-                        //   maxValue: 10,
-                        //   decimalPlaces: 0,
-                        //   onChanged: (value) {
-                        //     setState(() {
-                        //       cart[widget.i].quantity = value;
-                        //     });
-                        //   },
-                        // ),
-                        trailing:
-                            Text('X ' + widget.cartProduct.quantity.toString()),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('수량'),
+                          Counter(
+                            initialValue: widget.cartProduct.quantity,
+                            minValue: 0,
+                            maxValue: 1000,
+                            step: 1,
+                            decimalPlaces: 0,
+                            onChanged: (value) {
+                              setState(() {
+                                widget.cartProduct.quantity = value;
+                              });
+                            },
+                          ),
+                        ],
                       ),
                       ListTile(
                         dense: true,

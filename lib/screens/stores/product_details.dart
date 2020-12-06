@@ -94,7 +94,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         Counter(
                           initialValue: widget.product.quantity,
                           minValue: 0,
-                          maxValue: 10,
+                          maxValue: 1000,
                           step: 1,
                           decimalPlaces: 0,
                           onChanged: (value) {

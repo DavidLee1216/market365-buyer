@@ -242,9 +242,9 @@ class _RegisterState extends State<Register> {
                                 context: context);
                           } else
                             alert(
-                                'Please accept required conditions to proceed');
+                                '이용약관, 개인정보처리방침, 마케팅사용에 동의해주세요.');
                         } else
-                          alert('Passwords don\'t match');
+                          alert('비밀번호가 일치하지 않습니다.');
                       }),
                 ),
               ],

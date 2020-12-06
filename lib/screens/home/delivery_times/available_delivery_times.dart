@@ -66,16 +66,16 @@ class _AvailableDeliveryTimesState extends State<AvailableDeliveryTimes> {
                       dividerThickness: 0,
                       columnSpacing: 20.0,
                       columns: [
-                        DataColumn(label: Text('Delivery Time')),
+                        DataColumn(label: Text('배송시간')),
                         DataColumn(
                             label:
-                                Text(DateFormat('dd MMM').format(headers[0]))),
+                                Text(DateFormat('MM/dd').format(headers[0]))),
                         DataColumn(
                             label:
-                                Text(DateFormat('dd MMM').format(headers[1]))),
+                                Text(DateFormat('MM/dd').format(headers[1]))),
                         DataColumn(
                             label:
-                                Text(DateFormat('dd MMM').format(headers[2]))),
+                                Text(DateFormat('MM/dd').format(headers[2]))),
                       ],
                       rows: rows,
                     );
@@ -99,7 +99,7 @@ class _AvailableDeliveryTimesState extends State<AvailableDeliveryTimes> {
       DataCell(InkWell(
         child: Center(
           child: Text(
-            col1 ? 'Open' : 'Closed',
+            col1 ? '배송가능' : '배송마감',
             style: TextStyle(
                 color: col1 ? AppSettings.primaryColor : Color(0xffFF002E)),
           ),
@@ -108,7 +108,7 @@ class _AvailableDeliveryTimesState extends State<AvailableDeliveryTimes> {
       DataCell(InkWell(
         child: Center(
           child: Text(
-            col2 ? 'Open' : 'Closed',
+            col2 ? '배송가능' : '배송마감',
             style: TextStyle(
               color: col2 ? AppSettings.primaryColor : Color(0xffFF002E),
             ),
@@ -118,7 +118,7 @@ class _AvailableDeliveryTimesState extends State<AvailableDeliveryTimes> {
       DataCell(InkWell(
         child: Center(
           child: Text(
-            col3 ? 'Open' : 'Closed',
+            col3 ? '배송가능' : '배송마감',
             style: TextStyle(
               color: col3 ? AppSettings.primaryColor : Color(0xffFF002E),
             ),

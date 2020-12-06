@@ -28,7 +28,7 @@ class InformationSettings extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.all(15),
-          child: Column(
+          child: ListView(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,7 +114,13 @@ class InformationSettings extends StatelessWidget {
                     textScaleFactor: 1),
               ),
               SizedBox(height: 30),
-              CustomButton(text: '저장', function: () {}, showShadow: true)
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomButton(text: '저장', function: () {}, showShadow: true),
+                ],
+              )
             ],
           ),
         ),

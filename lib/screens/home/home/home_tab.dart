@@ -1,6 +1,8 @@
+import 'package:buyer/models/announcement.dart';
 import 'package:buyer/models/category.dart';
 import 'package:buyer/models/product.dart';
 import 'package:buyer/screens/home/home/home.dart';
+import 'package:buyer/screens/home/notices/notice_details.dart';
 import 'package:buyer/screens/stores/store_selection.dart';
 import 'package:buyer/services/navigation_service.dart';
 import 'package:buyer/services/poducts_service.dart';
@@ -12,6 +14,8 @@ import 'package:buyer/widget/loading.dart';
 import 'package:buyer/widget/product_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:buyer/services/announcement_service.dart';
+import 'package:intl/intl.dart';
 
 class HomeTab extends StatefulWidget {
   @override
@@ -29,6 +33,8 @@ class _HomeTabState extends State<HomeTab> {
     Category(name: '먹거리', image: ''),
     Category(name: '기타', image: ''),
   ];
+
+  var dateTimeFormat = new DateFormat('yyyy년 MM월 dd일');
 
   @override
   Widget build(BuildContext context) {
@@ -260,6 +266,7 @@ class _HomeTabState extends State<HomeTab> {
             section('번개장터', 'isMarket', 1),
             section('베스트', 'isBest', 2),
             section('오늘의 밥상', 'isToday', 3),
+            _buildBottom(),
             TermsOfUse,
           ],
         ),
@@ -268,17 +275,48 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   Widget _buildBottom() {
-    final items = List.generate(10, (i) {
-      return ListTile(
-        leading: Icon(Icons.notifications_none),
-        title: Text('공지사항'),
-      );
-    });
-
-    return ListView(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      children: items,
+    return FutureBuilder(
+      future: getAnnouncements(),
+      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasData)
+          return snapshot.data.docs.isNotEmpty
+              ? ListView.builder(
+            padding: EdgeInsets.all(10),
+            shrinkWrap: true,
+            physics: ClampingScrollPhysics(),
+            itemCount: snapshot.data.docs.length,
+            itemBuilder: (context, i) {
+              Announcement announcement =
+                Announcement.fromDocument(snapshot.data.docs[i]);
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('공지 ', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                  Expanded(
+                    child: ListTile(
+                      onTap: () => open(
+                          context, NoticeDetails(announcement: announcement)),
+                      title: Text(announcement.title+'(${dateTimeFormat.format(announcement.postingDate.toDate())})',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+//                subtitle: Text(
+//                    '(${dateTimeFormat.format(announcement.postingDate.toDate())})',
+//                    textScaleFactor: 0.9,
+//                    style: TextStyle(color: Color(0xff585858))),
+                    ),
+                  ),
+                ],
+              );
+            },
+          )
+              : EmptyBox(text: 'Nothing to show');
+        else
+          return LoadingData();
+      },
     );
   }
 

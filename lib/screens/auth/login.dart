@@ -1,3 +1,4 @@
+import 'package:buyer/screens/auth/id_login.dart';
 import 'package:buyer/screens/auth/register.dart';
 import 'package:buyer/services/auth_service.dart';
 import 'package:buyer/services/navigation_service.dart';
@@ -111,7 +112,7 @@ class Login extends StatelessWidget {
                 Expanded(
                   child: FlatButton(
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    onPressed: () {},
+                    onPressed: () => open(context, IdLogin()),
                     child: Text(
                       '이메일로 로그인',
                       textScaleFactor: 0.85,

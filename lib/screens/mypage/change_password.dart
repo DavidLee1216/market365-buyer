@@ -49,10 +49,16 @@ class _ChangePasswordState extends State<ChangePassword> {
               ],
             ),
             SizedBox(height: 40),
-            CustomButton(
-              color: AppSettings.primaryColor,
-              function: () {},
-              text: '변경',
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomButton(
+                  color: AppSettings.primaryColor,
+                  function: () {},
+                  text: '변경',
+                ),
+              ],
             )
           ],
         ),
