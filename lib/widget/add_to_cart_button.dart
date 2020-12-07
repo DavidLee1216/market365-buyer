@@ -1,5 +1,6 @@
 import 'package:buyer/models/cart.dart';
 import 'package:buyer/models/product.dart';
+import 'package:buyer/services/alert_service.dart';
 import 'package:buyer/services/cart_service.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:buyer/widget/custom_button.dart';
@@ -22,15 +23,21 @@ class AddToCartButton extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: CustomButton(
-              color: cart != null && checkIfInCart(cart)
-                  ? Colors.grey
-                  : AppSettings.primaryColor,
-              text: (cart != null && checkIfInCart(cart) ? '장바구니 비우기' : '장바구니'),
+              color: AppSettings.primaryColor,
+              text: '장바구니',
               function: () {
-                cart != null && checkIfInCart(cart)
-                    ? removeFromCart(cart.products[index])
-                    : addToCart(product);
+                addToCart(product);
+                alert('장바구니에 담았습니다.');
               },
+//              color: cart != null && checkIfInCart(cart)
+//                  ? Colors.grey
+//                  : AppSettings.primaryColor,
+//              text: (cart != null && checkIfInCart(cart) ? '장바구니 비우기' : '장바구니'),
+//              function: () {
+//                cart != null && checkIfInCart(cart)
+//                    ? removeFromCart(cart.products[index])
+//                    : addToCart(product);
+//              },
             ),
           );
         } else

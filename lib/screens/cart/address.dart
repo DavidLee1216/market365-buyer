@@ -1,3 +1,4 @@
+import 'package:buyer/bloc/cart_bloc.dart';
 import 'package:buyer/models/mydropdown.dart';
 import 'package:buyer/models/order.dart';
 import 'package:buyer/screens/orders/order_history.dart';
@@ -9,6 +10,7 @@ import 'package:buyer/widget/custom_button.dart';
 import 'package:buyer/widget/custom_textbox.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:uuid/uuid.dart';
 
@@ -78,268 +80,289 @@ class _AddressState extends State<Address> {
             },
           ),
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: BlocBuilder<CartBloc, CartState>(
+          cubit: BlocProvider.of<CartBloc>(context),
+          builder: (BuildContext context, state) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.all(15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                            flex: 2,
-                            child: Text(
-                              '배송 주소지',
-                              textScaleFactor: 1.1,
-                              style: TextStyle(fontWeight: FontWeight.w700),
-                            )),
-                        Expanded(
-                          child: CustomButton(
-                            text: '배송지 변경',
-                            function: () {},
-                            showShadow: false,
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                            flex: 3, child: Text('충북 청주시', textScaleFactor: 1)),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(FontAwesomeIcons.ban,
-                                color: Colors.red, size: 18),
-                            Text(
-                              ' 배달 불가능',
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontWeight: FontWeight.w700,
+                            Expanded(
+                                flex: 2,
+                                child: Text(
+                                  '배송 주소지',
+                                  textScaleFactor: 1.1,
+                                  style: TextStyle(fontWeight: FontWeight.w700),
+                                )),
+                            Expanded(
+                              child: CustomButton(
+                                text: '배송지 변경',
+                                function: () {},
+                                showShadow: false,
                               ),
-                              textScaleFactor: 1,
-                            ),
+                            )
                           ],
                         ),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                            flex: 3,
-                            child: Text('[도로명] 000로123', textScaleFactor: 1)),
+                        SizedBox(height: 20),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(
-                              FontAwesomeIcons.check,
-                              color: AppSettings.primaryColor,
-                              size: 18,
-                            ),
-                            Text(' 배달 가능',
-                                style: TextStyle(
-                                  color: AppSettings.primaryColor,
-                                  fontWeight: FontWeight.w700,
+                            Expanded(
+                                flex: 3,
+                                child: Text('충북 청주시', textScaleFactor: 1)),
+                            Row(
+                              children: [
+                                Icon(FontAwesomeIcons.ban,
+                                    color: Colors.red, size: 18),
+                                Text(
+                                  ' 배달 불가능',
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                  textScaleFactor: 1,
                                 ),
-                                textScaleFactor: 1),
+                              ],
+                            ),
                           ],
                         ),
-                      ],
-                    ),
-                    SizedBox(height: 30),
-                    CustomTextField(hint: '상세주소', isPassword: false),
-                    Divider(
-                        color: Colors.grey.shade300, height: 30, thickness: 1),
-                    Text('010-1234-1234'),
-                    SizedBox(height: 20),
-                    Text(
-                      '요청사항',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(left: 10.0, right: 5.0),
-                      margin: EdgeInsets.only(top: 10),
-                      height: 45,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                              color: AppSettings.primaryColor, width: 1.2)),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton<ListItem>(
-                            isExpanded: true,
-                            icon: Icon(
-                              Icons.keyboard_arrow_down,
-                              color: AppSettings.primaryColor,
+                        SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                                flex: 3,
+                                child: Text(
+                                    '[도로명] 000로123', textScaleFactor: 1)),
+                            Row(
+                              children: [
+                                Icon(
+                                  FontAwesomeIcons.check,
+                                  color: AppSettings.primaryColor,
+                                  size: 18,
+                                ),
+                                Text(' 배달 가능',
+                                    style: TextStyle(
+                                      color: AppSettings.primaryColor,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                    textScaleFactor: 1),
+                              ],
                             ),
-                            value: _selectedItem,
-                            hint: Container(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                '[선택]',
-                                textAlign: TextAlign.left,
-                              ),
-                              alignment: Alignment.centerLeft,
-                            ),
-                            items: _dropdownMenuItems,
-                            onChanged: (value) {
-                              setState(() {
-                                _selectedItem = value;
-                              });
-                            }),
-                      ),
-                    ),
-                    Divider(
-                        color: Colors.grey.shade300, height: 30, thickness: 1),
-                    ListTile(
-                      dense: true,
-                      contentPadding: EdgeInsets.zero,
-                      title: Text('상품 금액',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      trailing: Text('${widget.total} 원',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                          )),
-                    ),
-                    ListTile(
-                      dense: true,
-                      contentPadding: EdgeInsets.zero,
-                      title: Text('배달료',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      trailing: Text('${AppSettings.deliveryFee} 원',
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold)),
-                    ),
-                    ListTile(
-                      dense: true,
-                      contentPadding: EdgeInsets.zero,
-                      title: Text('합계',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16)),
-                      trailing: Text(
-                          '${widget.total + AppSettings.deliveryFee} 원',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                    ),
-                    Divider(
-                        color: Colors.grey.shade300, height: 30, thickness: 1),
-                    Text(
-                      '결제수단',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(left: 10.0, right: 5.0),
-                      margin: EdgeInsets.only(top: 10),
-                      height: 45,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                              color: AppSettings.primaryColor, width: 1.2)),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton<ListItem>(
-                            isExpanded: true,
-                            icon: Icon(
-                              Icons.keyboard_arrow_down,
-                              color: AppSettings.primaryColor,
-                            ),
-                            value: _selectedItem,
-                            hint: Container(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                '[선택]',
-                                textAlign: TextAlign.left,
-                              ),
-                              alignment: Alignment.centerLeft,
-                            ),
-                            items: _dropdownMenuItems,
-                            onChanged: (value) {
-                              setState(() {
-                                _selectedItem = value;
-                              });
-                            }),
-                      ),
-                    ),
-                    Divider(
-                        color: Colors.grey.shade300, height: 30, thickness: 1),
-                    Row(
-                      children: [
-                        Checkbox(
-                            materialTapTargetSize:
+                          ],
+                        ),
+                        SizedBox(height: 30),
+                        CustomTextField(hint: '상세주소', isPassword: false),
+                        Divider(
+                            color: Colors.grey.shade300,
+                            height: 30,
+                            thickness: 1),
+                        Text('010-1234-1234'),
+                        SizedBox(height: 20),
+                        Text(
+                          '요청사항',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(
+                              left: 10.0, right: 5.0),
+                          margin: EdgeInsets.only(top: 10),
+                          height: 45,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                  color: AppSettings.primaryColor, width: 1.2)),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<ListItem>(
+                                isExpanded: true,
+                                icon: Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color: AppSettings.primaryColor,
+                                ),
+                                value: _selectedItem,
+                                hint: Container(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    '[선택]',
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  alignment: Alignment.centerLeft,
+                                ),
+                                items: _dropdownMenuItems,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _selectedItem = value;
+                                  });
+                                }),
+                          ),
+                        ),
+                        Divider(
+                            color: Colors.grey.shade300,
+                            height: 30,
+                            thickness: 1),
+                        ListTile(
+                          dense: true,
+                          contentPadding: EdgeInsets.zero,
+                          title: Text('상품 금액',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          trailing: Text('${widget.total} 원',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              )),
+                        ),
+                        ListTile(
+                          dense: true,
+                          contentPadding: EdgeInsets.zero,
+                          title: Text('배달료',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          trailing: Text('${state.deliveryFee} 원',
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold)),
+                        ),
+                        ListTile(
+                          dense: true,
+                          contentPadding: EdgeInsets.zero,
+                          title: Text('합계',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16)),
+                          trailing: Text(
+                              '${widget.total + state.deliveryFee} 원',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                        ),
+                        Divider(
+                            color: Colors.grey.shade300,
+                            height: 30,
+                            thickness: 1),
+                        Text(
+                          '결제수단',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(
+                              left: 10.0, right: 5.0),
+                          margin: EdgeInsets.only(top: 10),
+                          height: 45,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                  color: AppSettings.primaryColor, width: 1.2)),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<ListItem>(
+                                isExpanded: true,
+                                icon: Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color: AppSettings.primaryColor,
+                                ),
+                                value: _selectedItem,
+                                hint: Container(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    '[선택]',
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  alignment: Alignment.centerLeft,
+                                ),
+                                items: _dropdownMenuItems,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _selectedItem = value;
+                                  });
+                                }),
+                          ),
+                        ),
+                        Divider(
+                            color: Colors.grey.shade300,
+                            height: 30,
+                            thickness: 1),
+                        Row(
+                          children: [
+                            Checkbox(
+                                materialTapTargetSize:
                                 MaterialTapTargetSize.shrinkWrap,
-                            value: confirmOrder,
-                            activeColor: Colors.green,
-                            onChanged: (bool newValue) {
-                              setState(() {
-                                confirmOrder = newValue;
-                              });
-                            }),
-                        Container(
-                            child: Text(
-                          '결제 진행 동의(필수)',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )),
-                        Expanded(child: SizedBox(width: 15)),
-                        Container(
-                            child: Text('약관보기 >'),
-                            alignment: Alignment.centerRight,
+                                value: confirmOrder,
+                                activeColor: Colors.green,
+                                onChanged: (bool newValue) {
+                                  setState(() {
+                                    confirmOrder = newValue;
+                                  });
+                                }),
+                            Container(
+                                child: Text(
+                                  '결제 진행 동의(필수)',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                )),
+                            Expanded(child: SizedBox(width: 15)),
+                            Container(
+                              child: Text('약관보기 >'),
+                              alignment: Alignment.centerRight,
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text('개인정보 수집 이용 및 위탁 동의', style: TextStyle(
+                            fontSize: 14,
+                            decoration: TextDecoration.underline,),),
+                        ),
+                        SizedBox(height: 10,),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text('전자 금융 거래 기본 약관 동의', style: TextStyle(
+                            fontSize: 14,
+                            decoration: TextDecoration.underline,),),
                         ),
                       ],
                     ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Text('개인정보 수집 이용 및 위탁 동의', style: TextStyle(fontSize: 14, decoration: TextDecoration.underline,),),
-                    ),
-                    SizedBox(height: 10,),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Text('전자 금융 거래 기본 약관 동의', style: TextStyle(fontSize: 14, decoration: TextDecoration.underline,),),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: CustomButton(
-                text: '결제하기',
-                showShadow: false,
-                function: () async {
-                  if (confirmOrder) {
-                    await placeOrder(
-                      Order(
-                        orderID: Uuid().v1(),
-                        name: currentUser.name,
-                        date: Timestamp.fromDate(widget.date),
-                        address: '',
-                        delivery: AppSettings.deliveryFee,
-                        fees: {},
-                        history: [
-                          {
-                            'status': 'Order placed',
-                            'time': Timestamp.now(),
-                          }
-                        ],
-                        paidDate: Timestamp.now(),
-                        payment: 'Credit Card',
-                        request: '',
-                        time: widget.time,
-                        user: currentUser.userID,
-                        total: widget.total,
-                      ),
-                    );
-                    open(context, OrderHistory());
-                  } else
-                    alert('계속하려면 결제 진행에 동의하여야 합니다.');
-                },
-              ),
-            ),
-          ],
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: CustomButton(
+                    text: '결제하기',
+                    showShadow: false,
+                    function: () async {
+                      if (confirmOrder) {
+                        await placeOrder(
+                          Order(
+                            orderID: Uuid().v1(),
+                            name: currentUser.name,
+                            date: Timestamp.fromDate(widget.date),
+                            address: '',
+                            delivery: state.deliveryFee,
+                            fees: {},
+                            history: [
+                              {
+                                'status': 'Order placed',
+                                'time': Timestamp.now(),
+                              }
+                            ],
+                            paidDate: Timestamp.now(),
+                            payment: 'Credit Card',
+                            request: '',
+                            time: widget.time,
+                            user: currentUser.userID,
+                            total: widget.total,
+                          ),
+                        );
+                        open(context, OrderHistory());
+                      } else
+                        alert('계속하려면 결제 진행에 동의하여야 합니다.');
+                    },
+                  ),
+                ),
+              ],
+            );
+          }
         ),
       ),
     );

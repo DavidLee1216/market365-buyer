@@ -1,16 +1,19 @@
+import 'package:buyer/bloc/cart_bloc.dart';
 import 'package:buyer/models/cart.dart';
 import 'package:buyer/models/extras.dart';
 import 'package:buyer/models/product.dart';
 import 'package:buyer/services/poducts_service.dart';
 import 'package:buyer/utils/app_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'counter.dart';
 
 class CartItem extends StatefulWidget {
   final CartProducts cartProduct;
+  final int idx;
 
-  CartItem({this.cartProduct});
+  CartItem({this.cartProduct, this.idx});
 
   @override
   _CartItemState createState() => _CartItemState();
@@ -18,11 +21,13 @@ class CartItem extends StatefulWidget {
 
 class _CartItemState extends State<CartItem> {
   List<Extras> extras = List();
+  var bloc = null;
 
   @override
   void initState() {
     //for (int i = 0; i < cart[widget.i].extras.length; i++) if (cart[widget.i].extras[i].selected) extras.add(cart[widget.i].extras[i]);
     super.initState();
+    bloc = BlocProvider.of<CartBloc>(context);
   }
 
   @override
@@ -84,6 +89,8 @@ class _CartItemState extends State<CartItem> {
                             onChanged: (value) {
                               setState(() {
                                 widget.cartProduct.quantity = value;
+                                bloc.add(SetCountCartEvent(widget.cartProduct.productID, widget.idx, value));
+//                                bloc.add(LoadCartEvent());
                               });
                             },
                           ),
@@ -112,14 +119,13 @@ class _CartItemState extends State<CartItem> {
   }
 
   getTotal(num price) {
-    print('CALLED');
     num extras = 0;
     for (int i = 0; i < widget.cartProduct.options.length; i++) {
       extras = extras + widget.cartProduct.options.values.toList()[i];
     }
 
-    AppSettings.cartTotal =
-        AppSettings.cartTotal + (extras + price) * widget.cartProduct.quantity;
+//    AppSettings.cartTotal =
+//        AppSettings.cartTotal + (extras + price) * widget.cartProduct.quantity;
     return (extras + price) * widget.cartProduct.quantity;
   }
 }

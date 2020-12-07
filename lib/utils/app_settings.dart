@@ -8,6 +8,4 @@ class AppSettings {
   static String appName = 'Buyer';
   static Color primaryColor = Color(0xff005D45);
   static Color appBackground = Colors.white;
-  static num cartTotal = 0;
-  static int deliveryFee = 100;
 }

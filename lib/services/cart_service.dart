@@ -35,14 +35,50 @@ addToCart(Product product) async {
   });
 
   if (doc.exists) {
-    await ref.collection('cart').doc(currentUser.userID).update({
-      'userID': currentUser.userID,
-      'product': [productToAdd],
-    });
+    var productArray = doc.data()['product'];
+    int idxToUpdate = 0;
+    bool bSet = true;
+    for(int i = 0; i < doc.data()['product'].length; i++){
+      if(doc.data()['product'][i]['productID']==product.productID && mapsEqual(doc.data()['product'][i]['options'], options))
+      {
+        bSet = false;
+        idxToUpdate = i;
+        break;
+      }
+    }
+    if(bSet)
+      productArray.add(productToAdd);
+    else
+      productArray[idxToUpdate]['quantity'] = product.quantity;
+    print(productArray);
+    if(bSet)
+      await ref.collection('cart').doc(currentUser.userID).set({
+        'userID': currentUser.userID,
+        'product': productArray,
+      }, SetOptions(merge: true));
+    else
+      await ref.collection('cart').doc(currentUser.userID).update({
+        'userID': currentUser.userID,
+        'product': productArray,
+      });
   } else {
     await ref.collection('cart').doc(currentUser.userID).set({
       'userID': currentUser.userID,
       'product': [productToAdd],
     });
   }
+}
+
+bool mapsEqual(Map a, Map b) {
+  if (a == b) return true;
+  if (a == null || b == null) return false;
+  if (a.length != b.length) return false;
+
+  for (final k in a.keys) {
+    var bValue = b[k];
+    if (bValue == null && !b.containsKey(k)) return false;
+    if (bValue != a[k]) return false;
+  }
+
+  return true;
 }
