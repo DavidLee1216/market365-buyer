@@ -16,32 +16,48 @@ class Notices extends StatefulWidget {
 class _NoticesState extends State<Notices> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Notices'),
+    return Container(
+      padding: const EdgeInsets.only(
+        top: 15,
+        bottom: 20,
       ),
-      body: FutureBuilder(
-        future: getAnnouncements(),
-        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasData)
-            return snapshot.data.docs.isNotEmpty
-                ? ListView.builder(
-                    padding: EdgeInsets.all(10),
-                    shrinkWrap: true,
-                    itemCount: snapshot.data.docs.length,
-                    itemBuilder: (context, i) {
-                      Announcement announcement = Announcement.fromDocument(snapshot.data.docs[i]);
-                      return ListTile(
-                        onTap: () => open(context, NoticeDetails(announcement: announcement)),
-                        title: Text(announcement.title, textScaleFactor: 0.9),
-                        subtitle: Text(DateFormat.yMMMd().add_jm().format(announcement.postingDate.toDate()), textScaleFactor: 0.8, style: TextStyle(color: Color(0xff585858))),
-                      );
-                    },
-                  )
-                : EmptyBox(text: 'Nothing to show');
-          else
-            return LoadingData();
-        },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            '공지사항',
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+        ),
+        body: FutureBuilder(
+          future: getAnnouncements(),
+          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasData)
+              return snapshot.data.docs.isNotEmpty
+                  ? ListView.builder(
+                      padding: EdgeInsets.all(10),
+                      shrinkWrap: true,
+                      itemCount: snapshot.data.docs.length,
+                      itemBuilder: (context, i) {
+                        Announcement announcement =
+                            Announcement.fromDocument(snapshot.data.docs[i]);
+                        return ListTile(
+                          onTap: () => open(context,
+                              NoticeDetails(announcement: announcement)),
+                          title: Text(announcement.title, textScaleFactor: 1.1),
+                          subtitle: Text(
+                              DateFormat.yMMMd()
+                                  .add_jm()
+                                  .format(announcement.postingDate.toDate()),
+                              textScaleFactor: 0.9,
+                              style: TextStyle(color: Color(0xff585858))),
+                        );
+                      },
+                    )
+                  : EmptyBox(text: 'Nothing to show');
+            else
+              return LoadingData();
+          },
+        ),
       ),
     );
   }
