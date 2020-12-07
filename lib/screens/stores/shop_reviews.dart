@@ -28,10 +28,14 @@ class _ShopReviewState extends State<ShopReview> {
         children: [
           Row(
             children: [
-              Expanded(flex: 2, child: Text('${widget.reviews} Reviews', textScaleFactor: 1.3, style: TextStyle(fontWeight: FontWeight.bold))),
+              Expanded(
+                  flex: 2,
+                  child: Text('${widget.reviews} 리뷰',
+                      textScaleFactor: 1.3,
+                      style: TextStyle(fontWeight: FontWeight.bold))),
               Expanded(
                 child: CustomButton(
-                  text: 'Write Review',
+                  text: '리뷰작성',
                   showShadow: false,
                   function: () {
                     open(context, PostStoreReview(storeID: widget.storeID));
@@ -50,7 +54,8 @@ class _ShopReviewState extends State<ShopReview> {
                       ? ListView.builder(
                           padding: EdgeInsets.all(15),
                           itemBuilder: (context, i) {
-                            Review order = Review.fromDocument(snapshot.data.docs[i]);
+                            Review order =
+                                Review.fromDocument(snapshot.data.docs[i]);
                             return ReviewItem(review: order);
                           },
                           itemCount: snapshot.data.docs.length,

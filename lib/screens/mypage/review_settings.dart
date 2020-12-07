@@ -38,7 +38,7 @@ class ReviewSettings extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 15),
                           child: Text(
-                              snapshot.data.docs.length.toString() + " Reviews",
+                              snapshot.data.docs.length.toString() + " 리뷰",
                               textScaleFactor: 1.2),
                         ),
                         Expanded(

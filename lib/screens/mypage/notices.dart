@@ -35,12 +35,12 @@ class _NoticesState extends State<Notices> {
                       return ListTile(
                         onTap: () => open(
                             context, NoticeDetails(announcement: announcement)),
-                        title: Text(announcement.title, textScaleFactor: 0.9),
+                        title: Text(announcement.title, textScaleFactor: 1.2),
                         subtitle: Text(
                             DateFormat.yMMMd()
                                 .add_jm()
                                 .format(announcement.postingDate.toDate()),
-                            textScaleFactor: 0.8,
+                            textScaleFactor: 0.9,
                             style: TextStyle(color: Color(0xff585858))),
                       );
                     },

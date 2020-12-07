@@ -13,18 +13,25 @@ class ShopItem extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(5),
       margin: EdgeInsets.only(bottom: 10),
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey.shade200)),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.grey.shade200)),
       child: ListTile(
         onTap: () => open(context, StoreDetails(store: store)),
         dense: true,
-        title: Text(store.name),
+        title: Text(
+          store.name,
+          style: TextStyle(fontSize: 16),
+        ),
         subtitle: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(store.address, style: TextStyle(color: Color(0xff585858))),
+            Text(store.address,
+                style: TextStyle(color: Color(0xff585858), fontSize: 14)),
             SizedBox(height: 5),
-            Text(store.reviews.toString() + ' reviews', style: TextStyle(color: Color(0xff585858))),
+            Text(store.reviews.toString() + ' 리뷰',
+                style: TextStyle(color: Color(0xff585858), fontSize: 14)),
           ],
         ),
         isThreeLine: true,

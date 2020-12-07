@@ -34,51 +34,60 @@ class _PostStoreReviewState extends State<PostStoreReview> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomPadding: false,
-      appBar: AppBar(
-        title: Text(
-          'Post Review',
-        ),
-        actions: [
-          IconButton(
-            onPressed: proceed,
-            icon: Icon(
-              Icons.check,
-              color: Colors.white,
-            ),
-          )
-        ],
+    return Container(
+      padding: const EdgeInsets.only(
+        top: 15,
+        bottom: 20,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              child: TextField(
-                controller: controller,
-                maxLength: 300,
-                maxLines: 10,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: Colors.grey.shade300),
+      child: Scaffold(
+        resizeToAvoidBottomPadding: false,
+        appBar: AppBar(
+          title: Text(
+            '리뷰작성',
+          ),
+          actions: [
+            IconButton(
+              onPressed: proceed,
+              icon: Icon(
+                Icons.check,
+                color: Colors.white,
+              ),
+            )
+          ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                child: TextField(
+                  controller: controller,
+                  maxLength: 300,
+                  maxLines: 10,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(color: Colors.grey.shade300),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderSide:
+                            BorderSide(color: AppSettings.primaryColor)),
                   ),
-                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10.0)), borderSide: BorderSide(color: AppSettings.primaryColor)),
                 ),
               ),
-            ),
-            buildCoverImages(),
-            Text(
-              'False-written reviews notice',
-              textScaleFactor: 0.9,
-              style: TextStyle(
-                color: Color(0xff717171),
+              buildCoverImages(),
+              Text(
+                '허위 작성 제재안내문',
+                textScaleFactor: 0.9,
+                style: TextStyle(
+                  color: Color(0xff717171),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -90,7 +99,8 @@ class _PostStoreReviewState extends State<PostStoreReview> {
     for (int i = 0; i < images.length; i++)
       if (images[i] != 'add') {
         String url = images[i];
-        if (!images[i].startsWith('http')) url = await uploadStoreReviewPhoto(File(images[i]));
+        if (!images[i].startsWith('http'))
+          url = await uploadStoreReviewPhoto(File(images[i]));
         imageURLs.add(url);
       }
 
@@ -111,12 +121,14 @@ class _PostStoreReviewState extends State<PostStoreReview> {
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       itemCount: images.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, childAspectRatio: 1),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4, childAspectRatio: 1),
       itemBuilder: (context, i) {
         if (images[i] == 'add')
           return AddItem(pickFromCamera: () async {
             closeDialog(context);
-            var pickedFile = await ImagePicker().getImage(source: ImageSource.camera, imageQuality: 65);
+            var pickedFile = await ImagePicker()
+                .getImage(source: ImageSource.camera, imageQuality: 65);
             images.add(pickedFile.path);
             if (images.length == 6)
               images.remove('add');
@@ -126,7 +138,8 @@ class _PostStoreReviewState extends State<PostStoreReview> {
             setState(() {});
           }, pickFromGallery: () async {
             closeDialog(context);
-            var pickedFile = await ImagePicker().getImage(source: ImageSource.gallery, imageQuality: 65);
+            var pickedFile = await ImagePicker()
+                .getImage(source: ImageSource.gallery, imageQuality: 65);
             images.add(pickedFile.path);
             if (images.length == 6)
               images.remove('add');

@@ -25,17 +25,19 @@ class _AddItemState extends State<AddItem> {
       child: InkWell(
         onTap: () async {
           Widget camera = FlatButton(
-            child: Text("Camera", textScaleFactor: 1),
+            child: Text("카메라", textScaleFactor: 1),
             onPressed: widget.pickFromCamera,
           );
           Widget gallery = FlatButton(
-            child: Text("Gallery", textScaleFactor: 1),
+            child: Text("사진첩", textScaleFactor: 1),
             onPressed: widget.pickFromGallery,
           );
           AlertDialog alert = AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Text("Add a Photo", textScaleFactor: 1),
-            content: Text("From where would you like to add a photo?", textScaleFactor: 1),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            title: Text("사진 추가", textScaleFactor: 1),
+            content: Text("From where would you like to add a photo?",
+                textScaleFactor: 1),
             actions: [
               camera,
               gallery,
@@ -65,7 +67,7 @@ class _AddItemState extends State<AddItem> {
                 onPressed: null,
               ),
               Text(
-                'Add Photo',
+                '사진 추가',
                 textScaleFactor: 0.85,
                 style: TextStyle(color: Colors.white),
               ),
